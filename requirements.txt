@@ -1,0 +1,13 @@
+torch
+torchvision
+jupyter
+numpy
+matplotlib
+scikit-learn
+fasttext
+seaborn
+gensim
+spacy
+MulticoreTSNE
+bokeh
+transformers

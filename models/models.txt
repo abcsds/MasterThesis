@@ -1,0 +1,5 @@
+models/Word2Vec/GoogleNews-vectors-negative300.bin.gz
+models/WordNet-Domains/p1c44tcuk918v2puhdo8hifb2d3.zip
+models/EmoLex/dict.csv
+models/GloVe/glove.840B.300d.zip
+models/GloVe/glove.6B.zip
