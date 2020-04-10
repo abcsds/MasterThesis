@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import seaborn as sns
+import matplotlib.pyplot as plt
 from sklearn.preprocessing import normalize
 
 
@@ -42,15 +43,14 @@ for i, ds in enumerate(dss):
             cor_p_sent.append(c)
         cors.append(cor_p_sent)
     cors = np.array(cors)
-    assert np.isfinite(cors).all() == True, "Some infinites or nan in correlations"
-
-    x = cors[(np.isfinite(cors))]
     x = np.nan_to_num(cors)
     assert np.isfinite(x).all() == True, "Some infinites or nan in correlations"
-
+    if np.isfinite(x).all() != True:
+        continue
     g = sns.clustermap(x, col_cluster=False)
     t = [int(tick_label.get_text()) for tick_label in g.ax_heatmap.axes.get_yticklabels()]
     sorted_e = [x for _,x in sorted(zip(t,ind))]
     g.ax_heatmap.axes.set_yticklabels(sorted_e,  rotation=0)
     g.fig.suptitle(f"Correlation of {ds}", fontsize=18)
     g.savefig(f"./img/cor/correlation_{i}.png")
+    plt.close()
