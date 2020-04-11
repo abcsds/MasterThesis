@@ -62,3 +62,4 @@ for i, ds in enumerate(dss):
              source=source)
     # show the results
     show(p)
+    del p

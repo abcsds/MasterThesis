@@ -11,3 +11,4 @@ spacy
 MulticoreTSNE
 bokeh
 transformers
+fastcluster
