@@ -68,5 +68,7 @@ for i, ds in enumerate(dss):
                     c=palette[[ind.index(i) for i in Y]],
                     label=ind
                    )
+    plt.xlabel("Component 0")
+    plt.ylabel("Component 1")
     fig.suptitle(f"PCA of {ds}", fontsize=24)
     fig.savefig(f"./img/pca/scatter_{i}.png")
