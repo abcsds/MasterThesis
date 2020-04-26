@@ -36,6 +36,8 @@ This means that for running jupyter notebooks, the following command can be used
 
 `docker run --gpus all -p 8888:8888 -it tensorflow/tensorflow:2.1.0-gpu-py3-jupyter`
 
+`sudo docker run --gpus all -p 8888:8888 -v $(pwd):/tf -it bert`
+
 ## Torch
 
 Tensorflow is a mess to setup on different environments, specially as time moves along, and different versions require different dependencies, or even different python versions. I am also working with (hydrogen)[https://atom.io/packages/hydrogen] on (Atom)[https://atom.io/], which contacts an ipython kernel and allows me to work on scripts as I create them.

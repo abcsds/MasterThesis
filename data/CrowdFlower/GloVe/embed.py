@@ -42,7 +42,6 @@ lens = [e.shape[0] for e in X]
 assert len(set(lens)) == 1
 
 
-# Because fasttext prefers to read from file
 outpath = "./data/CrowdFlower/GloVe/embeddings.csv"
 
 with open(outpath, 'w', newline='') as f:

@@ -7,19 +7,22 @@ from sklearn.preprocessing import normalize
 
 
 dss = [
-      "data/CrowdFlower/FastText/embeddings_unsupervised.csv",
-      "data/CrowdFlower/FastText/embeddings_supervised.csv",
-      "data/CrowdFlower/GloVe/embeddings.csv",
-      "data/CrowdFlower/Word2Vec/embeddings.csv",
-      # "data/EmotionPush/FastText/embeddings_unsupervised.csv",
-      # "data/EmotionPush/FastText/embeddings_supervised.csv",
-      "data/EmotionPush/GloVe/embeddings.csv",
-      "data/EmotionPush/Word2Vec/embeddings.csv",
-      "data/Friends/FastText/embeddings_unsupervised.csv",
-      "data/Friends/FastText/embeddings_supervised.csv",
-      "data/Friends/GloVe/embeddings.csv",
-      "data/Friends/Word2Vec/embeddings.csv",
-     ]
+       "data/CrowdFlower/FastText/embeddings_unsupervised.csv",
+       "data/CrowdFlower/FastText/embeddings_supervised.csv",
+       "data/CrowdFlower/GloVe/embeddings.csv",
+       "data/CrowdFlower/Word2Vec/embeddings.csv",
+       "data/CrowdFlower/BERT/embeddings.csv",
+       # "data/EmotionPush/FastText/embeddings_unsupervised.csv",
+       # "data/EmotionPush/FastText/embeddings_supervised.csv",
+       "data/EmotionPush/GloVe/embeddings.csv",
+       "data/EmotionPush/Word2Vec/embeddings.csv",
+       "data/EmotionPush/BERT/embeddings.csv",
+       "data/Friends/FastText/embeddings_unsupervised.csv",
+       "data/Friends/FastText/embeddings_supervised.csv",
+       "data/Friends/GloVe/embeddings.csv",
+       "data/Friends/Word2Vec/embeddings.csv",
+       "data/Friends/BERT/embeddings.csv",
+       ]
 
 for i, ds in enumerate(dss):
     print(f"Working on {ds}")
@@ -48,6 +51,8 @@ for i, ds in enumerate(dss):
     assert np.isfinite(x).all() == True, "Some infinites or nan in correlations"
     if np.isfinite(x).all() != True:
         continue
+
+    # correlation
     g = sns.clustermap(x, col_cluster=False)
     t = [int(tick_label.get_text()) for tick_label in g.ax_heatmap.axes.get_yticklabels()]
     sorted_e = [x for _,x in sorted(zip(t,ind))]
@@ -55,3 +60,13 @@ for i, ds in enumerate(dss):
     g.fig.suptitle(f"Correlation of PCA components {ds}", fontsize=18)
     g.savefig(f"./img/pca/pca_cor_{i}.png")
     plt.close()
+
+    # scatter
+    fig = plt.figure(figsize=(16, 16))
+    ax = plt.subplot(aspect='equal')
+    sc = ax.scatter(projection[:, 0], projection[:, 1],
+                    c=palette[[ind.index(i) for i in Y]],
+                    label=ind
+                   )
+    fig.suptitle(f"PCA of {ds}", fontsize=24)
+    fig.savefig(f"./img/pca/scatter_{i}.png")

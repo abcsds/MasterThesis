@@ -31,7 +31,6 @@
 !/data/Friends/Word2Vec/embed.py
 !/data/Friends/FastText/embed.py
 !/data/Friends/GloVe/embed.py
-!/data/CrowdFlower/BERT/embed.py
 !/data/CrowdFlower/Word2Vec/embed.py
 !/data/CrowdFlower/FastText/embed.py
 !/data/CrowdFlower/GloVe/embed.py

@@ -6,18 +6,22 @@ from bokeh.models import ColumnDataSource
 from bokeh.palettes import viridis
 from bokeh.plotting import figure, output_file, show
 
-dss = ["data/CrowdFlower/FastText/embeddings_unsupervised.csv",
+dss = [
+       "data/CrowdFlower/FastText/embeddings_unsupervised.csv",
        "data/CrowdFlower/FastText/embeddings_supervised.csv",
        "data/CrowdFlower/GloVe/embeddings.csv",
        "data/CrowdFlower/Word2Vec/embeddings.csv",
+       "data/CrowdFlower/BERT/embeddings.csv",
        # "data/EmotionPush/FastText/embeddings_unsupervised.csv",
        # "data/EmotionPush/FastText/embeddings_supervised.csv",
        "data/EmotionPush/GloVe/embeddings.csv",
        "data/EmotionPush/Word2Vec/embeddings.csv",
+       "data/EmotionPush/BERT/embeddings.csv",
        "data/Friends/FastText/embeddings_unsupervised.csv",
        "data/Friends/FastText/embeddings_supervised.csv",
        "data/Friends/GloVe/embeddings.csv",
        "data/Friends/Word2Vec/embeddings.csv",
+       "data/Friends/BERT/embeddings.csv",
        ]
 
 

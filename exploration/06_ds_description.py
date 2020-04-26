@@ -1,10 +1,5 @@
-import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 
-sns.set_style('darkgrid')
-sns.set_palette('muted')
 
 dss = [
        "data/CrowdFlower/FastText/embeddings_unsupervised.csv",
@@ -23,20 +18,9 @@ dss = [
        "data/Friends/Word2Vec/embeddings.csv",
        "data/Friends/BERT/embeddings.csv",
        ]
-for i, ds in enumerate(dss):
-    print(f"Working on {ds}")
+
+for ds in dss:
     df = pd.read_csv(ds)
-    X = df.drop("emotion", axis=1).to_numpy()
-    Y = df["emotion"].to_numpy()
-    assert X.shape[0] == Y.shape[0]
-    ind = list(np.unique(Y))
-    for emotion in ind:
-        x = X[Y == emotion]
-        try:
-            p = sns.clustermap(np.corrcoef(x), figsize=(16, 16))
-            p.fig.suptitle(f"Clustermap of {ds} {emotion}", fontsize=24)
-            p.savefig(f"./img/cls/clustermap_{i}_{emotion}.png")
-            del p
-            plt.close()
-        except FloatingPointError:
-            continue
+    print(ds, len(df.columns) - 1, len(df["emotion"].unique()))
+    print(df["emotion"].unique())
+    
