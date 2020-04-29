@@ -1,0 +1,206 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage[utf8x]{inputenc}
+
+\usepackage{amsmath} % Mathematische Symbole
+\usepackage{amssymb} % Mathematische Symbole
+\usepackage{graphicx} % Bilder einfügen
+\usepackage{subcaption}
+\usepackage{verbatim}
+\usepackage{mathtools}
+\usepackage{subcaption}
+\usepackage[titlenumbered,ruled,linesnumbered]{algorithm2e}
+\usepackage{todonotes}
+\usepackage{booktabs}
+
+\usepackage[UKenglish]{babel}
+
+\usepackage{hyperref}
+\hypersetup{
+    citecolor=black,
+    filecolor=black,
+    linkcolor=green,
+    urlcolor=black
+}
+\usepackage{subcaption}
+\usepackage{flexisym}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+
+%opening
+
+
+\pagenumbering{roman}
+
+\begin{document}
+
+
+%----------------------------------------------------------------------------------------
+% Title Page starting here
+%----------------------------------------------------------------------------------------
+\begin{titlepage}
+
+\center % Center everything on the page
+
+%----------------------------------------------------------------------------------------
+% LOGO SECTION
+%----------------------------------------------------------------------------------------
+
+% \includegraphics{logoUHi.jpg}\\[1cm] % Include a department/university logo - this will require the graphicx package
+\vspace{-1cm}
+\includegraphics[width=4cm]{logoUHi.jpg}
+\vspace{2cm}
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+% TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+{ \Large \bfseries Title of The Thesis: First Line}\\  % Title of your document
+\vspace{0.5cm}
+{ \Large \bfseries Title of The Thesis: Second line}\\ % Title of your document
+\vspace{0.5cm}
+\vspace{2cm}
+% \HRule \\[1.5cm]
+
+%----------------------------------------------------------------------------------------
+% AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{minipage}{0.49\textwidth}
+\begin{flushleft} \large
+\emph{Author:}\\
+FirstName \textsc{LastName} \\ % % Name of the student
+StudentID \\ % Your maticulation number
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.46\textwidth}
+\begin{flushright} \large
+\emph{Supervisors:} \\
+FirstName \textsc{LastName} \\ % 1st Supervisor's Name
+FirstName \textsc{LastName} % 2nd Supervisor's Name
+\end{flushright}
+\end{minipage}\\
+\vspace{2cm}
+
+%----------------------------------------------------------------------------------------
+% DATE SECTION
+%----------------------------------------------------------------------------------------
+
+{ \today}\\ % Date, change the \today to a set date if you want to be precise
+\vspace{1cm}
+%----------------------------------------------------------------------------------------
+% University Section
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+% HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+{ \large \bfseries Thesis submited for}\\  % Title of your document
+\vspace{0.3cm}
+\textsc{\Large Master of Science in Data Analytics}\\% Major heading such as course name
+\vspace{1cm}
+\textsc{\large Wirtschaftsinformatik und Maschinelles Lernen}\\ % Name of your university/college
+\vspace{0.3cm}
+\textsc{\large Stiftung Universität Hildesheim}\\ % Name of your university/college
+\vspace{0.3cm}
+\textsc{\large Universitatsplätz 1, 31141 Hildesheim}\\ % Name of your university/college
+\vspace{0.3cm}
+
+
+\vfill % Fill the rest of the page with whitespace
+
+\end{titlepage}
+%----------------------------------------------------------------------------------------
+% Title Page ends
+%----------------------------------------------------------------------------------------
+
+
+\setcounter{secnumdepth}{1}
+
+%----------------------------------------------------------------------------------------
+% Statement of the sole authorship starts
+%----------------------------------------------------------------------------------------
+
+\noindent \textbf{Statement as to the sole authorship of the thesis:}
+\vspace{0.4cm}
+\\TITLE OF THE THESIS.
+I hereby certify that the master's thesis named above was solely written by me and that no assistance was used other than that cited. The passages in this thesis that were taken verbatim or with the same sense as that of other works have been identified in each individual case by the citation of the source or the origin, including the secondary sources used. This also applies for drawings. sketches, illustration as well as internet sources and other collections of electronic texts or data, etc. The submitted thesis has not been previously used for the fulfilment of a degree requirements and has not been published in English or any other language. I am aware of the fact that false declarations will be treated as fraud.
+\vspace{7cm}
+
+Date, City Signature
+
+\thispagestyle{empty}
+%----------------------------------------------------------------------------------------
+% Statement of the sole authorship ends
+%----------------------------------------------------------------------------------------
+\setcounter{tocdepth}{2}
+\newpage
+
+%----------------------------------------------------------------------------------------
+% Abstract of your theis starts
+%----------------------------------------------------------------------------------------
+
+\begin{abstract}
+
+Abstract
+
+\vfill
+\end{abstract}
+%----------------------------------------------------------------------------------------
+% Abstract of your theis ends
+%----------------------------------------------------------------------------------------
+
+
+\newpage
+
+\tableofcontents
+\listoffigures
+\listoftables
+\lstlistoflistings
+\newpage
+\pagenumbering{arabic}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ \include{./chapters/introduction}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \include{./chapters/related_work}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \include{./chapters/methodolgy}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \include{./chapters/experiments}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \include{./chapters/conclusion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibliography{./chapters/bibliography}
+\bibliographystyle{apalike}
+
+
+\end{document}
