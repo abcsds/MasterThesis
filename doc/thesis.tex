@@ -1,9 +1,9 @@
 \documentclass[a4paper,12pt]{report}
 \usepackage[utf8x]{inputenc}
 
-\usepackage{amsmath} % Mathematische Symbole
-\usepackage{amssymb} % Mathematische Symbole
-\usepackage{graphicx} % Bilder einfügen
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
 \usepackage{subcaption}
 \usepackage{verbatim}
 \usepackage{mathtools}
@@ -47,51 +47,33 @@
   tabsize=3
 }
 
-
-%opening
-
-
 \pagenumbering{roman}
 
 \begin{document}
 
-
-%----------------------------------------------------------------------------------------
-% Title Page starting here
-%----------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+% Title Page
+%-------------------------------------------------------------------------------
 \begin{titlepage}
-
 \center % Center everything on the page
 
-%----------------------------------------------------------------------------------------
-% LOGO SECTION
-%----------------------------------------------------------------------------------------
-
-% \includegraphics{logoUHi.jpg}\\[1cm] % Include a department/university logo - this will require the graphicx package
+% Logo section
 \vspace{-1cm}
-\includegraphics[width=4cm]{logoUHi.jpg}
+\includegraphics[width=4cm]{img/logoUHi.jpg}
 \vspace{2cm}
-%----------------------------------------------------------------------------------------
 
-%----------------------------------------------------------------------------------------
-% TITLE SECTION
-%----------------------------------------------------------------------------------------
-
+% Title section
 { \Large \bfseries Title of The Thesis: First Line}\\  % Title of your document
 \vspace{0.5cm}
 { \Large \bfseries Title of The Thesis: Second line}\\ % Title of your document
 \vspace{0.5cm}
 \vspace{2cm}
-% \HRule \\[1.5cm]
 
-%----------------------------------------------------------------------------------------
-% AUTHOR SECTION
-%----------------------------------------------------------------------------------------
-
+% Author section
 \begin{minipage}{0.49\textwidth}
 \begin{flushleft} \large
 \emph{Author:}\\
-FirstName \textsc{LastName} \\ % % Name of the student
+FirstName \textsc{LastName} \\ % Name of the student
 StudentID \\ % Your maticulation number
 \end{flushleft}
 \end{minipage}
@@ -105,19 +87,11 @@ FirstName \textsc{LastName} % 2nd Supervisor's Name
 \end{minipage}\\
 \vspace{2cm}
 
-%----------------------------------------------------------------------------------------
-% DATE SECTION
-%----------------------------------------------------------------------------------------
-
+% Date section
 { \today}\\ % Date, change the \today to a set date if you want to be precise
 \vspace{1cm}
-%----------------------------------------------------------------------------------------
-% University Section
-%----------------------------------------------------------------------------------------
 
-%----------------------------------------------------------------------------------------
-% HEADING SECTIONS
-%----------------------------------------------------------------------------------------
+% University Section
 { \large \bfseries Thesis submited for}\\  % Title of your document
 \vspace{0.3cm}
 \textsc{\Large Master of Science in Data Analytics}\\% Major heading such as course name
@@ -133,16 +107,16 @@ FirstName \textsc{LastName} % 2nd Supervisor's Name
 \vfill % Fill the rest of the page with whitespace
 
 \end{titlepage}
-%----------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 % Title Page ends
-%----------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 
 
 \setcounter{secnumdepth}{1}
 
-%----------------------------------------------------------------------------------------
-% Statement of the sole authorship starts
-%----------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+% Statement of the sole authorship
+%-------------------------------------------------------------------------------
 
 \noindent \textbf{Statement as to the sole authorship of the thesis:}
 \vspace{0.4cm}
@@ -153,25 +127,16 @@ I hereby certify that the master's thesis named above was solely written by me a
 Date, City Signature
 
 \thispagestyle{empty}
-%----------------------------------------------------------------------------------------
-% Statement of the sole authorship ends
-%----------------------------------------------------------------------------------------
 \setcounter{tocdepth}{2}
 \newpage
 
-%----------------------------------------------------------------------------------------
-% Abstract of your theis starts
-%----------------------------------------------------------------------------------------
-
+% Abstract of the thesis
 \begin{abstract}
 
 Abstract
 
 \vfill
 \end{abstract}
-%----------------------------------------------------------------------------------------
-% Abstract of your theis ends
-%----------------------------------------------------------------------------------------
 
 
 \newpage
@@ -182,25 +147,14 @@ Abstract
 \lstlistoflistings
 \newpage
 \pagenumbering{arabic}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \include{./chapters/introduction}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \input{./chapters/01_introduction}
+ \input{./chapters/02_related_work}
+ \input{./chapters/03_methodolgy}
+ \input{./chapters/04_experiments}
+ \input{./chapters/05_conclusion}
 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- \include{./chapters/related_work}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- \include{./chapters/methodolgy}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- \include{./chapters/experiments}
-
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- \include{./chapters/conclusion}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\bibliography{./chapters/bibliography}
+\bibliography{./chapters/06_bibliography}
 \bibliographystyle{apalike}
-
 
 \end{document}

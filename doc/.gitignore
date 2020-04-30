@@ -1,0 +1,15 @@
+aux
+**/*.aux
+thesis.bbl
+thesis.bfbd_latexmk
+thesis.blg
+thesis.dvi
+thesis.fls
+thesis.log
+thesis.synctex.gz
+thesis.toc
+thesis.fdb_latexmk
+thesis.lof
+thesis.lol
+thesis.lot
+thesis.out
