@@ -4,17 +4,17 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{graphicx}
-\usepackage{subcaption}
 \usepackage{verbatim}
 \usepackage{mathtools}
-\usepackage{subcaption}
 \usepackage[titlenumbered,ruled,linesnumbered]{algorithm2e}
 \usepackage{todonotes}
 \usepackage{booktabs}
+\usepackage{float}     % Help position figures
 
 \usepackage[UKenglish]{babel}
 
 \usepackage{hyperref}
+% \usepackage[hidelinks]{hyperref} % Hide links for printing
 \hypersetup{
     citecolor=black,
     filecolor=black,
@@ -46,7 +46,7 @@
   stringstyle=\color{mauve},
   breaklines=true,
   breakatwhitespace=true,
-  tabsize=3
+  tabsize=2
 }
 
 \pagenumbering{roman}
@@ -72,20 +72,21 @@
 \vspace{2cm}
 
 % Author section
-\begin{minipage}{0.49\textwidth}
-\begin{flushleft} \large
-\emph{Author:}\\
-Luis Alberto \textsc{Barradas Chacón} \\
-278183 \\
-\end{flushleft}
+\begin{minipage}{0.4\textwidth}
+  \begin{flushleft} \large
+  \emph{Author:}\\
+  Luis Alberto \\
+  \textsc{Barradas Chacón} \\
+  278183 \\
+  \end{flushleft}
 \end{minipage}
 ~
-\begin{minipage}{0.46\textwidth}
-\begin{flushright} \large
-\emph{Supervisors:} \\
-Prof. Dr. Christian \textsc{Wartena} \\
-MSc. Rafael \textsc{Drumond}
-\end{flushright}
+\begin{minipage}{0.5\textwidth}
+  \begin{flushright} \large
+  \emph{Supervisors:} \\
+  Prof.\ Dr.\ Christian \textsc{Wartena} \\
+  MSc. Rafael \textsc{Drumond}
+  \end{flushright}
 \end{minipage}\\
 \vspace{2cm}
 
@@ -140,6 +141,14 @@ Word embeddings exist to abstract features of text into a numeric space. In this
 \vfill
 \end{abstract}
 
+\newpage
+
+\begin{center}
+\section*{Acknowledgements}\label{sec:Acknowledgements}
+Acknowledgements Here
+
+\vfill
+\end{center}
 
 \newpage
 
@@ -150,7 +159,6 @@ Word embeddings exist to abstract features of text into a numeric space. In this
 \newpage
 \pagenumbering{arabic}
 
- \input{./chapters/00_acknowledgements}
  \input{./chapters/01_introduction}
  \input{./chapters/02_related_work}
  \input{./chapters/03_methodolgy}

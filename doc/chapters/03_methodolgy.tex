@@ -1,13 +1,12 @@
 %!TEX root = ../thesis.tex
-\chapter{Methodology}
-\label{chap:Methodology}
+\chapter{Methodology}\label{chap:Methodology}
 
 To analyze the representation of emotions in different word embeddings, a high emphasis on dimensionality-reducing visualizations is to be done. The steps to do so are the following:
 First, the selected datasets must be embedded in their vector space. This will allow for a faster processing of the data, but requires making the technical decision of how the word vectors will be turned into sentence vectors to share the label in the case of datasets that contain a label for every sentence.
 A supervised clustering must yield accuracy similar to that of a classification task. This means testing the accuracy of a classifier on the emotion recognition task. Even though this step could be seen as optional, failing to reproduce the baseline accuracy scores for this simple task might mean that the embeddings are not even capturing the basic information about the task.
 
 A correlational analysis will be done between every dimension of the vector space and the emotions present in the dataset. This will tell us about any linear representation of emotions in the vector space.
-A second study must show if a linear transformation of the vector space dimensions will yield a better correlation with the emotions of the datasets. This means either LDA, or PCA.
+A second study must show if a linear transformation of the vector space dimensions will yield a better correlation with the emotions of the datasets. This means either LDA, or PCA\@.
 
 A hierarchical clustering will be used to analyze any possible structure in the embedded dataset in relation to emotions.
 A final approach to this problem can be done through the study of oppositeness.

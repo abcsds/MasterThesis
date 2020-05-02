@@ -1,32 +1,31 @@
 %!TEX root = ../thesis.tex
-\chapter{Introduction}
-\label{chap:Introduction}
+\chapter{Introduction}\label{chap:Introduction}
 
-\section{Emotions and Affect}
-\label{sec:Emotions and Affect}
+\section{Emotions and Affect}\label{sec:Emotions and Affect}
 
 Within the context of this project it is important to distinguish between emotion and affect. Affect, in the context of this project will be treated as a term to associate predisposition towards stimuli. Thus, affect is in a sense, a general term that can be even used to describe animal, and other non-human entities. Emotions, on the other hand, are treated in this project as a state inherent to humans. This state is multidimensional, and every dimension, or emotion, can either be present in a certain amount, or not be present at all.
 Emotions present an affect value, but not necessarily otherwise.
 
-\subsection{Models of Emotions}
-\label{sub:Models of Emotions}
+\subsection{Models of Emotions}\label{sub:Models of Emotions}
 
 When trying to detect emotion, it is relevant to know what emotions to look for. This is called a model of emotions, and is still a very discussed subject is psychology. Although there are several models of emotions the most persistent are Ekman’s model, Plutchikc’s model. The main assumption this work does follows the theory of constructed emotions, which recognizes affect as a physiological response to positive or negative stimuli, but emotions as a cognitive form of context-giving.
 
 Why is it important to study emotion?
 Emotions are considered a human state that influences behaviour and decision making. Many times, when expressing thoughts in a written or spoken form, one or several emotions are present. Detecting these emotions is an important task for human interaction. Automatic emotion detection on text is thus a machine learning task required for comprehensive human-computer interaction.
 
-\subsubsection{Eckman's model of Emotions}
-\label{subs:Eckman's model of Emotions}
+\subsubsection{Eckman's model of Emotions}\label{subs:Eckman's model of Emotions}
 
 What are emotions?
 What is affect?
 Why study emotions?
 The role of emotions in communication
 Measurements of emotions:
- - Facial Expressions
- - Biosignals
- - Language or self report
+\begin{itemize}
+  \item Facial Expressions
+  \item Biosignals
+  \item Language or self report
+\end{itemize}
+
 Constructed theory of emotions
 Emotions in Language
 Semantic Fields
@@ -34,8 +33,7 @@ Emotion Lexicon
 Emotion Networks
 Learning word semantics from context
 
-\section{Emotion and Machine Learning}
-\label{sec:Emotion and Machine Learning}
+\section{Emotion and Machine Learning}\label{sec:Emotion and Machine Learning}
 Language in Machine Learning
 NLP workflow?
 Language representation
@@ -47,23 +45,16 @@ Machine Learning meaning from context
 Word Embeddings
 Transformers
 
+\section{Problem setting}\label{sec:Problem setting}
 
 
-
-\section{Problem setting}
-\label{sec:Problem setting}
+\section{Project Description}\label{sec:Project Description}
 
 
-\section{Project Description}
-\label{sec:Project Description}
+\section{Objective}\label{sec:Objective}
 
 
-\section{Objective}
-\label{sec:Objective}
-
-
-\section{Justification}
-\label{sec:Justification}
+\section{Justification}\label{sec:Justification}
 
 Word Embeddings
 Numerically representing words is commonly known as word embedding. This allows for Machine Learning (ML) models to easily manipulate text data that would otherwise be an arbitrary encoding of text. With the advances in machine learning automatic word embedding became a possible solution to avoid crowdsourcing. % This is too short. There is a lot of NLP using Machine Learning that doesn't use Word Embeddings.
@@ -73,48 +64,68 @@ Affect learning and its relevance
 The relevance of affect in text has increased since the popularization of text-based social networks, like twitter. There, individuals and organizations openly express their opinions. This creates an environment where implicit feedback about entities is present. An easy way to abstract popular opinion about a named entity is learning the affect expressed in text, such as a tweet. Affect can be a multidimensional phenomenon, but the most important dimension of it is valence: whether a text expresses positive or negative emotion.
 
 
-
-
-
 \begin{figure}[H]
   \includegraphics[width=0.8\textwidth]{placeholder}
   \centering
   \caption{Example of an image}
-  \label{fig:placeholder}
-\end{figure}
+\end{figure}\label{fig:placeholder}
 
 
 In Figure~\ref{fig:placeholder} you can see an example of an image.
 
+Followed by equation~\ref{eq:equation_placeholder}
+\begin{equation} \label{eq:equation_placeholder}
+  \begin{split}
+    A = \{&'a':['d','e','f','g'], \\
+         &'b':['d','e','f','g'], \\
+         &'c':['d','e','f','g'], \\
+         &'d':['h'], \\
+         &'e':['h'], \\
+         &'f':['h'], \\
+         &'g':['h'], \\
+         &'h':[] \}
+  \end{split}
+\end{equation}
 
-\begin{figure}[H]
-  \begin{equation} \label{eq:equation_placeholder}
-    \begin{split}
-      A = \{&'a':['d','e','f','g'], \\
-           &'b':['d','e','f','g'], \\
-           &'c':['d','e','f','g'], \\
-           &'d':['h'], \\
-           &'e':['h'], \\
-           &'f':['h'], \\
-           &'g':['h'], \\
-           &'h':[] \}
-    \end{split}
-  \end{equation}
-  \caption{Example of an equation}
-  \label{fig:equation_placeholder}
-\end{figure}
-
-
+This is now a URL\@:\\
 \url{http://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm}
 
 
-\section{A Section}
-\label{sec:A Section}
+\section{A Section}\label{sec:A Section}
 
 
-\subsection{A subsection}
-\label{sub:A subsection}
+\subsection{A subsection}\label{sub:A subsection}
 
 
-\subsubsection{A sub-subsection}
-\label{subs:A sub-subsection}
+\subsubsection{A sub-subsection}\label{subs:A sub-subsection}
+
+
+% \begin{figure}[H]
+%   \begin{lstlisting}[caption={A wrong listing},frame=single]
+%     for i in aList:
+%       print(i)
+%     l = [i for i in aList if i % 2 == 1]
+%   \end{lstlisting}
+%   \caption{Example of a wrong codeblock}
+% \end{figure}\label{fig:Listing_1}
+
+\begin{lstlisting}[caption={A codeblock},label=lst:codeblock,frame=single]
+  for i in aList:
+    print(i)
+  l = [i for i in aList if i % 2 == 1]
+\end{lstlisting}
+
+As we can see in the Listing~\ref{lst:codeblock} it can be referenced.
+
+
+\begin{table}[H]
+  \begin{tabular}{llcrr}
+  1  & 2  & 3  & 4  & 5  \\
+  6  & 7  & 8  & 9  & 10 \\
+  11 & 12 & 13 & 14 & 15 \\
+  16 & 17 & 18 & 19 & 20
+  \end{tabular}
+  \caption{An Example of a table}\label{tab:table}
+\end{table}
+
+As we can see in the Table~\ref{tab:table} it can be referenced
