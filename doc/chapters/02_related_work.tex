@@ -1,2 +1,75 @@
 %!TEX root = ../thesis.tex
 \chapter{Related Work}
+\label{chap:Related Work}
+
+Mohamad and Turney created an Emotion Lexicon through crowdsourcing~\cite{mohammad_crowdsourcing_2013}. In this way an emotional word embedding was created by subjectively asking participants whether or not a word was related to a specific emotion.
+
+Vo and Zhang created an automatic approach to learning sentiment lexicons for short texts through the use of emojis~\cite{vo_dont_2016}. This method uses the intrinsic usage of emojis to express positive or negative valence in a sentence, and exploded this to expand that valence to words used in the same context.
+
+Maas et al. created a method to learn word vectors for sentiment analysis~\cite{maas_learning_2011}.
+
+By applying machine learned automatic embeddings, the creation of word embeddings based only on text data was open as a possibility. This is also a method that later became the popular Word2Vec method~\cite{mikolov_distributed_2013}.
+
+A refining of word embeddings has been suggested by Yu et al. by means of a clustering algorithm on the vector space~\cite{yu_refining_2017}.
+
+Rothe et al. suggested an orthogonal transformation to word embeddings used on SemEval2015 which yielded ultradense word embeddings for affect\cite{rothe_ultradense_2016}.
+
+A further exploration of transformations of a word vector space was done by Hollis et al. by means of component analysis, thus creating models of semantics from text. These were applied to affect\cite{hollis_principals_2016}.
+
+These studies have mostly been done with affect: positive and negative valences, but have mostly ignored other emotional dimensions.
+
+
+Talk about the models used and their history
+
+Datasets
+There is the possibility of using the datasets from the unified dataset of emotion in text. (An Analysis of Annotated Corpora forEmotion Classification in Text). This includes:
+\begin{itemize}
+  \item AffectiveText
+  \item Blogs
+  \item CrowdFlower
+  \item DailyDialogs
+  \item Electoral-Tweets
+  \item EmoBank
+  \item EmoInt
+  \item Emotion-Stimulus
+  \item fb-valence-arousal
+  \item Grounded-Emotions
+  \item ISEAR
+  \item Tales
+  \item SSEC
+  \item TEC
+\end{itemize}
+
+
+The link to these datasets can be found under the github repository for the unified emotion datasets.
+https://github.com/sarnthil/unify-emotion-datasets/tree/master/datasets
+
+During the exploratory phase of this project, a subset of these datasets will be selected, giving priority to those with a more standardized, cleaner, or easier to access data.
+Models
+For word embeddings, different pre-trained models will be used:
+\begin{itemize}
+  \item Fasttext
+  \item Word2Vec
+  \item GloVe
+  \item BERT
+\end{itemize}
+
+A word embedding can also be trained from data. This is considered an optional model to analyze.
+
+The following techniques have been used:
+\begin{itemize}
+  \item TSNE
+  \item PCA
+\end{itemize}
+
+Research Question
+
+As a general research question we propose to answer the following:
+When using pre-trained models for word and sentence embedding, \textbf{is the information about the emotional and affective content or context of the word or sentence represented in the vector space?}
+
+This question can be approached in three different ways:
+\begin{itemize}
+  \item Is there a direct correlation between any of the dimensions of the vector space and human-labeled emotions and affect?
+  \item Is there a linear transformation that will yield a direct correlation to the same human-labeled emotions?
+  \item Is there a hierarchical structure that accurately represents the embedding of said labels?
+\end{itemize}

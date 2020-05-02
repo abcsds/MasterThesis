@@ -30,6 +30,8 @@
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 
+\graphicspath{ {./img/} }
+
 \lstset{frame=tb,
   language=Python,
   aboveskip=3mm,
@@ -63,9 +65,9 @@
 \vspace{2cm}
 
 % Title section
-{ \Large \bfseries Title of The Thesis: First Line}\\  % Title of your document
+{ \Large \bfseries Emotion and Affect Representation}\\
 \vspace{0.5cm}
-{ \Large \bfseries Title of The Thesis: Second line}\\ % Title of your document
+{ \Large \bfseries in Sentence Embeddings}\\
 \vspace{0.5cm}
 \vspace{2cm}
 
@@ -73,16 +75,16 @@
 \begin{minipage}{0.49\textwidth}
 \begin{flushleft} \large
 \emph{Author:}\\
-FirstName \textsc{LastName} \\ % Name of the student
-StudentID \\ % Your maticulation number
+Luis Alberto \textsc{Barradas Chacón} \\
+278183 \\
 \end{flushleft}
 \end{minipage}
 ~
 \begin{minipage}{0.46\textwidth}
 \begin{flushright} \large
 \emph{Supervisors:} \\
-FirstName \textsc{LastName} \\ % 1st Supervisor's Name
-FirstName \textsc{LastName} % 2nd Supervisor's Name
+Prof. Dr. Christian \textsc{Wartena} \\
+MSc. Rafael \textsc{Drumond}
 \end{flushright}
 \end{minipage}\\
 \vspace{2cm}
@@ -120,11 +122,11 @@ FirstName \textsc{LastName} % 2nd Supervisor's Name
 
 \noindent \textbf{Statement as to the sole authorship of the thesis:}
 \vspace{0.4cm}
-\\TITLE OF THE THESIS.
-I hereby certify that the master's thesis named above was solely written by me and that no assistance was used other than that cited. The passages in this thesis that were taken verbatim or with the same sense as that of other works have been identified in each individual case by the citation of the source or the origin, including the secondary sources used. This also applies for drawings. sketches, illustration as well as internet sources and other collections of electronic texts or data, etc. The submitted thesis has not been previously used for the fulfilment of a degree requirements and has not been published in English or any other language. I am aware of the fact that false declarations will be treated as fraud.
+\\Emotion and Affect Representation in Sentence Embeddings.\\
+I hereby certify that the master's thesis named above was solely written by me and that no assistance was used other than that cited. The passages in this thesis that were taken verbatim or with the same sense as that of other works have been identified in each individual case by the citation of the source or the origin, including the secondary sources used. This also applies for drawings, sketches, illustration as well as internet sources and other collections of electronic texts or data, etc. The submitted thesis has not been previously used for the fulfilment of a degree requirements and has not been published in English or any other language. I am aware of the fact that false declarations will be treated as fraud.
 \vspace{7cm}
 
-Date, City Signature
+\today, Hildesheim
 
 \thispagestyle{empty}
 \setcounter{tocdepth}{2}
@@ -133,7 +135,7 @@ Date, City Signature
 % Abstract of the thesis
 \begin{abstract}
 
-Abstract
+Word embeddings exist to abstract features of text into a numeric space. In this project we explore the representation of different emotions and affects from established labeled datasets in common word embeddings.
 
 \vfill
 \end{abstract}
@@ -148,13 +150,14 @@ Abstract
 \newpage
 \pagenumbering{arabic}
 
+ \input{./chapters/00_acknowledgements}
  \input{./chapters/01_introduction}
  \input{./chapters/02_related_work}
  \input{./chapters/03_methodolgy}
  \input{./chapters/04_experiments}
  \input{./chapters/05_conclusion}
 
-\bibliography{./chapters/06_bibliography}
+\bibliography{bibliography}
 \bibliographystyle{apalike}
 
 \end{document}
