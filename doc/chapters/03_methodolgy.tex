@@ -1,13 +1,90 @@
 %!TEX root = ../thesis.tex
 \chapter{Methodology}\label{chap:Methodology}
+% Justification for the methodology
 
-To analyze the representation of emotions in different word embeddings, a high emphasis on dimensionality-reducing visualizations is to be done. The steps to do so are the following:
-First, the selected datasets must be embedded in their vector space. This will allow for a faster processing of the data, but requires making the technical decision of how the word vectors will be turned into sentence vectors to share the label in the case of datasets that contain a label for every sentence.
-A supervised clustering must yield accuracy similar to that of a classification task. This means testing the accuracy of a classifier on the emotion recognition task. Even though this step could be seen as optional, failing to reproduce the baseline accuracy scores for this simple task might mean that the embeddings are not even capturing the basic information about the task.
+To analyze the representation of emotions in different word embeddings, a high emphasis on dimensionality-reducing visualizations was done.
 
-A correlational analysis will be done between every dimension of the vector space and the emotions present in the dataset. This will tell us about any linear representation of emotions in the vector space.
-A second study must show if a linear transformation of the vector space dimensions will yield a better correlation with the emotions of the datasets. This means either LDA, or PCA\@.
+The steps to do so are the following:
+\begin{enumerate}
+  \item First, the selected datasets must be embedded in their vector space. This will allow for a faster processing of the data, but requires making the technical decision of how the word vectors will be turned into sentence vectors to share the label in the case of datasets that contain a label for every sentence.
+  \item A supervised clustering must yield accuracy similar to that of a classification task. This means testing the accuracy of a classifier on the emotion recognition task. Even though this step could be seen as optional, failing to reproduce the baseline accuracy scores for this simple task might mean that the embeddings are not even capturing the basic information about the task.
+  \item A correlational analysis will be done between every dimension of the vector space and the emotions present in the dataset. This will tell us about any linear representation of emotions in the vector space.
+  \item A second study must show if a linear transformation of the vector space dimensions will yield a better correlation with the emotions of the datasets. This means either LDA, or PCA\@.
+  \item A hierarchical clustering will be used to analyze any possible structure in the embedded dataset in relation to emotions.
+  \item A final approach to this problem can be done through the study of oppositeness.
+\end{enumerate}
 
-A hierarchical clustering will be used to analyze any possible structure in the embedded dataset in relation to emotions.
-A final approach to this problem can be done through the study of oppositeness.
-These mentioned methodology is based on answering the research question with progressive approximations. It is highly unlikely that a simple embedding model represents emotions in a single dimension in a linear manner, but it is increasingly more likely that some correlation is found with a linear transformation of the aforementioned. In case these two approaches present no information about emotions, a hierarchical clustering can extract the intrinsic information of affect in emotions. Since previous works have already shown that affect can be represented in vector spaces of word embeddings, it would be contradictory to not find a hierarchical structure of emotions in this last step.
+The mentioned methodology is based on answering the research question with progressive approximations. It is highly unlikely that a simple embedding model represents emotions in a single dimension in a linear manner, but it is increasingly more likely that some correlation is found with a linear transformation of the aforementioned. In case these two approaches present no information about emotions, a hierarchical clustering can extract the intrinsic information of affect in emotions. Since previous works have already shown that affect can be represented in vector spaces, created with a linear transformation of word embeddings\cite{TODO}, it would be contradictory to not find a hierarchical structure of emotions in this last step.
+
+
+\section{Preliminaries}\label{sec:Preliminaries}
+% What are the preliminaries? Environmental setup, and embedding.
+% Justify those preliminaries here
+This research was managed as both, a research project, and a software development project.
+As a setup for this project, two steps were taken. Setting up the physical and virtual environments for the experiments, and converging the different datasets and model embeddings into a single data source.
+
+With scientific rigor, order, and reproducibility in mind, a git repository has been setup, where not only the working environment is provided, but also the history of the project  development.
+
+
+\subsection{Environment Setup}\label{sub:Environment Setup}
+\subsubsection{Organizational}\label{subs:Organizational}
+The project planning was layed out throught three months: March, April and May of 2020. A total of twelve weeks were divided into four equal sprints, where the four main tasks in the project were equaly separated in time: Exploration and Preparation, Programming, Experiments, and Writing. The four sprints were described by tasks, further divided by sub-tasks. These were kept in track and followed me, and both Supervisors through the Asana application\cite{TODO}.
+
+The repository is accessible through github: \url{TODO}
+
+\subsubsection{Hardware}\label{subs:Hardware}
+OS: Manjaro Linux x86_64
+Kernel: 5.6.11-1-MANJARO
+Uptime: 1 day, 21 hours, 56 mins
+Packages: 2095 (pacman)
+Shell: zsh 5.8
+Resolution: 1920x1080 
+DE: Plasma
+WM: KWin
+Theme: Breath [Plasma], Breath-Dark [GTK2/3]
+Icons: Materia-Manjaro-Dark-2 [Plasma], Materia-Manjaro-Dark-2 [GTK2/3]
+Terminal: yakuake
+CPU: Intel i7-8700K (12) @ 5.000GHz
+GPU: NVIDIA GeForce GTX 1080 Ti
+Memory: 11200MiB / 15937MiB
+
+
+\subsubsection{Software}\label{subs:Software}
+% TF and Torch?
+\subsubsection{Development}\label{subs:Development}
+\subsubsection{ML Environment}\label{subs:ML Environment}
+
+\subsection{Emdedding the Datasets}\label{sub:Embedding the Datasets}
+The datasets were downloaded and stored under the project folder "data". Since every dataset is provided in different format and under different folder structures, every dataset is simply stored inside a folder with it's name.
+Under the datasets folder, every selected dataset is accompanied by folders with the embedding model used to embed the dataset. Thus every dataset folder has several subfolders. On these subfolders, a python script called "embed.py". This script varies for every model and dataset. In general terms, it extracts the text and label from the dataset, embeds the text into the desired model, and stores it in a "csv" file under the same folder.
+The "csv" file is stored under the name "embedded.py", except for the FastText model. In this case, there are two embedding approaches, one supervised and one unsupervised. Thus the names of the FastText embedding files are "embeddings_supervised.csv", and "embeddings_unsupervised.csv". Every other script creates a single "csv" file called "embeddings.csv".
+
+% Different dimensionality on the dataset embeddings
+Since every model embedds text in different
+
+Thie file structure of the embedded files allows for exploration and experimental scripts to access the embedded data of different datasets, by building a single string with the dataset and model selected. This string must be prepended by the "./data/" folder name, and appended with the "embeddings.csv" string to generate a path that creates accesibility to the different datasets via a python coma-sepparated-value library, such as the built in \lstinline{csv}, or Pandas \cite{TODO} and it's \lstinline{read_csv} function. This effectively create a data source to be used in a data pipeline. This approach was selected due to it's simplicity.
+
+% Maybe subsubsections?
+\subsection{Embedding with FastText}\label{sub:Embedding with FastText}
+Due to the two methods for the usage of the FastText python library: supervised and unsupervised, the process of embedding a dataset with it requires two extra text files one with a sentence per line, and a second one, which includes the label as the last word of every line, prepended by two underscores (\lstinline{__}).
+
+In both ways of training, the language model is being trained specifically for the
+
+\subsection{Embedding with Word2Vec}\label{sub:Embedding with Word2Vec}
+Embedding from W2V means that the vocabulary is dependant on the training set,
+
+
+\subsection{Embedding with GloVe}\label{sub:Embedding with GloVe}
+\subsection{Embedding with BERT}\label{sub:Embedding with BERT}
+
+\section{Analysis}\label{sec:Analysis}
+\subsection{Correlational Analysis}\label{sub:Correlational Analysis}
+\subsection{Linear Dimentionality Reduction}\label{sub:Linear Dimentionality Reduction}
+\subsection{Non-Linear Dimentionality Reduction}\label{sub:Non-Linear Dimentionality Reduction}
+\subsection{Clustering Analysis}\label{sub:Clustering Analysis}
+
+\section{Experiments}\label{sec:Experiments}
+\subsection{Emolex}\label{sub:Emolex}
+\subsection{Selecting Emotions}\label{sub:Selecting Emotions}
+\subsection{Class Inbalance}\label{sub:Class Inbalance}
+\subsection{Valence}\label{sub:Valence}
