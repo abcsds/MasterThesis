@@ -14,7 +14,7 @@ By applying machine learned automatic embeddings, the creation of word embedding
 
 A refining of word embeddings has been suggested by Yu et al\. by means of a clustering algorithm on the vector space~\cite{yu_refining_2017}.
 
-Rothe et al\. suggested an orthogonal transformation to word embeddings used on SemEval2015 which yielded ultradense word embeddings for affect \cite{rothe_ultradense_2016}.
+Rothe et al\. suggested an orthogonal transformation to word embeddings used on SemEval2015 which yielded ultradense word embeddings for affect~\cite{rothe_ultradense_2016}.
 
 A further exploration of transformations of a word vector space was done by Hollis et al\. by means of component analysis, thus creating models of semantics from text. These were applied to affect\cite{hollis_principals_2016}.
 
@@ -24,34 +24,68 @@ These studies have mostly been done with affect: positive and negative valences,
 
 
 \section{Language Models}\label{sec:Language Models}
-% Talk about the models used and their history
-% THe models that were selected
-For word embeddings, different pre-trained models will be used:
+There is an incredible amount of pre-trained Machine Learned Language models. For this project we have selected models based on the following criteria:
+
+\begin{itemize}
+  \item The model was trained with a large amount of general purpose language corpora.
+  \item It represented a breakthrough in NLP tasks at the moment of its publication.
+  \item The model has been reproduced, implemented, and tested in many ML language tasks.
+\end{itemize}
+
+Under this criteria, four models have been spotted as candidates for the experiment:
+\begin{itemize}
+  \item Word2Vec: Words to Vectors
+  \item GloVe: Global Vectors for Word Representation
+  \item ELMo: Embeddings from Language Models
+  \item BERT: Bidirectional Encoder Representations from Transformers
+\end{itemize}
+
+Word2Vec is the result of converting large corpus into itself, by using an auto-encoder method, with help of a one-hot encoding of the corpus vocabulary~\cite{TODO}. At the time of its publication it captured much atention, mostly due to the posibility of semantic artimetic. This was tipified by the \"King - Man + Woman = Queen\" example. Due to the one-hot encoding step in the algorithm, it does not solve the problem of words with multiple meanings.
+
+Glove is recognizable between other language models, for its linear substructures of meaning. Since it was trained on aggregated co-occurrence statistics, it captures semantic structure better than Word2Vec~\cite{TODO}. It still asigns a one-to-one representation of words and embedded vectors, so it does not solve ambiguities.
+
+ELMo solved this last mentioned problem by analyzing context\cite{TODO}. This was acheived by training on prediction of words in forwards and backwards passes. Even though this model solved the problem of context-dependant meaning, it was created with the premise that context in text is secuential, and it's architecture dependant on LSTMs showed this.
+
+BERT was the first algorithm to solve this problem, by implementing a context-dependant learning, that is not based on the secuential structures. This was done with the use of Transformers. A deep learning architecture based on the atention model, that does not depend on secuential structures.
+
+Both BERT and ELMo give different embeddings to words in different contexts, but BERT has proven better at solving language tasks. For this reason, only BERT will be used in this project.
+
+One last model will be used as a mean of comparing results between the different models. This is FastText \cite{TODO}. FastText is very similar to the algorithm with which word2vec was created. It creates a one hot encoding of a corpus, and creates a latent dimension through training either an autoencoder, for an unsupervised approach, or a classifier, for a supervised one. This algorithm requires traning on the corpus. Since the corpus selected on this project are relatively small, FastText provides a way to create a baseline for pretrained models, by analyzing what a basic model trained only on the corpus would look like.
+
+\subsection{Selected Language Models}\label{sub:Selected Language Models}
+
+Considering the prospective models, and the given criteria, the selected models for embedding the datasets are the following:
 \begin{itemize}
   \item Fasttext
   \item Word2Vec
   \item GloVe
   \item BERT
 \end{itemize}
-A word embedding can also be trained from data. This is considered an optional model to analyze. % Talk on fasttext being a trained model
-
-\subsection{Selected Language Models}\label{sub:Selected Language Models}
 
 \subsubsection{FastText}\label{subs:FastText}
+Python's FastText library\cite{TODO} is used in this project. This provides two approaches for training the model: an unsupervised, and a supervised. The unsupervised requires a text file with one sentence per line. The algorithm is in charge of the tokenization. This of course only works in english. The supervised approach requires a similar file for the corpus, but at the end of every line, two underscores most be followed by the label of the given sentence.
+
 \subsubsection{Word2Vec}\label{subs:Word2Vec}
+Since this pre-trained model has a one-to-one correspondance between word and embedding, a dictionary can be downloaded and imported via the gensim python library~\cite{TODO}. This model has been trained with the Google News \cite{} corpus. It weights about 1.5 Gb, and has a latent space of 300 dimensions. It is supposed to be located at the url \url{https://code.google.com/archive/p/word2vec/}, but the file is not to be found. Forums on google groups for the word2vec (\url{https://groups.google.com/forum/#!topic/word2vec-toolkit/z0Aw5powUco}) point several urls where the model can be found.
+
 \subsubsection{GloVe}\label{subs:GloVe}
+This model, provided by the Standford University, is of easy access, and as Word2Vec, can be imported as a dictionary \cite{TODO}. The download can be found under \url{https://nlp.stanford.edu/projects/glove/}. This specific version selected was trained on the Wikipedia corpus, contains 6 billion words, uses 300 latent dimensions, and weights less than 1Gb.
+
 \subsubsection{BERT}\label{subs:BERT}
+The BERT model is trained not with one, but two types of tasks. The first one is masked word or sentence prediction, and a second one requires extra layers on the architecture and a fine-tunning training for task specific performance. \cite{TODO} The pre-trained model that one can get is the language model trained with the masked-language task. This model is not as easy to get, since the defoult python libraries to import BERT, require training and fine-tunning. For this reason, the bert-embeddings python library has been selected for this task.
 
 \section{Analysis Algorithms}\label{sec:Analysis Algorithms}
-The following techniques have been used:
+Two algorithms have been chosen for dimensionality reduction:
 \begin{itemize}
-  \item TSNE
   \item PCA
+  \item TSNE
 \end{itemize}
 
+PCA can be interpreted as a linear transformation on the input space, that yields the maximum explainability by the least amount of dimensions. While TSNE uses statistical information to maximize the distribution of information of groups, while minimizing the distribution of information within groups.
+
 \section{Datasets}\label{sec:Datasets}
-% What datasets were considered and why?
-There is the possibility of using the datasets from the unified dataset of emotion in text. (An Analysis of Annotated Corpora forEmotion Classification in Text). This includes:
+There are many datasets of "emotion in text" on the internet. 
+There is the possibility of using the datasets from the unified dataset of emotion in text. (An Analysis of Annotated Corpora for Emotion Classification in Text). This includes:
 \begin{itemize}
   \item AffectiveText
   \item Blogs
