@@ -84,28 +84,56 @@ Two algorithms have been chosen for dimensionality reduction:
 PCA can be interpreted as a linear transformation on the input space, that yields the maximum explainability by the least amount of dimensions. While TSNE uses statistical information to maximize the distribution of information of groups, while minimizing the distribution of information within groups.
 
 \section{Datasets}\label{sec:Datasets}
-There are many datasets of "emotion in text" on the internet. 
-There is the possibility of using the datasets from the unified dataset of emotion in text. (An Analysis of Annotated Corpora for Emotion Classification in Text). This includes:
+There are many datasets of \"emotion in text\" on the internet, and finding them is not a new problem. Unfortunately, the methodology and rigor for their creation cannot be easily tested. A heavy use of the paper "An analysis of annotated corpora for emotion classification in text" by Klinger in 2018 \cite{klinger2018analysis} was done. This paper not only collects information about the datasets, but also tests their valididty in the context of a text cliassifier.
+
+\subsection{Inclusion Criteria}\label{sub:Inclusion Criteria}
+To be included into these experiments, the following criteria must be met by a dataset:
 \begin{itemize}
-  \item AffectiveText
-  \item Blogs
-  \item CrowdFlower
-  \item DailyDialogs
-  \item Electoral-Tweets
-  \item EmoBank
-  \item EmoInt
-  \item Emotion-Stimulus
-  \item fb-valence-arousal
-  \item Grounded-Emotions
-  \item ISEAR
-  \item Tales
-  \item SSEC
-  \item TEC
+  \item The dataset must contain short labeled texts, in english.
+  \item The label must be a single emotion, from an eckman-analogous emotional model.
+  \item The labels must not be a reference to valence, arousal, dominance, or other affect models.
 \end{itemize}
+% Justification
+The text to be analyzed must be in english, since the methods and language models that we are testing will not all be available in other languages. The single-single label criterion has been chosen due to the restriction of two-dimensional projections, and their visualizations as scatter plots. The label is to be exrpessed as a single color on scatter plots, and a multi-label problem would not present the effect desired  when developing the desired intuitions.
 
+\subsection{Candidate datasets}\label{sub:Candidate datasets}
+For the datasets included in Klinger's original paper~\cite{klinger2018analysis} the naming in the paper was not followed. This is due to the inconsistencies between the paper and their github repository, which (as the moment of writing this thesis) was last updated on Dec 17 2019 (commit e58d676). The dataset naming conventions used here is the same as in the document called "unified dataset of emotion in text": \url{https://github.com/sarnthil/unify-emotion-datasets/tree/master/datasets}.
 
+Lastly, the candidate list includes the datasets mentioned, but is not restricted to them:
+\begin{itemize}
+  \item AffectiveText~\cite{strapparava2007semeval} % VAD
+  \item AIT-2018~\cite{SemEval2018Task1} % VAD
+  \item CrowdFlower % USED
+  \item DailyDialogs~\cite{li2017dailydialog} %TODO: might need to be included
+  \item Emotion-Cause~\cite{ghazi2015detecting} %TODO: might need to be included
+  \item Emotiondata-Aman~\cite{aman2007recognizing} % VAD
+  \item EmotionPush~\cite{huang2018emotionpush} % VAD
+  \item EmoBank~\cite{buechel2017emobank} % VAD
+  \item fb-valence-arousal~\cite{preoctiuc2016modelling} % USED
+  \item Friends~\cite{chen2018emotionlines} % USED
+  \item Grounded-Emotions~\cite{liu2017grounded} % I seriously don't know what's up with this ds
+  \item ISEAR International Survey On Emotion Antecedents And Reactions~\cite{scherer1990international} % Format not open source
+  \item Tales~\cite{alm2005emotions} % Two different annotators, two different labels.
+  \item EmoInt \cite{MohammadB17starsem} %TODO: might need to be included
+  \item TEC The Twitter Emotion Corpus published \cite{mohammad2012emotional} %TODO: might need to be included
+  \item Electoral-Tweets \cite{mohammad2014semantic} %TODO: might need to be included
+  \item SSEC The Stance Sentiment Emotion Corpus published \cite{schuff2017annotation} %TODO: might need to be included
+\end{itemize}
 The link to these datasets can be found under the github repository for the unified emotion datasets.
 https://github.com/sarnthil/unify-emotion-datasets/tree/master/datasets
+From this list, several datasets use an affective model of valence, arousal or dominance. Removing the datasets that do not explicitly comply with the inclusion criteria leaves the following:
+
+\begin{itemize}
+  \item CrowdFlower % USED
+  \item DailyDialogs~\cite{li2017dailydialog} %TODO: might need to be included
+  \item Emotion-Cause~\cite{ghazi2015detecting} %TODO: might need to be included
+  \item fb-valence-arousal~\cite{preoctiuc2016modelling} % USED
+  \item Friends~\cite{chen2018emotionlines} % USED
+  \item EmoInt \cite{MohammadB17starsem} %TODO: might need to be included
+  \item TEC The Twitter Emotion Corpus published \cite{mohammad2012emotional} %TODO: might need to be included
+  \item Electoral-Tweets \cite{mohammad2014semantic} %TODO: might need to be included
+  \item SSEC The Stance Sentiment Emotion Corpus published \cite{schuff2017annotation} %TODO: might need to be included
+\end{itemize}
 
 % What datasets were selected and why?
 During the exploratory phase of this project, a subset of these datasets will be selected, giving priority to those with a more standardized, cleaner, or easier to access data.
