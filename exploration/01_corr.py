@@ -1,3 +1,4 @@
+import os
 import numpy as np
 import pandas as pd
 import seaborn as sns
@@ -27,8 +28,10 @@ dss = [
        "data/Friends/BERT/embeddings.csv",
        ]
 for i, ds in enumerate(dss):
-    print(f"Working on {ds}")
+    data, model = os.path.split(ds)[0].split("/")[1:3]
+    print(f"Working on {data}/{model}")
     df = pd.read_csv(ds)
+    df = df[~df["emotion"].isin(["neutral", "non-neutral", "empty"])]
     X = df.drop("emotion", axis=1).to_numpy()
     Y = df["emotion"].to_numpy()
     assert X.shape[0] == Y.shape[0]
@@ -41,7 +44,7 @@ for i, ds in enumerate(dss):
         for j in range(X.shape[1]):
             x = normalize(X[:, j].reshape(-1, 1)).reshape(-1)
             c = np.corrcoef(x, y)[1,0]
-            if c > .80:
+            if c > .40:
                 print(f"Emotion: {emotion}, Dimension: {j}, corrcoef: {c}")
             cor_p_sent.append(c)
         cors.append(cor_p_sent)
@@ -54,6 +57,6 @@ for i, ds in enumerate(dss):
     t = [int(tick_label.get_text()) for tick_label in g.ax_heatmap.axes.get_yticklabels()]
     sorted_e = [x for _,x in sorted(zip(t,ind))]
     g.ax_heatmap.axes.set_yticklabels(sorted_e,  rotation=0)
-    g.fig.suptitle(f"Correlation of {ds}", fontsize=18)
-    g.savefig(f"./img/cor/correlation_{i}.png")
+    g.fig.suptitle(f"Correlation of {data}/{model}", fontsize=18)
+    g.savefig(f"./img/cor/cor_{data}_{model}.png")
     plt.close()
