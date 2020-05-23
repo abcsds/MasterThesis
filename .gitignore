@@ -1,6 +1,8 @@
 .ipynb_checkpoints
+.directory
 
 /data/**
+!/data/AIT-2018
 !/data/SemEvalT3
 !/data/ISEAR
 !/data/Friends

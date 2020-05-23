@@ -56,7 +56,7 @@ for working with the atom python-ide
 
 ## Cuda driver
 
-I work on a desktop computer running Linu
+I work on a desktop computer running Linux
 
 ```
 nvcc: NVIDIA (R) Cuda compiler driver
