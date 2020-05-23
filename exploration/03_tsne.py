@@ -1,3 +1,4 @@
+import os
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -28,8 +29,10 @@ dss = [
        ]
 
 for i, ds in enumerate(dss):
-    print(f"Working on {ds}")
+    data, model = os.path.split(ds)[0].split("/")[1:3]
+    print(f"Working on {data}/{model}")
     df = pd.read_csv(ds)
+    df = df[~df["emotion"].isin(["neutral", "non-neutral", "empty"])]
     X = df.drop("emotion", axis=1).to_numpy()
     Y = df["emotion"].to_numpy()
     assert X.shape[0] == Y.shape[0]
@@ -43,5 +46,5 @@ for i, ds in enumerate(dss):
                     c=palette[[ind.index(i) for i in Y]],
                     label=ind
                    )
-    fig.suptitle(f"TSNE of {ds}", fontsize=24)
-    fig.savefig(f"./img/tsne/scatter_{i}.png")
+    fig.suptitle(f"TSNE of {data}/{model}", fontsize=24)
+    fig.savefig(f"./img/tsne/scat_{data}_{model}.png")
