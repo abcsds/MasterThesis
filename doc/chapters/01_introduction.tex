@@ -59,7 +59,14 @@ Emotions present an affect value, but not necessarily otherwise.
 
 
 % DELIMITATION
-% Now delimit to what you're going to do; Say what things are there, and which of those things you're going to use.
+
+\subsection{Affect}\label{sub:Affect}
+In the context of this project the term Affect will be used to denote the autonomus physiological response of the human body to external stimuli, as well as the measure of these in terms of Valence, or Arousal. This definition complies with the Theory of Constructed Emotions, whithout invalidating the extended use of affect models of language.
+
+The relevance of affect in text has increased since the popularization of text-based social networks, like twitter. There, individuals and organizations openly express their opinions. This creates an environment where implicit feedback about entities is present. An easy way to abstract popular opinion about a named entity is learning the affect expressed in text, such as a tweet. Affect can be a multidimensional phenomenon, but the most important dimension of it is valence: whether a text expresses positive or negative emotion. This use of affect language models has proven useful to marketing, public relationship, and social sensing, but does not provide an insight into the human experience of emotion further than a signle dichotomical variable.
+
+Affect is relevant to this project since emotions can be represented within the model of Affect.
+
 \subsection{Emotions in Communication}\label{sub:Emotions in Communication}
 The main evolutive advantage of emotions is to be able to communicate an internal state with others. The communication, and therefore, the detection of emotions can be done through three different means:
 \begin{itemize}
@@ -110,7 +117,14 @@ This is exactly what Saif Mohammad did in 2013 \{mohammad2013crowdsourcing}, cre
 All this work can actually be infered from large corpus. By creating a network of word relationships, WordNet provides a way to cluster into affective words \cite{strapparava2004wordnet}. This proves that a representation of emotions in text can be learned from text, without human intervention. Machine Learninng provides tools to optimize this representations.
 
 \section{Emotion and Machine Learning}\label{sec:Emotion and Machine Learning}
-The field of Natural Language Processing has seen great advances in recent years thanks to the use of Machine Learning for automatic inference of language models. One of the first models to call the community's attention was Google's Word2Vec\cite{mikolov2013word2vec}. A model trained on news articles that allowed for complex languge representation, like lexical artimetic. This model has the model of an Autoencoder, and is therefore unsupervised.
+The field of Natural Language Processing has seen great advances in recent years thanks to the use of Machine Learning for automatic inference of language models.
+
+While there are many ways of using ML within NLP, the methodology this project focuses on is Word and Sentence Embedding. Embedding is the process of giving a numeric representation to a word or sentence within a corpus. This allows for computational models to easily manipulate text data that would otherwise be an arbitrary encoding of text. With the advances in machine learning automatic word embedding became a possible solution to avoid crowdsourcing.
+
+Several machine learning approaches try to automatically learn the best numeric representation for characters, words, or sentences given the context of a dataset. In the last decade there have been many efforts from research groups to generalize these embeddings though the use of powerful models, and bigger datasets.
+
+% Word2Vec
+One of the first models to call the community's attention was Google's Word2Vec\cite{mikolov2013word2vec}. A model trained on news articles that allowed for complex languge representation, like lexical artimetic. This model has the model of an Autoencoder, and is therefore unsupervised.
 % Should I talk more about dimensionality reduction/ autoencoders?
 
 After Word2Vec, a series of language models were created. Word2Vec sccessors include ELMo, GloVe, which are similar but consider more or different context when creating the language model. With the creation of the transformer in ML \cite{vaswani2017transformer}, a second wave of ML language models were created. XLM, GPT, BERT and it's many iterations, all provide a language model that captures not only the representation of a word, but also it's context.
@@ -118,49 +132,18 @@ After Word2Vec, a series of language models were created. Word2Vec sccessors inc
 These models learn to represent words from context: By looking at the words and sentences in a document, a contextualization is given to the use of a specific word, in every document. These language representations are far from a lexicon. They are numerical representations that, due to their automatically learned creation, are difficult for humans to interpret. Once these models are trained on large amounts of data, the trained model can be stored, and re-distributed to be used in different language tasks. This is called a pre-trained model. For this reason, such a context-dependant model can be used in short sentences, or even single words: The model is in itself the abstraction of a large amount of language data, learned through text documents.
 There exist also models trained not on documents, but on dialogues. These models will not be used in the context of this project.
 
-By observing the abstract representations of these models, one can learn how specific concepts are learned from text. An inference can be done of the usage of such concepts in text.
+By observing the abstract representations of these models, one can learn how specific concepts are learned by pretrained ML models from text.
 
 \section{Problem setting}\label{sec:Problem setting}
 
-
-\section{Project Description}\label{sec:Project Description}
-
+Given pre-trained language models, and corpus of labeled text with single emotions, can we find the similitude between the structure of the representation of said text and their emotions in the abstract space created by the language model and a model of emotions backed up by scientific research?
 
 \section{Objective}\label{sec:Objective}
-%TODO:
 
-Objetivo general:
-Análizar la representación de emociones en modelos del lenguaje en machine learning. Esto de manera objetiva y medible, y subjectiva, pero disponible al público para fomentar discución sobre la representación de emociones en modelos de machine learning.
+To quantifiably and objectively analyze the representation of emotions in Machine Learning pre-trained Language Models, while presenting a human-understandable cualitative description to promote the discussion of models of emotions and atuomatic learning of human concepts in Natural Language Processing, and Machine Learning.
 
-Objectivos secundarios
-Plantear una metodología para análisar un dataset de emociones, basado en modelos de lenguaje previamente entrenados.
+As consequence of this objective, the methodology to analyze a dataset of labeled emotions based on pre-trained language models is to be established. The intuitions and qualitative results of this project are to be developed into actual analysis methods to be used in the understanding of language models.
 
-Cómo consecuencia del objetivo anterior, a marco teoríco y práctico se puede crear para el análisis de eficiencia de modelos previamente entrenados en datasets de clasificación de textos cortos, acompañados de una sola etiqueta. Ya que el resultado no está vinculado a la semántica de la etiqueta: (emociones). Pero la representatividad adecuada de las etiquetas en el espacio abstracto propuesto por el modelo, resulta en la más fácil clasificación de las observaciones y sus respectivas etiquetas.
 
 \section{Justification}\label{sec:Justification}
-
-Word Embeddings
-Numerically representing words is commonly known as word embedding. This allows for Machine Learning (ML) models to easily manipulate text data that would otherwise be an arbitrary encoding of text. With the advances in machine learning automatic word embedding became a possible solution to avoid crowdsourcing. % TODO: {Wartena} This is too short. There is a lot of NLP using Machine Learning that doesn't use Word Embeddings.
-Several machine learning approaches try to automatically learn the best numeric representation for characters, words, or sentences given the context of a dataset. Recently there have been many efforts from research institutions to generalize these embeddings though the use of powerful models, and bigger datasets. Such is the case of BERT, a model created by Google with massive datasets.
-
-Affect learning and its relevance
-The relevance of affect in text has increased since the popularization of text-based social networks, like twitter. There, individuals and organizations openly express their opinions. This creates an environment where implicit feedback about entities is present. An easy way to abstract popular opinion about a named entity is learning the affect expressed in text, such as a tweet. Affect can be a multidimensional phenomenon, but the most important dimension of it is valence: whether a text expresses positive or negative emotion.
-
-
-% We're ultimately creating a method to make use of visualizations to encourage intuitions that can be developed into actual analysis methods to be used in the analysis of language embeddings.
-
-
-
-Followed by equation~\ref{eq:equation_placeholder}
-\begin{equation} \label{eq:equation_placeholder}
-  \begin{split}
-    A = \{&'a':['d','e','f','g'], \\
-         &'b':['d','e','f','g'], \\
-         &'c':['d','e','f','g'], \\
-         &'d':['h'], \\
-         &'e':['h'], \\
-         &'f':['h'], \\
-         &'g':['h'], \\
-         &'h':[] \}
-  \end{split}
-\end{equation}
+Be it in dialogue, local or international media, or even entretainment, current events have proven that the incorrect understanding of the emotional response of the general population can lead to severe social problems. Subcultures, minorities, and opressed populations are expressing their problems and difficulties in plataforms all around the internet. People need to express themselves,be heard and understood, as well as understand other points of view, but untrained emotional reaction is being weaponized to duscourage discussion, dialogue, and democracy. Be it as a political or military action, or simply by lack of self conciousness, the emotions of every technology user and media consumer can turn against themselves. Justified pacific protests can turn into meaningless riots. Rational arguments can turn into senseless discussions, that separate populations and capture us in our subjective realities. I believe that the understanding, awareness, and acceptance of our emotions and others' can lead towards the path to dialogue, comprehension and peace. To do so at a scale as large as the one presented by the internet, and global media, we must use the same tools that have created such a vast field. The understanding of our data, ML and AI models, and their representations of our reality can help us understand ourselves. This project is at it's core, an atempt at understanding human nature.

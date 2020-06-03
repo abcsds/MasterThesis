@@ -1,28 +1,21 @@
 %!TEX root = ../thesis.tex
 \chapter{Related Work}\label{chap:Related Work}
 
-% TODO write after introduction
+There have been many atempts at understanding automatically learned language models, but none has been focused on understanding emotions as we do here. For this reason, similar methods from close fields of research have been used to establish a methodology. In this chapter we talk about those methods and their contribution to this project.
 
-\section{Lexicons}\label{sec:Lexicons}
+The embedding of emotional words is ML Language Models can be compared directly to Emotion Lexicons. In this project we make use of that one created by Mohamad and Turney through crowdsourcing~\cite{mohammad2013crowdsourcing}.
 
-Mohamad and Turney created an Emotion Lexicon through crowdsourcing~\cite{mohammad_crowdsourcing_2013}. In this way an emotional word embedding was created by subjectively asking participants whether or not a word was related to a specific emotion.
+Since creating an Emotion Lexicon through crowdsourcing is a costly taks, the rest of the models use are automatic aproaches to do so. Vo and Zhang proved that an automatic approach to learning sentiment lexicons for short texts can be done through the use of emojis~\cite{vo2016count}. This method uses the intrinsic usage of emojis to express positive or negative valence in a sentence, and exploded this to expand that valence to words used in the same context.
 
-\section{Automatic Approaches}\label{sec:Automatic Approaches}
-Vo and Zhang created an automatic approach to learning sentiment lexicons for short texts through the use of emojis~\cite{vo_dont_2016}. This method uses the intrinsic usage of emojis to express positive or negative valence in a sentence, and exploded this to expand that valence to words used in the same context.
+Maas et al\. created a method to learn word vectors for sentiment analysis in 2011~\cite{maas2011learning}.
 
-Maas et al\. created a method to learn word vectors for sentiment analysis~\cite{maas_learning_2011}.
+By applying machine learned automatic embeddings, the creation of word embeddings based only on text data was open as a possibility. This is also a method that later became the popular Word2Vec model~\cite{mikolov2013word2vec}. The methods used in this paper were used to create word embeddings specific for the used datasets. More about this can be read on this same chapter~\ref{sub:Selected Language Models}. The Word2Vec model proved that concepts can be abstracted by providing semantic arthimetic. This allows for functions like the substraction of concepts to obtain their root meaning.
 
-By applying machine learned automatic embeddings, the creation of word embeddings based only on text data was open as a possibility. This is also a method that later became the popular Word2Vec method~\cite{mikolov_distributed_2013}.
+Although Word2Vec was inarguably useful when it was created, it was also proved redundant by experiments like the one by Rothe et al\., who suggested an orthogonal transformation to word embeddings used on SemEval2015~\cite{rothe2016orthogonal}. This yielded ultradense word embeddings for affect concepts. This first example of a linear transformation on an abstract space opened the posibility of transforming the vector space to understand it.
 
-A refining of word embeddings has been suggested by Yu et al\. by means of a clustering algorithm on the vector space~\cite{yu_refining_2017}.
+As a way to reduce redundancies, and understand the absraction of valence, affect, and other similar concepts, Hollis et al\. further explored transformations of a word vector space by means of component analysis, thus creating models of semantics from text~\cite{hollis2016principals}. The current project heavely relies on this specific research. Under our theoretical framework, affect is a superset of emotion, and since Hollis et al\. have already found abstractions of affect in Word2Vec, we expect to find similar results.
 
-Rothe et al\. suggested an orthogonal transformation to word embeddings used on SemEval2015 which yielded ultradense word embeddings for affect~\cite{rothe_ultradense_2016}.
-
-A further exploration of transformations of a word vector space was done by Hollis et al\. by means of component analysis, thus creating models of semantics from text. These were applied to affect\cite{hollis_principals_2016}.
-
-These studies have mostly been done with affect: positive and negative valences, but have mostly ignored other emotional dimensions.
-
-\section{Word Embeddings}\label{sec:Word Embeddings}
+The mentioned research has only been done with affect. Research in the field of emotion detection is scarce, and generaly doesn't fulfill the prestige or quality requirements suggested by the Masters of Science in Data Analytics. A reason for this might be the abstract nature of emotions, the outdated emotion model, the lack of scientific foundations in the creation of datasets of emotion in text, or simply the overwhelming usefulness of affect in comparison with emotion analysis.
 
 
 \section{Language Models}\label{sec:Language Models}
