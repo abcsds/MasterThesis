@@ -7,10 +7,10 @@ To analyze the representation of emotions in different word embeddings, this pro
 The process for finding information on the desired embedded structure has been divided in consecutive steps, that represent progressive steps into finding structure in a dataset. The steps are the following:
 
 \begin{enumerate}
-  \item[Correlation] A correlation between embedded dimensions and labels.
-  \item[Linear Transformation] A correlation between the labels and a linear transformation of the embedded dimensions.
-  \item[Non-Linear Transformation] A non-linear transformation for obtaining separable clusters.
-  \item[Hierarchical clusterinng] Clustering the embedded dimensions, or linear transformations of these.
+  \item \textbf{Correlation}: A correlation between embedded dimensions and labels.
+  \item \textbf{Linear Transformation}: A correlation between the labels and a linear transformation of the embedded dimensions.
+  \item \textbf{Non-Linear Transformation}: A non-linear transformation for obtaining separable clusters.
+  \item \textbf{Hierarchical clusterinng}: Clustering the embedded dimensions, or linear transformations of these.
 \end{enumerate}
 
 These steps also correspond to the complexity of a theoretical classifier on the embedded dimension. The first one answering to the question: Can the output of the embeddings be used directly to classify the labels? The second step corresponds to asking if a linear transformation of the embedded space could yield a classifier. For example, can an LDA preform on this dataset and embedding? The third question relates to the preformance of a non-linear classifier. This is the case of a Single Layer Perceptron. Considering the embeddings can be used as an intermediate step, for a further clasification, this step should already yield the results of baseline emotion classifiers. The fourth question relates to the relation of emotion and valence. Emotions tend to fit hierarchicaly into affective models of arousal and valence. \cite{TODO} By searching for a hierarchy in the representation of emotions, we should be able to trace back the representation of valence \cite{TODO}.
@@ -147,7 +147,7 @@ For this reason, the pre-trained BERT embedding library \url{https://github.com/
 
 To be able to run the embedding notebook, provided under the project folder \"exploration/Embedding with bert.ipynb\", the following requirements should be met:
 \begin{itemize}
-  \item Docker >=19.03
+  \item Docker $\geq19.03$
   \item NVIDIA Container Toolkit
   \item This Docker TF Image: `tensorflow/tensorflow:2.1.0-gpu-py3-jupyter`
 \end{itemize}

@@ -1,10 +1,16 @@
 %!TEX root = ../thesis.tex
 \chapter{Introduction}\label{chap:Introduction}
 
+% Justify studying emotions
+Why is it important to study emotion?
+Emotions are considered a human state that influences behaviour and decision making. Many times, when expressing thoughts in a written or spoken form, one or several emotions are present. Detecting these emotions is an important task for human interaction. Automatic emotion detection on text is thus a machine learning task required for comprehensive human-computer interaction.
+
 \section{Emotions and Affect}\label{sec:Emotions and Affect}
 
 In the endless effort towards understanding human behaviour the phenomenon of Emotions has been recognized for centuries. It is after all, an experience that every human has. For many of us it represents a core variable in the representation of our biological, psychological, and social state. For such an important part of our lives, it is incredible how little we actually know about them. There is no scientific consensus on what an emotion is, and the term is often used to refer to mood, humor, temperament, personality, affect, character, and sentiment.
 This section has as a goal to point out relevant discoveries and conceptualizations in the history of the study of emotions, as a way of delimiting the current study, and as a mean of introduction to the topic for technology-focused readers, but also as a way of outlining a working definition of Emotion, differenciating it from Affect.
+
+\subsection{Historic Milestones}\label{sub:Historic Milestones}
 
 % Hippocrates and Galen
 Hippocrates, the father of modern medicine, defined the theory of the Four Humors.
@@ -12,12 +18,29 @@ This was based on the idea of humors, fluids, or chemicals that control human be
 The four humors should be in balance within the body, and all diseases were caused by an inbalance of these.\cite{kalachanis2015hippocratic}
 Galen at took this theory and created what can be considered as the first theory of personality. He believed that human bodies had a predisposition for unbalance of the humors. This made some people have a tendency to have more or less of these, and in turn, this would have an effect on their baseline behaviour. He described four different characteristical behaviours: phlegmatic, choleric, sanguine and melancholic.\cite{irwin1947galen}
 
+\begin{figure}[H]
+  \includegraphics[width=0.8\textwidth]{temperaments}
+  \centering
+  \caption{Wikicommons PD. The four temperaments by Charles Le Brun, part of the \emph{Grande Commande}.}
+\end{figure}\label{fig:temperaments}
+
 % Darwin
-Charles Darwin first described the importance of emotions in communication, and their relevance across cultures and even species. In his book \"The Expression of the Emotions in Man and Animals\" he writes \"...the young and the old of widely different races, both with man and animals, express the same state of mind by the same movements.\"~\cite{darwin1872emotions} He noticed that surprise was shown in humans across cultures, and even some mamals by raising the eyebrows. By framing emotions as a mean of communication, Darwin enabled the study of expression, and understanding of emotions as an evolutive advantage.
+Charles Darwin first described the importance of emotions in communication, and their relevance across cultures and even species. In his book \"\emph{The Expression of the Emotions in Man and Animals}\" he writes \"\ldots the young and the old of widely different races, both with man and animals, express the same state of mind by the same movements.\"~\cite{darwin1872emotions} He noticed that surprise was shown in humans across cultures, and even some mamals by raising the eyebrows. By framing emotions as a mean of communication, Darwin enabled the study of expression, and understanding of emotions as an evolutive advantage.
+
+\begin{figure}[H]
+  \includegraphics[width=0.8\textwidth]{darwin}
+  \centering
+  \caption{Wikicommons PD. Ilustration of grief from Darwin's \emph{"The Expression of the Emotions in Man and Animals"}}
+\end{figure}\label{fig:darwin}
 
 % Ekman
-Although Emotions were thought to be universal there was no measurement of it. The universality of emotions was first formalized by Paul Ekman in his 1997 paper: "Universal facial expressions of emotion". Ekman studied facial anatomy, and expressions of different populations and cultures across the globe. He arrived to the conclussion that there are seven universal facial expressions of emotion:
-Anger, Disgust, Fear, Surprise, Happiness, Sadness, and Contempt~\cite{ekman1997universal}\cite{ekman1992basic}.
+Although Emotions were thought to be universal there was no measurement of it. The universality of emotions was first formalized by Paul Ekman in his 1997 paper: "Universal facial expressions of emotion". Ekman studied facial anatomy, and expressions of different populations and cultures across the globe. He arrived to the conclussion that there are seven universal facial expressions of emotion~\cite{ekman1997universal}.
+
+\begin{figure}[H]
+  \includegraphics[width=0.8\textwidth]{ekman}
+  \centering
+  \caption{Ekman's photographs for cross-cultural research~\cite{ekman1999facial}.}
+\end{figure}\label{fig:darwin}
 
 % Picard
 While emotions are a human concept, the digital advances of thte milenium caught up and integrated with the field, to create the Affective Computing. The concept was first coined by Rosalind Picard, who not only created it, but is also a lead researcher in the field~\cite{picard2000affective}. The concept was originaly related to Human-Computer interactions, and had the goal of computers expressing and recognizing emotions.
@@ -29,60 +52,73 @@ Concerned with the subjectivity of emotion messurement, and the lack of generali
 It is important to consider that for the last two decades, emotions have been studied based on Ekman's work on universal emotions. Although these do provide a framework for understanding how emotions came to be a part of the human experience, they do very little for their definition, or the description of emotions in language. Humans are complex, and even the most reliable model of universal emotions has exceptions. Psychologists interpret those differences with the help of the Theory of Constructed Emotions. This was first published by Lisa Feldman in 2014, and it describes the phenomenon of human emotions as a two-sided event: Affect and Emotion. Affect is a physiological phenomenon, the almost mechanical process that will enable behavioural response. The Emotional response is the cognitive contextualization of the former~\cite{feldman2014constructed}. Separation of physiological and cognitive responses allows the explanation of both, universality, and individual subjectivity.
 
 
-% Definition of emotion
-
-
+% Woring Definition of emotion
+\subsection{Definition of Emotion}\label{sub:Definition of Emotion}
 Within the context of this project it is important to distinguish between emotion and affect. Affect, in the context of this project will be treated as a term to associate predisposition towards stimuli. Thus, affect is in a sense, a general term that can be even used to describe animal, and other non-human entities. Emotions, on the other hand, are treated in this project as a state inherent to humans. This state is multidimensional, and every dimension, or emotion, can either be present in a certain amount, or not be present at all.
 Emotions present an affect value, but not necessarily otherwise.
 
 
-% Justification
-
-When trying to detect emotion, it is relevant to know what emotions to look for. This is called a model of emotions, and is still a very discussed subject is psychology. Although there are several models of emotions the most persistent are Ekman’s model, Plutchikc’s model. The main assumption this work does follows the theory of constructed emotions, which recognizes affect as a physiological response to positive or negative stimuli, but emotions as a cognitive form of context-giving.
-
-Why is it important to study emotion?
-Emotions are considered a human state that influences behaviour and decision making. Many times, when expressing thoughts in a written or spoken form, one or several emotions are present. Detecting these emotions is an important task for human interaction. Automatic emotion detection on text is thus a machine learning task required for comprehensive human-computer interaction.
-
-% Why does it make sense to study emotions in text?
-% Why does emotion in tweets work?
-% Why doesn't it work on transcript of conversations or friends?
-% Why does emotional analysis need self-contained texts? Context
-
-% Distinction from affect
-
-% The role of emotions in communication
-
-Measurements of emotions:
+% DELIMITATION
+% Now delimit to what you're going to do; Say what things are there, and which of those things you're going to use.
+\subsection{Emotions in Communication}\label{sub:Emotions in Communication}
+The main evolutive advantage of emotions is to be able to communicate an internal state with others. The communication, and therefore, the detection of emotions can be done through three different means:
 \begin{itemize}
-  \item Facial Expressions
-  \item Biosignals
-  \item Language or self report
+  \item \textbf{Language or self report}: Using language, verbal, written, or otherwise, to express content with emotion, or explicitly declare an emotional state.
+  \item \textbf{Facial Expressions}: The activation of different sets of facial muscles to express emotion. This must be measured visualy.
+  \item \textbf{Biosignals}: The change of physiological states usually related to the limbic system can be measured through bio-sensors. This more accurately represent affect, but emotions can be measured through it.
 \end{itemize}
 
-\subsection{Models of Emotions}\label{sub:Models of Emotions}
+This project is focused on language expressions of emotion. More specifically on expressions of emotion through text. This means that this project will not directly measure emotions on humans, but on text written by humans. These represent the expresion of a momentary emotional state, expressed through text, and stored for later analysis. Text analysis is a subset of the field of Natural Language Processing (NLP). This project is heavely based on NLP concetps. For this reason, different methods for emotion analysis in text are discussed next.
 
-% Emotions in Language
-% Delimit to language models of emotions
+\subsection{Models of Emotions}\label{sub:Models of Emotions}
+When searching for expressions of emotions in text, one must know what kind of emotions are being searched for. When asking a person what emotions do they know, a plethora of emotions can be named, but most of these are language, culture, or context dependant. Under certain cultures, or even sub-cultures, new emotion names can emerge, that describe a general emotion under different context. Considering the theory of constructed emotions, there is as many emotions as context there are. Fortunately, the study of emotions being done here is restricted to the communication of emotions. For the communication of emotions a consensus must be made.
+A model of emotions is the selection and structure of categories in which the expression of an emotion can fall, commonly called \"Universal Emotions\". These are usually formed through the analysis of human (and some times animal) behaviour, with the framework of a theory of behaviour. In this section we introduce some relevant models of emotion for ML and NLP.
 
 \subsubsection{Ekman's model of Emotions}\label{subs:Ekman's model of Emotions}
+As mentioned in \ref{sub:Historic Milestones}, the most widely recognized model of universal emotions in humans was created by Paul Ekman\cite{ekman1992basic}. This was created through the observation of facial expressions. Facial expressions are measured through Activation Units (AU's): Sets of muscles that, when contracted, deform the figure of the human face in specific ways. Emotions are then characterized by the activation of different sets of AU's. The current model of universal emotions contains seven emotions:
 
-Semantic Fields
-Emotion Lexicon
-Emotion Networks
-Learning word semantics from context
+\begin{itemize}
+  \item Anger
+  \item Disgust
+  \item Fear
+  \item Surprise
+  \item Happiness
+  \item Sadness
+  \item Contempt
+\end{itemize}
 
+Although this model is based on facial expressions, most studies of emotion use this as the base model to explore and understand concepts of human behaviour. Notice that this model is based on the communication of emotions through facial expressons. These are said to be universal because facial expressions seem to have been forged through natural selection, and are independant of culture, language, or segregation of populations. In simple terms, humanity had a face for longer than most other human traits. Under this frame of reference, language as a mean of communication is a relatively new phenomenon, but since it allows for more detailed communication, it changes the way we communicate our internal states.
+
+\subsubsection{Plutchik's model of Emotions}\label{subs:Plutchik's model of Emotions}
+Although Ekman's model provides a firm base for universal emotions, it lacks structure. Robert Plutchik created his model by removing Contempt, and adding two more emotions: anticipation and trust. By doing so, a three-dimentional model was createt that also provided dichotomical, or polar emotions, intensities, and derivatives through superposition.
+
+\begin{figure}[H]
+  \includegraphics[width=0.8\textwidth]{plutchik}
+  \centering
+  \caption{Wikicommons PD. Plutchik's wheel of emotions}
+\end{figure}\label{fig:plutchik}
+
+The model shown in figure \ref{fig:plutchik} shows these characteristics. The main emotions are expressed in different intensities, and named acordingly. The combination, or superposition of some emotions receives a new name. This model is so well structured and colored, that it has called the attention of the scientific and engineering community. Unfortunately the premises of this model are faulty, and the scientific basis are questionable. The subjective nature of emotions doesn't allow for strict dichotomies. A simple poll asking \"What's the opposite of joy?\" will turn in two answers: Anger and Sadness, deppending on the context.
+
+Acording to the theory of Constructed Emotions, it is exactly context that creates emotions. This means that culture, language, learning, and many other environmental factors contribute to the characterization of an emotion. For this reason, when studying emotions in text, a mean of contextualizing an emotion word is necessary.
+
+\subsection{Emotions and Text}\label{sub:Emotions and Text}
+When it comes to contextualizing words, linguists have had tools since the 1930's \cite{corson1996fields}. This is the case of Lexical Fields. In it's simplest version, this tools ask people what words are most closely related to a concept. The result of a free assosiaton can be a network of interrelated words, or a set of words that relate to a concept. This set is also called a semantic field.
+By asking people what emotions are related to a specific word, a semantic field of emotions can be created.
+
+This is exactly what Saif Mohammad did in 2013 \{mohammad2013crowdsourcing}, creating the Canadian National Research Counsil Emotional Lexicon (NRC EmoLex). This contains around 14 thousand words, and their association with the 8 basic emotions of the plutchik emotion model. This was an incredible effort, since several people must review every single word and emotion relationship, and evaluate them.
+All this work can actually be infered from large corpus. By creating a network of word relationships, WordNet provides a way to cluster into affective words \cite{strapparava2004wordnet}. This proves that a representation of emotions in text can be learned from text, without human intervention. Machine Learninng provides tools to optimize this representations.
 
 \section{Emotion and Machine Learning}\label{sec:Emotion and Machine Learning}
-Language in Machine Learning
-NLP workflow?
-Language representation
-Tokenization
-The problem of large dictionaries
-Dimensionality reduction/ autoencoders
-Deep learning for language: automatic feature extraction
-Machine Learning meaning from context
-Word Embeddings
-Transformers
+The field of Natural Language Processing has seen great advances in recent years thanks to the use of Machine Learning for automatic inference of language models. One of the first models to call the community's attention was Google's Word2Vec\cite{mikolov2013word2vec}. A model trained on news articles that allowed for complex languge representation, like lexical artimetic. This model has the model of an Autoencoder, and is therefore unsupervised.
+% Should I talk more about dimensionality reduction/ autoencoders?
+
+After Word2Vec, a series of language models were created. Word2Vec sccessors include ELMo, GloVe, which are similar but consider more or different context when creating the language model. With the creation of the transformer in ML \cite{vaswani2017transformer}, a second wave of ML language models were created. XLM, GPT, BERT and it's many iterations, all provide a language model that captures not only the representation of a word, but also it's context.
+
+These models learn to represent words from context: By looking at the words and sentences in a document, a contextualization is given to the use of a specific word, in every document. These language representations are far from a lexicon. They are numerical representations that, due to their automatically learned creation, are difficult for humans to interpret. Once these models are trained on large amounts of data, the trained model can be stored, and re-distributed to be used in different language tasks. This is called a pre-trained model. For this reason, such a context-dependant model can be used in short sentences, or even single words: The model is in itself the abstraction of a large amount of language data, learned through text documents.
+There exist also models trained not on documents, but on dialogues. These models will not be used in the context of this project.
+
+By observing the abstract representations of these models, one can learn how specific concepts are learned from text. An inference can be done of the usage of such concepts in text.
 
 \section{Problem setting}\label{sec:Problem setting}
 
@@ -112,13 +148,6 @@ The relevance of affect in text has increased since the popularization of text-b
 
 
 % We're ultimately creating a method to make use of visualizations to encourage intuitions that can be developed into actual analysis methods to be used in the analysis of language embeddings.
-
-
-\begin{figure}[H]
-  \includegraphics[width=0.8\textwidth]{placeholder}
-  \centering
-  \caption{Example of an image}
-\end{figure}\label{fig:placeholder}
 
 
 
