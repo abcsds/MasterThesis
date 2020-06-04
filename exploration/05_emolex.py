@@ -75,6 +75,7 @@ x = np.nan_to_num(cors)
 assert np.isfinite(x).all() == True, "Some infinites or nan in correlations"
 g = sns.clustermap(x, col_cluster=False)
 t = [int(tick_label.get_text()) for tick_label in g.ax_heatmap.axes.get_yticklabels()]
+ind = list(np.unique(Y))
 sorted_e = [x for _,x in sorted(zip(t,ind))]
 g.ax_heatmap.axes.set_yticklabels(sorted_e,  rotation=0)
 g.fig.suptitle(f"Correlation of Emolex/GloVe", fontsize=18)
@@ -110,7 +111,7 @@ t = [int(tick_label.get_text()) for tick_label in g.ax_heatmap.axes.get_yticklab
 sorted_e = [x for _,x in sorted(zip(t,ind))]
 g.ax_heatmap.axes.set_yticklabels(sorted_e,  rotation=0)
 g.fig.suptitle(f"Correlation of PCA Emolex/GloVe", fontsize=18)
-g.savefig(f"./img/cor/pca_cor_emolex_glove.png")
+g.savefig(f"./img/pca/pca_cor_emolex_glove.png")
 plt.close()
 
 # Static scatter plot
@@ -123,7 +124,7 @@ sc = ax.scatter(projection[:, 0], projection[:, 1],
 plt.xlabel("Component 0")
 plt.ylabel("Component 1")
 fig.suptitle(f"PCA of Emolex/GloVe", fontsize=24)
-fig.savefig(f"./img/pca/scat_emolex_glave.png")
+fig.savefig(f"./img/pca/pca_scat_emolex_glove.png")
 
 # Interactive scatter plot
 palette = viridis(n_classes)
@@ -161,12 +162,36 @@ p.circle(x='x', y='y',
 # show the results
 show(p)
 
-# TSNE
+#========================== TSNE
+projection = TSNE(n_jobs=6).fit_transform(X)
+
+# correlation
+g = sns.clustermap(x, col_cluster=False)
+t = [int(tick_label.get_text()) for tick_label in g.ax_heatmap.axes.get_yticklabels()]
+sorted_e = [x for _,x in sorted(zip(t,ind))]
+g.ax_heatmap.axes.set_yticklabels(sorted_e,  rotation=0)
+g.fig.suptitle(f"Correlation of TSNE Emolex/GloVe", fontsize=18)
+g.savefig(f"./img/tsne/tsne_cor_emolex_glove.png")
+plt.close()
+
+# Static scatter plot
+fig = plt.figure(figsize=(16, 16))
+ax = plt.subplot(aspect='equal')
+sc = ax.scatter(projection[:, 0], projection[:, 1],
+                # c=palette[[ind.index(i) for i in Y]],
+                c=[palette[i] for i in [ind.index(i) for i in Y]],
+                label=ind
+               )
+plt.xlabel("Component 0")
+plt.ylabel("Component 1")
+fig.suptitle(f"TSNE of Emolex/GloVe", fontsize=24)
+fig.savefig(f"./img/tsne/tsne_scat_emolex_glove.png")
+
 n_classes = len(np.unique(Y))
 palette = viridis(n_classes)
 ind = list(np.unique(Y))
-projection = TSNE(n_jobs=6).fit_transform(X)
 
+# Interactive TSNE
 # output to static HTML file
 output_file(f"img/int/scat_emolex_tsne.html")
 
