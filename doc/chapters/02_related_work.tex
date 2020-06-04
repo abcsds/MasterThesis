@@ -29,57 +29,50 @@ There is an incredible amount of pre-trained Machine Learned Language models. Fo
 
 Under this criteria, four models have been spotted as candidates for the experiment:
 \begin{itemize}
-  \item Word2Vec: Words to Vectors
-  \item GloVe: Global Vectors for Word Representation
-  \item ELMo: Embeddings from Language Models
-  \item BERT: Bidirectional Encoder Representations from Transformers
+  \item \textbf{Word2Vec}: Words to Vectors
+  \item \textbf{GloVe}: Global Vectors for Word Representation
+  \item \textbf{ELMo}: Embeddings from Language Models
+  \item \textbf{BERT}: Bidirectional Encoder Representations from Transformers
 \end{itemize}
 
-Word2Vec is the result of converting large corpus into itself, by using an auto-encoder method, with help of a one-hot encoding of the corpus vocabulary~\cite{TODO}. At the time of its publication it captured much atention, mostly due to the posibility of semantic artimetic. This was tipified by the \"King - Man + Woman = Queen\" example. Due to the one-hot encoding step in the algorithm, it does not solve the problem of words with multiple meanings.
+Word2Vec is the result of converting large corpus into itself, by using an auto-encoder method, with help of a one-hot encoding of the corpus vocabulary~\cite{mikolov2013word2vec}. At the time of its publication it captured much atention, mostly due to the posibility of semantic artimetic. This was tipified by the \"King - Man + Woman = Queen\" example. Due to the one-hot encoding step in the algorithm, it does not solve the problem of words with multiple meanings.
 
-Glove is recognizable between other language models, for its linear substructures of meaning. Since it was trained on aggregated co-occurrence statistics, it captures semantic structure better than Word2Vec~\cite{TODO}. It still asigns a one-to-one representation of words and embedded vectors, so it does not solve ambiguities.
+Glove is recognizable between other language models, for its linear substructures of meaning. Since it was trained on aggregated co-occurrence statistics, it captures semantic structure better than Word2Vec~\cite{penningto2014glove}. It still asigns a one-to-one representation of words and embedded vectors, so it does not solve ambiguities.
 
-ELMo solved this last mentioned problem by analyzing context~\cite{TODO}. This was acheived by training on prediction of words in forwards and backwards passes. Even though this model solved the problem of context-dependant meaning, it was created with the premise that context in text is secuential, and it's architecture dependant on LSTMs showed this.
+ELMo solved this last mentioned problem by analyzing context~\cite{peters2018elmo}. This was acheived by training on prediction of words in forwards and backwards passes. Even though this model solved the problem of context-dependant meaning, it was created with the premise that context in text is secuential, and it's architecture dependant on LSTMs showed this.
 
 BERT was the first algorithm to solve this problem, by implementing a context-dependant learning, that is not based on the secuential structures. This was done with the use of Transformers. A deep learning architecture based on the atention model, that does not depend on secuential structures.
 
 Both BERT and ELMo give different embeddings to words in different contexts, but BERT has proven better at solving language tasks. For this reason, only BERT will be used in this project.
 
-One last model will be used as a mean of comparing results between the different models. This is FastText~\cite{TODO}. FastText is very similar to the algorithm with which word2vec was created. It creates a one hot encoding of a corpus, and creates a latent dimension through training either an autoencoder, for an unsupervised approach, or a classifier, for a supervised one. This algorithm requires traning on the corpus. Since the corpus selected on this project are relatively small, FastText provides a way to create a baseline for pretrained models, by analyzing what a basic model trained only on the corpus would look like.
+One last model will be used as a mean of comparing results between the different models. This is FastText~\cite{joulin2017fasttext}. FastText is very similar to the algorithm with which word2vec was created. It creates a one hot encoding of a corpus, and creates a latent dimension through training either an autoencoder, for an unsupervised approach, or a classifier, for a supervised one. This algorithm requires traning on the corpus. Since the corpus selected on this project are relatively small, FastText provides a way to create a baseline for pretrained models, by analyzing what a basic model trained only on the corpus would look like.
 
 \subsection{Selected Language Models}\label{sub:Selected Language Models}
-
-Considering the prospective models, and the given criteria, the selected models for embedding the datasets are the following:
-\begin{itemize}
-  \item Fasttext
-  \item Word2Vec
-  \item GloVe
-  \item BERT
-\end{itemize}
+All candidate language models have been used in this project. Following are some of the peculiarities about them.
 
 \subsubsection{FastText}\label{subs:FastText}
-Python's FastText library\cite{TODO} is used in this project. This provides two approaches for training the model: an unsupervised, and a supervised. The unsupervised requires a text file with one sentence per line. The algorithm is in charge of the tokenization. This of course only works in english. The supervised approach requires a similar file for the corpus, but at the end of every line, two underscores most be followed by the label of the given sentence.
+Python's FastText library\cite{joulin2017fasttext} is used in this project. This provides two approaches for training the model: an unsupervised, and a supervised. The unsupervised requires a text file with one sentence per line. The algorithm is in charge of the tokenization. This of course only works in english. The supervised approach requires a similar file for the corpus, but at the end of every line, two underscores most be followed by the label of the given sentence.
 
 \subsubsection{Word2Vec}\label{subs:Word2Vec}
-Since this pre-trained model has a one-to-one correspondance between word and embedding, a dictionary can be downloaded and imported via the gensim python library~\cite{TODO}. This model has been trained with the Google News \cite{} corpus. It weights about 1.5 Gb, and has a latent space of 300 dimensions. It is supposed to be located at the url \url{https://code.google.com/archive/p/word2vec/}, but the file is not to be found. Forums on google groups for the word2vec (\url{https://groups.google.com/forum/#!topic/word2vec-toolkit/z0Aw5powUco}) point several urls where the model can be found.
+Since this pre-trained model has a one-to-one correspondance between word and embedding, a dictionary can be downloaded and imported via the gensim python library~\cite{mikolov2013word2vec}. This model has been trained with the Google News corpus. It weights about 1.5 Gb, and has a latent space of 300 dimensions. It is supposed to be located at the url \url{https://code.google.com/archive/p/word2vec/}, but the file is not to be found. Forums on google groups for the word2vec (\url{https://groups.google.com/forum/#!topic/word2vec-toolkit/z0Aw5powUco}) point several urls where the model can be found.
 
 \subsubsection{GloVe}\label{subs:GloVe}
-This model, provided by the Standford University, is of easy access, and as Word2Vec, can be imported as a dictionary \cite{TODO}. The download can be found under \url{https://nlp.stanford.edu/projects/glove/}. This specific version selected was trained on the Wikipedia corpus, contains 6 billion words, uses 300 latent dimensions, and weights less than 1Gb.
+This model, provided by the Standford University, is of easy access, and as Word2Vec, can be imported as a dictionary~\cite{penningto2014glove}. The download can be found under \url{https://nlp.stanford.edu/projects/glove/}. This specific version selected was trained on the Wikipedia corpus, contains 6 billion words, uses 300 latent dimensions, and weights less than 1Gb.
 
 \subsubsection{BERT}\label{subs:BERT}
-The BERT model is trained not with one, but two types of tasks. The first one is masked word or sentence prediction, and a second one requires extra layers on the architecture and a fine-tunning training for task specific performance. \cite{TODO} The pre-trained model that one can get is the language model trained with the masked-language task. This model is not as easy to get, since the defoult python libraries to import BERT, require training and fine-tunning. For this reason, the bert-embeddings python library has been selected for this task.
+The BERT model is trained not with one, but two types of tasks. The first one is masked word or sentence prediction, and a second one requires extra layers on the architecture and a fine-tunning training for task specific performance~\cite{devlin2019bert}. The pre-trained model that one can get is the language model trained with the masked-language task. This model is not as easy to get, since the defoult python libraries to import BERT, require training and fine-tunning. For this reason, the bert-embeddings python library has been selected for this task.
 
 \section{Analysis Algorithms}\label{sec:Analysis Algorithms}
 Two algorithms have been chosen for dimensionality reduction:
 \begin{itemize}
-  \item PCA
-  \item TSNE
+  \item PCA: Principal Component Analysis
+  \item TSNE: T-distributed Stochastic Neighbor Embedding
 \end{itemize}
 
 PCA can be interpreted as a linear transformation on the input space, that yields the maximum explainability by the least amount of dimensions. While TSNE uses statistical information to maximize the distribution of information of groups, while minimizing the distribution of information within groups.
 
 \section{Datasets}\label{sec:Datasets}
-There are many datasets of \"emotion in text\" on the internet, and finding them is not a new problem. Unfortunately, the methodology and rigor for their creation cannot be easily tested. A heavy use of the paper "An analysis of annotated corpora for emotion classification in text" by Klinger in 2018 \cite{klinger2018analysis} was done. This paper not only collects information about the datasets, but also tests their valididty in the context of a text cliassifier.
+There are many datasets of \"emotion in text\" on the internet, and finding them is not a new problem. Unfortunately, the methodology and rigor for their creation cannot be easily tested. A heavy use of the paper \"An analysis of annotated corpora for emotion classification in text\" by Klinger in 2018~\cite{klinger2018analysis} was done. This paper not only collects information about the datasets, but also tests their valididty in the context of a text cliassifier.
 
 \subsection{Inclusion Criteria}\label{sub:Inclusion Criteria}
 To be included into these experiments, the following criteria must be met by a dataset:
@@ -92,15 +85,15 @@ To be included into these experiments, the following criteria must be met by a d
 The text to be analyzed must be in english, since the methods and language models that we are testing will not all be available in other languages. The single-single label criterion has been chosen due to the restriction of two-dimensional projections, and their visualizations as scatter plots. The label is to be exrpessed as a single color on scatter plots, and a multi-label problem would not present the effect desired  when developing the desired intuitions.
 
 \subsection{Candidate datasets}\label{sub:Candidate datasets}
-For the datasets included in Klinger's original paper~\cite{klinger2018analysis} the naming in the paper was not followed. This is due to the inconsistencies between the paper and their github repository, which (as the moment of writing this thesis) was last updated on Dec 17 2019 (commit e58d676). The dataset naming conventions used here is the same as in the document called "unified dataset of emotion in text": \url{https://github.com/sarnthil/unify-emotion-datasets/tree/master/datasets}.
+For the datasets included in Klinger's original paper~\cite{klinger2018analysis} the naming in the paper was not followed. This is due to the inconsistencies between the paper and their github repository, which (as the moment of writing this thesis) was last updated on Dec 17 2019 (commit e58d676). The dataset naming conventions used here is the same as in the document called \"\emph{unified dataset of emotion in text}\": \url{https://github.com/sarnthil/unify-emotion-datasets/tree/master/datasets}.
 
 Lastly, the candidate list includes the datasets mentioned, but is not restricted to them:
 \begin{itemize}
   \item AffectiveText~\cite{strapparava2007semeval} % VAD
   \item AIT-2018~\cite{SemEval2018Task1} % VAD
   \item CrowdFlower % USED
-  \item DailyDialogs~\cite{li2017dailydialog} %TODO: might need to be included
-  \item Emotion-Cause~\cite{ghazi2015detecting} %TODO: might need to be included
+  \item DailyDialogs~\cite{li2017dailydialog}
+  \item Emotion-Cause~\cite{ghazi2015detecting}
   \item Emotiondata-Aman~\cite{aman2007recognizing} % VAD
   \item EmotionPush~\cite{huang2018emotionpush} % USED
   \item EmoBank~\cite{buechel2017emobank} % VAD
@@ -109,10 +102,10 @@ Lastly, the candidate list includes the datasets mentioned, but is not restricte
   \item Grounded-Emotions~\cite{liu2017grounded} % I seriously don't know what's up with this ds
   \item ISEAR International Survey On Emotion Antecedents And Reactions~\cite{scherer1990international} % Format not open source
   \item Tales~\cite{alm2005emotions} % Two different annotators, two different labels.
-  \item EmoInt \cite{MohammadB17starsem} %TODO: might need to be included
-  \item TEC The Twitter Emotion Corpus published \cite{mohammad2012emotional} %TODO: might need to be included
-  \item Electoral-Tweets \cite{mohammad2014semantic} %TODO: might need to be included
-  \item SSEC The Stance Sentiment Emotion Corpus published \cite{schuff2017annotation} %TODO: might need to be included
+  \item EmoInt~\cite{MohammadB17starsem}
+  \item TEC The Twitter Emotion Corpus published~\cite{mohammad2012emotional}
+  \item Electoral-Tweets~\cite{mohammad2014semantic}
+  \item SSEC The Stance Sentiment Emotion Corpus published~\cite{schuff2017annotation}
 \end{itemize}
 The link to these datasets can be found under the github repository for the unified emotion datasets.
 https://github.com/sarnthil/unify-emotion-datasets/tree/master/datasets
@@ -122,26 +115,54 @@ From this list, several datasets use an affective model of valence, arousal or d
   \item CrowdFlower % USED
   \item DailyDialogs~\cite{li2017dailydialog} %TODO: might need to be included
   \item Emotion-Cause~\cite{ghazi2015detecting} %TODO: might need to be included
-  \item fb-valence-arousal~\cite{preoctiuc2016modelling} % USED
+  \item EmotionPush~\cite{huang2018emotionpush} % USED
   \item Friends~\cite{chen2018emotionlines} % USED
-  \item EmoInt \cite{MohammadB17starsem} %TODO: might need to be included
-  \item TEC The Twitter Emotion Corpus published \cite{mohammad2012emotional} %TODO: might need to be included
-  \item Electoral-Tweets \cite{mohammad2014semantic} %TODO: might need to be included
-  \item SSEC The Stance Sentiment Emotion Corpus published \cite{schuff2017annotation} %TODO: might need to be included
+  \item EmoInt~\cite{MohammadB17starsem} %TODO: might need to be included
+  \item TEC The Twitter Emotion Corpus published~\cite{mohammad2012emotional} %TODO: might need to be included
+  \item Electoral-Tweets~\cite{mohammad2014semantic} %TODO: might need to be included
+  \item SSEC The Stance Sentiment Emotion Corpus published~\cite{schuff2017annotation} %TODO: might need to be included
 \end{itemize}
 
-% What datasets were selected and why?
-During the exploratory phase of this project, a subset of these datasets will be selected, giving priority to those with a more standardized, cleaner, or easier to access data.
-Models
+\subsection{Selected Datasets}\label{sub:Selected Datasets}
+Due to availability, the selected datasets are CrowdFlower, EmotionPush, and Friends.
+CrowdFlower has a total of 40000 tweets, each tagged with one of 14 emotions from the following list:
+
+\begin{itemize}
+  \item empty
+  \item sadness
+  \item enthusiasm
+  \item neutral
+  \item worry
+  \item sadness
+  \item love
+  \item fun
+  \item hate
+  \item happiness
+  \item relief
+  \item boredom
+  \item surprise
+  \item anger
+\end{itemize}
+
+From these, empty, and neutral were taken off the dataset. More about this on~\ref{chap:Methodology}.
+For both Friends and EmotionPush, a thousand dialogues are included, where every line is labeled with one of the six emotions from the Ekman model, or a \"neutral\" label.
+
+\section{EmoLex}\label{sec:Research Question}
+The NRC EmoLex has been a useful reference. Due to the fact that it relates words with emotions, it can be seen both as a dataset and as a very simple language model of emotions. In this project it will only be used as a dataset.
+
+The EmoLex was created with the Plutchik model of emotions, but two other variables were included. Words can be related to two other concepts: positive and negative. These are considered emotions, and have been removed form our analysis for two reasons. The first one is that, as it has been delimited, this project's goal is to analyze emotions, and not valence. The second one is that valence is in all models of valence a dichotomical variable, and some words in the EmoLex contain both relationships with the positive and negative concepts. This is a conflicting find worth mentioning, but one that falls out of the scope of this thesis.
+
+The lexicon is also filled with words that do not relate to any variable. This effectively reduces the size of the dataset from 14181 words to a few thousands. A further reduction of the selected words has been made, by selecting only words thar relate to a single emotion. The total number of words that fullfills these criteria is 2344.
 
 \section{Research Question}\label{sec:Research Question}
-
-As a general research question we propose to answer the following:
 When using pre-trained models for word and sentence embedding, \textbf{is the information about the emotional and affective content or context of the word or sentence represented in the vector space?}
 
-This question can be approached in three different ways:
+This representation can be an abstract concept, so to formalize it, the research question can be approached in three different ways:
+
 \begin{itemize}
   \item Is there a direct correlation between any of the dimensions of the vector space and human-labeled emotions and affect?
   \item Is there a linear transformation that will yield a direct correlation to the same human-labeled emotions?
   \item Is there a hierarchical structure that accurately represents the embedding of said labels?
 \end{itemize}
+
+In the next chapter we explain the methodology applied to answer these questions.

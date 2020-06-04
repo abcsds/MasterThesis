@@ -19,7 +19,7 @@ The four humors should be in balance within the body, and all diseases were caus
 Galen at took this theory and created what can be considered as the first theory of personality. He believed that human bodies had a predisposition for unbalance of the humors. This made some people have a tendency to have more or less of these, and in turn, this would have an effect on their baseline behaviour. He described four different characteristical behaviours: phlegmatic, choleric, sanguine and melancholic.\cite{irwin1947galen}
 
 \begin{figure}[H]
-  \includegraphics[width=0.8\textwidth]{temperaments}
+  \includegraphics[width=1	extwidth]{temperaments}
   \centering
   \caption{Wikicommons PD. The four temperaments by Charles Le Brun, part of the \emph{Grande Commande}.}
 \end{figure}\label{fig:temperaments}
@@ -28,7 +28,7 @@ Galen at took this theory and created what can be considered as the first theory
 Charles Darwin first described the importance of emotions in communication, and their relevance across cultures and even species. In his book \"\emph{The Expression of the Emotions in Man and Animals}\" he writes \"\ldots the young and the old of widely different races, both with man and animals, express the same state of mind by the same movements.\"~\cite{darwin1872emotions} He noticed that surprise was shown in humans across cultures, and even some mamals by raising the eyebrows. By framing emotions as a mean of communication, Darwin enabled the study of expression, and understanding of emotions as an evolutive advantage.
 
 \begin{figure}[H]
-  \includegraphics[width=0.8\textwidth]{darwin}
+  \includegraphics[width=1	extwidth]{darwin}
   \centering
   \caption{Wikicommons PD. Ilustration of grief from Darwin's \emph{"The Expression of the Emotions in Man and Animals"}}
 \end{figure}\label{fig:darwin}
@@ -37,7 +37,7 @@ Charles Darwin first described the importance of emotions in communication, and 
 Although Emotions were thought to be universal there was no measurement of it. The universality of emotions was first formalized by Paul Ekman in his 1997 paper: "Universal facial expressions of emotion". Ekman studied facial anatomy, and expressions of different populations and cultures across the globe. He arrived to the conclussion that there are seven universal facial expressions of emotion~\cite{ekman1997universal}.
 
 \begin{figure}[H]
-  \includegraphics[width=0.8\textwidth]{ekman}
+  \includegraphics[width=1	extwidth]{ekman}
   \centering
   \caption{Ekman's photographs for cross-cultural research~\cite{ekman1999facial}.}
 \end{figure}\label{fig:darwin}
@@ -65,7 +65,7 @@ In the context of this project the term Affect will be used to denote the autono
 
 The relevance of affect in text has increased since the popularization of text-based social networks, like twitter. There, individuals and organizations openly express their opinions. This creates an environment where implicit feedback about entities is present. An easy way to abstract popular opinion about a named entity is learning the affect expressed in text, such as a tweet. Affect can be a multidimensional phenomenon, but the most important dimension of it is valence: whether a text expresses positive or negative emotion. This use of affect language models has proven useful to marketing, public relationship, and social sensing, but does not provide an insight into the human experience of emotion further than a signle dichotomical variable.
 
-Affect is relevant to this project since emotions can be represented within the model of Affect.
+Affect is relevant to this project since emotions can be represented within the models of affect that include valence and arousal~\cite{barradas2016thesis}.
 
 \subsection{Emotions in Communication}\label{sub:Emotions in Communication}
 The main evolutive advantage of emotions is to be able to communicate an internal state with others. The communication, and therefore, the detection of emotions can be done through three different means:
@@ -100,7 +100,7 @@ Although this model is based on facial expressions, most studies of emotion use 
 Although Ekman's model provides a firm base for universal emotions, it lacks structure. Robert Plutchik created his model by removing Contempt, and adding two more emotions: anticipation and trust. By doing so, a three-dimentional model was createt that also provided dichotomical, or polar emotions, intensities, and derivatives through superposition.
 
 \begin{figure}[H]
-  \includegraphics[width=0.8\textwidth]{plutchik}
+  \includegraphics[width=1	extwidth]{plutchik}
   \centering
   \caption{Wikicommons PD. Plutchik's wheel of emotions}
 \end{figure}\label{fig:plutchik}
@@ -110,11 +110,11 @@ The model shown in figure \ref{fig:plutchik} shows these characteristics. The ma
 Acording to the theory of Constructed Emotions, it is exactly context that creates emotions. This means that culture, language, learning, and many other environmental factors contribute to the characterization of an emotion. For this reason, when studying emotions in text, a mean of contextualizing an emotion word is necessary.
 
 \subsection{Emotions and Text}\label{sub:Emotions and Text}
-When it comes to contextualizing words, linguists have had tools since the 1930's \cite{corson1996fields}. This is the case of Lexical Fields. In it's simplest version, this tools ask people what words are most closely related to a concept. The result of a free assosiaton can be a network of interrelated words, or a set of words that relate to a concept. This set is also called a semantic field.
+When it comes to contextualizing words, linguists have had tools since the 1930's~\cite{corson1996fields}. This is the case of Lexical Fields. In it's simplest version, this tools ask people what words are most closely related to a concept. The result of a free assosiaton can be a network of interrelated words, or a set of words that relate to a concept. This set is also called a semantic field.
 By asking people what emotions are related to a specific word, a semantic field of emotions can be created.
 
 This is exactly what Saif Mohammad did in 2013 \{mohammad2013crowdsourcing}, creating the Canadian National Research Counsil Emotional Lexicon (NRC EmoLex). This contains around 14 thousand words, and their association with the 8 basic emotions of the plutchik emotion model. This was an incredible effort, since several people must review every single word and emotion relationship, and evaluate them.
-All this work can actually be infered from large corpus. By creating a network of word relationships, WordNet provides a way to cluster into affective words \cite{strapparava2004wordnet}. This proves that a representation of emotions in text can be learned from text, without human intervention. Machine Learninng provides tools to optimize this representations.
+All this work can actually be infered from large corpus. By creating a network of word relationships, WordNet provides a way to cluster into affective words~\cite{strapparava2004wordnet}. This proves that a representation of emotions in text can be learned from text, without human intervention. Machine Learninng provides tools to optimize this representations.
 
 \section{Emotion and Machine Learning}\label{sec:Emotion and Machine Learning}
 The field of Natural Language Processing has seen great advances in recent years thanks to the use of Machine Learning for automatic inference of language models.
@@ -127,7 +127,7 @@ Several machine learning approaches try to automatically learn the best numeric 
 One of the first models to call the community's attention was Google's Word2Vec\cite{mikolov2013word2vec}. A model trained on news articles that allowed for complex languge representation, like lexical artimetic. This model has the model of an Autoencoder, and is therefore unsupervised.
 % Should I talk more about dimensionality reduction/ autoencoders?
 
-After Word2Vec, a series of language models were created. Word2Vec sccessors include ELMo, GloVe, which are similar but consider more or different context when creating the language model. With the creation of the transformer in ML \cite{vaswani2017transformer}, a second wave of ML language models were created. XLM, GPT, BERT and it's many iterations, all provide a language model that captures not only the representation of a word, but also it's context.
+After Word2Vec, a series of language models were created. Word2Vec sccessors include ELMo, GloVe, which are similar but consider more or different context when creating the language model. With the creation of the transformer in ML~\cite{vaswani2017transformer}, a second wave of ML language models were created. XLM, GPT, BERT and it's many iterations, all provide a language model that captures not only the representation of a word, but also it's context.
 
 These models learn to represent words from context: By looking at the words and sentences in a document, a contextualization is given to the use of a specific word, in every document. These language representations are far from a lexicon. They are numerical representations that, due to their automatically learned creation, are difficult for humans to interpret. Once these models are trained on large amounts of data, the trained model can be stored, and re-distributed to be used in different language tasks. This is called a pre-trained model. For this reason, such a context-dependant model can be used in short sentences, or even single words: The model is in itself the abstraction of a large amount of language data, learned through text documents.
 There exist also models trained not on documents, but on dialogues. These models will not be used in the context of this project.
