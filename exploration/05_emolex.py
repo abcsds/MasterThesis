@@ -7,7 +7,7 @@ from sklearn.preprocessing import normalize
 from MulticoreTSNE import MulticoreTSNE as TSNE
 # from bokeh.io import show
 from bokeh.models import ColumnDataSource
-from bokeh.palettes import viridis
+from bokeh.palettes import Category10
 from bokeh.plotting import figure, output_file, show
 
 
@@ -79,14 +79,19 @@ ind = list(np.unique(Y))
 sorted_e = [x for _,x in sorted(zip(t,ind))]
 g.ax_heatmap.axes.set_yticklabels(sorted_e,  rotation=0)
 g.fig.suptitle(f"Correlation of Emolex/GloVe", fontsize=18)
-g.savefig(f"./img/cor/cor_emolex_GloVe.png")
+g.savefig(f"./img/emolex/cor_emolex_GloVe.png")
 plt.close()
-
+print("====== linear")
+print(f"Correlation Maximum: {np.amax(x)}")
+max_emo, max_dim = np.where(x == np.amax(x))
+max_emo = emotions[max_emo[0]]
+print(f"Maximum emotion and dim: {max_emo}, {max_dim[0]}")
 
 #========================== PCA
 projection = PCA().fit_transform(X)
 n_classes = len(np.unique(Y))
-palette = np.array(sns.color_palette("hls", n_classes))
+# palette = np.array(sns.color_palette("hls", n_classes))
+palette = Category10[n_classes]
 ind = list(np.unique(Y))
 
 cors = []
@@ -104,33 +109,42 @@ cors = np.array(cors)
 x = np.nan_to_num(cors)
 assert np.isfinite(x).all() == True, "Some infinites or nan in correlations"
 
+print("====== pca")
+print(f"Correlation Maximum: {np.amax(x)}")
+max_emo, max_dim = np.where(x == np.amax(x))
+max_emo = emotions[max_emo[0]]
+print(f"Maximum emotion and dim: {max_emo}, {max_dim[0]}")
 
-# correlation
+# correlation clustermap
 g = sns.clustermap(x, col_cluster=False)
 t = [int(tick_label.get_text()) for tick_label in g.ax_heatmap.axes.get_yticklabels()]
-sorted_e = [x for _,x in sorted(zip(t,ind))]
+sorted_e = [x for _, x in sorted(zip(t, ind))]
 g.ax_heatmap.axes.set_yticklabels(sorted_e,  rotation=0)
 g.fig.suptitle(f"Correlation of PCA Emolex/GloVe", fontsize=18)
-g.savefig(f"./img/pca/pca_cor_emolex_glove.png")
+g.savefig(f"./img/emolex/pca_cor_emolex_glove.png")
 plt.close()
 
 # Static scatter plot
-fig = plt.figure(figsize=(16, 16))
+data = pd.DataFrame(list(zip(projection[:, 0],projection[:, 1],Y)),
+                    columns=["Component0","Component1", "Emotion"])
+fig = plt.figure(figsize=(8, 8))
 ax = plt.subplot(aspect='equal')
-sc = ax.scatter(projection[:, 0], projection[:, 1],
-                c=palette[[ind.index(i) for i in Y]],
-                label=ind
-               )
-plt.xlabel("Component 0")
-plt.ylabel("Component 1")
+sns.scatterplot(ax=ax,
+                x="Component0", y="Component1",
+                hue="Emotion",
+                data=data)
+ax.spines['right'].set_visible(False)
+ax.spines['top'].set_visible(False)
+ax.spines['bottom'].set_visible(True)
+ax.spines['left'].set_visible(True)
 fig.suptitle(f"PCA of Emolex/GloVe", fontsize=24)
-fig.savefig(f"./img/pca/pca_scat_emolex_glove.png")
+fig.savefig(f"./img/emolex/pca_scat_emolex_glove.png")
 
 # Interactive scatter plot
-palette = viridis(n_classes)
+palette = Category10[n_classes]
 
 # output to static HTML file
-output_file(f"img/int/scat_emolex_pca.html")
+output_file(f"img/emolex/pca_scat_emolex.html")
 
 source = ColumnDataSource(dict(
     x=projection[:, 0],
@@ -166,34 +180,60 @@ show(p)
 projection = TSNE(n_jobs=6).fit_transform(X)
 
 # correlation
-g = sns.clustermap(x, col_cluster=False)
+cors = []
+for emotion in ind:
+    y = (Y == emotion).astype(int)
+    cor_p_sent = []
+    for j in range(projection.shape[1]):
+        x = normalize(projection[:, j].reshape(-1, 1)).reshape(-1)
+        c = np.corrcoef(x, y)[1,0]
+        if c > .40:
+            print(f"Emotion: {emotion}, Dimension: {j}, corrcoef: {c}")
+        cor_p_sent.append(c)
+    cors.append(cor_p_sent)
+cors = np.array(cors)
+x = np.nan_to_num(cors)
+assert np.isfinite(x).all() == True, "Some infinites or nan in correlations"
+
+print("====== tsne")
+print(f"Correlation Maximum: {np.amax(x)}")
+max_emo, max_dim = np.where(x == np.amax(x))
+max_emo = emotions[max_emo[0]]
+print(f"Maximum emotion and dim: {max_emo}, {max_dim[0]}")
+
+
+# clustermap tsne correlation
+g = sns.clustermap(x, col_cluster=False, annot=x)
 t = [int(tick_label.get_text()) for tick_label in g.ax_heatmap.axes.get_yticklabels()]
 sorted_e = [x for _,x in sorted(zip(t,ind))]
 g.ax_heatmap.axes.set_yticklabels(sorted_e,  rotation=0)
 g.fig.suptitle(f"Correlation of TSNE Emolex/GloVe", fontsize=18)
-g.savefig(f"./img/tsne/tsne_cor_emolex_glove.png")
+g.savefig(f"./img/emolex/tsne_cor_emolex_glove.png")
 plt.close()
 
 # Static scatter plot
-fig = plt.figure(figsize=(16, 16))
+fig = plt.figure(figsize=(8, 8))
 ax = plt.subplot(aspect='equal')
-sc = ax.scatter(projection[:, 0], projection[:, 1],
-                # c=palette[[ind.index(i) for i in Y]],
-                c=[palette[i] for i in [ind.index(i) for i in Y]],
-                label=ind
-               )
-plt.xlabel("Component 0")
-plt.ylabel("Component 1")
+# Static scatter plot
+data = pd.DataFrame(list(zip(projection[:, 0],projection[:, 1],Y)),
+                    columns=["Component0","Component1", "Emotion"])
+fig = plt.figure(figsize=(8, 8))
+ax = plt.subplot(aspect='equal')
+sns.scatterplot(ax=ax,
+                x="Component0", y="Component1",
+                hue="Emotion",
+                data=data)
 fig.suptitle(f"TSNE of Emolex/GloVe", fontsize=24)
-fig.savefig(f"./img/tsne/tsne_scat_emolex_glove.png")
+fig.savefig(f"./img/emolex/tsne_scat_emolex_glove.png")
+
 
 n_classes = len(np.unique(Y))
-palette = viridis(n_classes)
+palette = Category10[n_classes]
 ind = list(np.unique(Y))
 
 # Interactive TSNE
 # output to static HTML file
-output_file(f"img/int/scat_emolex_tsne.html")
+output_file(f"img/emolex/tsne_scat_emolex.html")
 
 source = ColumnDataSource(dict(
     x=projection[:, 0],
@@ -228,7 +268,8 @@ show(p)
 
 # ============================== Clustermap of emotion correlation
 x = df.drop("Word", axis=1).corr()
-g = sns.clustermap(x)
-g.fig.suptitle(f"Correlation of emotion-emotion Emolex/GloVe", fontsize=18)
-g.savefig(f"./img/cor/cor_emolex_GloVe_e_e.png")
+g = sns.clustermap(x, annot=x)
+g.ax_col_dendrogram.set_visible(False)
+g.fig.suptitle(f"Correlation of emotion-emotion Emolex/GloVe", fontsize=20)
+g.savefig(f"./img/emolex/cor_emolex_GloVe_e_e.png")
 plt.close()
