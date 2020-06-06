@@ -60,3 +60,8 @@ for i, ds in enumerate(dss):
     g.fig.suptitle(f"Correlation of {data}/{model}", fontsize=18)
     g.savefig(f"./img/cor/cor_{data}_{model}.png")
     plt.close()
+
+    print(f"Correlation Maximum: {np.amax(x)}")
+    max_emo, max_dim = np.where(x == np.amax(x))
+    max_emo = ind[max_emo[0]]
+    print(f"Maximum emotion and dim: {max_emo}, {max_dim[0]}")
