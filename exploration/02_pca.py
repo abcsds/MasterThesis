@@ -55,6 +55,11 @@ for i, ds in enumerate(dss):
     if np.isfinite(x).all() != True:
         continue
 
+    print(f"Correlation Maximum: {np.amax(x)}")
+    max_emo, max_dim = np.where(x == np.amax(x))
+    max_emo = ind[max_emo[0]]
+    print(f"Maximum emotion and dim: {max_emo}, {max_dim[0]}")
+
     # correlation
     g = sns.clustermap(x, col_cluster=False)
     t = [int(tick_label.get_text()) for tick_label in g.ax_heatmap.axes.get_yticklabels()]
@@ -65,13 +70,14 @@ for i, ds in enumerate(dss):
     plt.close()
 
     # scatter
-    fig = plt.figure(figsize=(16, 16))
+    da = pd.DataFrame(list(zip(projection[:, 0],projection[:, 1],Y)),
+                        columns=["Component0","Component1", "Emotion"])
+    fig = plt.figure(figsize=(8, 8))
     ax = plt.subplot(aspect='equal')
-    sc = ax.scatter(projection[:, 0], projection[:, 1],
-                    c=palette[[ind.index(i) for i in Y]],
-                    label=ind
-                   )
-    plt.xlabel("Component 0")
-    plt.ylabel("Component 1")
-    fig.suptitle(f"PCA of {ds}", fontsize=24)
+    sns.scatterplot(ax=ax,
+                    x="Component0", y="Component1",
+                    hue="Emotion",
+                    data=da)
+    fig.suptitle(f"PCA of {ds}", fontsize=18)
     fig.savefig(f"./img/pca/scat_{data}_{model}.png")
+    del(fig)
