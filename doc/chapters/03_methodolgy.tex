@@ -242,7 +242,7 @@ Every analysis script separates the embedded sentence from the label, into two s
 \end{itemize}
 
 \subsection{Correlational Analysis}\label{sub:Correlational Analysis}
-The correlational analysis runs the numpy \lstinline{corcoef} \ref{TODO: https://numpy.org/doc/stable/reference/generated/numpy.corrcoef.html} algorithm between every dimension of the model, and the labels vector. A snippet of the algorithm can be seen in listing~\ref{lst:cor}
+The correlational analysis runs the numpy \lstinline{corcoef}~\cite{oliphant2006numpy} algorithm between every dimension of the model, and the labels vector. A snippet of the algorithm can be seen in listing~\ref{lst:cor}
 
 \begin{lstlisting}[caption={Corrlelation Algorithm},label=lst:cor,frame=single,numbers=left]
 cors = []

@@ -1,14 +1,39 @@
 %!TEX root = ../thesis.tex
 \chapter{Conclusion}\label{chap:Conclusion}
+The experiments presented in this project help understand some of the reasons as of why the field of emotion research is so hard to manage in precise and conicse manners. By asuming there is a model of universal emotions, to be able to generalize to all languages and populations, one can neglect the specificity of very relevant context-dependant emotions. On the other side, by creating models that adapt to populations and languages, the generalization of those specific concepts is lost.
 
-% Discussion
-% Talk about the pedagogic value of this work
+\section{Discussion}\label{sec:Discussion}
+Considering the observations of the experiments in this project, suggestions as of how to create and use a model of language that correctly captures emotional concepts can be made.
 
-% Problems to be solved
+How to improve the creation of LM to capture emotion
+The Dataset and sampling
+% Never trust a dataset that says it's labeled emotions. Emotions are context dependant, and the labels talk more about the context of the labeler than the emotion expressed. Thus, self-report labels are the only ones to trust.
+The language of the dataset
+the labeling
+the labelers and their context
+the emotions used to label
 
-% Average for sentence embedding
+the text dependancy on context
+The problem of using average sentence representation
+Use gaussian models to represent the emotion groups in the embedded space.
 
-% Future Work
+Letting a Language model learn, then cluster emotions
+
+
+
+
+Trust emotion words
+
+trust self-reported emotions.
+
+
+Talk about the pedagogic value of this work
+Why visualizing your word and sentence embeddings can help you improve your ML
+
+
+
+
+\section{Future Work}\label{sec:Future Work}
 % Talk about multi-label datasets, why they make sense, and why they should be looked into.
 % How could they be looked into?
 
@@ -16,10 +41,13 @@
 Thanks to the work done in this project a new method for the creation of an emotional model can be created. A prospect model of emotions in text can be created by using explicit textual exrpessions of emotion. An example of an explicit expression of emotion is: \"I feel sad\" By removing the emotional word from this sentence, we can obtain an emotion-neutral emotion context. By parsing a corpus for these specific sentences, maping them on to a pre-trained-model vector space, and reproducing a separation method like PCA, the transformation that better captures the different emotional contexts can be obtained. This transformation can latter be used for non-explicit expressions of emotion.
 This model of emotions can be context and languge specific, but the methodology is not restricted to any language, or even expressions of emotion. It is in general a method for analyzing conceptualizations of pre-trained language models.
 
-% Ablative studies and their implications
 
 
 % Talk about the horrors of accessing a dataset
-
 % Talk about the crowdflower dataset and its weak points
 % Talk about the EmotionX emotion tasks and its weak points
+% suggest a dataset
+
+
+
+% Ablative studies and their implications

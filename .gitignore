@@ -30,12 +30,14 @@
 !/data/GroundedEmotions
 !/data/DailyDialog
 
+!/data/CrowdFlower/FastText/embed.py
+!/data/CrowdFlower/GloVe/embed.py
+!/data/CrowdFlower/GloVe/embed2.py
+!/data/CrowdFlower/Word2Vec/embed.py
+!/data/CrowdFlower/Word2Vec/embed2.py
 !/data/Friends/Word2Vec/embed.py
 !/data/Friends/FastText/embed.py
 !/data/Friends/GloVe/embed.py
-!/data/CrowdFlower/Word2Vec/embed.py
-!/data/CrowdFlower/FastText/embed.py
-!/data/CrowdFlower/GloVe/embed.py
 !/data/EmotionPush/Word2Vec/embed.py
 !/data/EmotionPush/FastText/embed.py
 !/data/EmotionPush/GloVe/embed.py

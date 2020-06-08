@@ -85,7 +85,7 @@ To be included into these experiments, the following criteria must be met by a d
 The text to be analyzed must be in english, since the methods and language models that we are testing will not all be available in other languages. The single-single label criterion has been chosen due to the restriction of two-dimensional projections, and their visualizations as scatter plots. The label is to be exrpessed as a single color on scatter plots, and a multi-label problem would not present the effect desired  when developing the desired intuitions.
 
 \subsection{Candidate datasets}\label{sub:Candidate datasets}
-For the datasets included in Klinger's original paper~\cite{klinger2018analysis} the naming in the paper was not followed. This is due to the inconsistencies between the paper and their github repository, which (as the moment of writing this thesis) was last updated on Dec 17 2019 (commit e58d676). The dataset naming conventions used here is the same as in the document called \"\emph{unified dataset of emotion in text}\": \url{https://github.com/sarnthil/unify-emotion-datasets/tree/master/datasets}.
+For the datasets included in Klinger's original paper~\cite{klinger2018analysis} the naming in the paper was not followed. This is due to the inconsistencies between the paper and their github repository, which (as the moment of writing this thesis) was last updated on Dec 17 2019 (commit e58d676). The dataset naming conventions used here is the same as in the document called \" \emph{unified dataset of emotion in text} \": \url{https://github.com/sarnthil/unify-emotion-datasets/tree/master/datasets}.
 
 Lastly, the candidate list includes the datasets mentioned, but is not restricted to them:
 \begin{itemize}
@@ -124,7 +124,8 @@ From this list, several datasets use an affective model of valence, arousal or d
 \end{itemize}
 
 \subsection{Selected Datasets}\label{sub:Selected Datasets}
-Due to availability, the selected datasets are CrowdFlower, EmotionPush, and Friends.
+Due to availability, the selected datasets are CrowdFlower, EmotionPush, and Friends. The analysis has been done on the three datasets, but this document only presents the visualizations of the first dataset. The CrowdFlower dataset has been selected due to it's internal structur, and it's best demonstration of the methods, used in this project. Nontheless, the three datasets have been analyzed, and the results can be examined on the project repository.
+
 CrowdFlower has a total of 40000 tweets, each tagged with one of 14 emotions from the following list:
 
 \begin{itemize}
@@ -144,7 +145,8 @@ CrowdFlower has a total of 40000 tweets, each tagged with one of 14 emotions fro
   \item anger
 \end{itemize}
 
-From these, empty, and neutral were taken off the dataset. More about this on~\ref{chap:Methodology}.
+From these, empty, and neutral were taken off the dataset. More about this on~\ref{chap:Methodology}. Tweets are for the most part self-contained, and are thus considered as containing the context necesary to analyze.
+
 For both Friends and EmotionPush, a thousand dialogues are included, where every line is labeled with one of the six emotions from the Ekman model, or a \"neutral\" label.
 
 \section{EmoLex}\label{sec:Research Question}
