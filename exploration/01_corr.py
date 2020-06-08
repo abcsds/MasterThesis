@@ -53,7 +53,7 @@ for i, ds in enumerate(dss):
     assert np.isfinite(x).all() == True, "Some infinites or nan in correlations"
     if np.isfinite(x).all() != True:
         continue
-    g = sns.clustermap(x, col_cluster=False)
+    g = sns.clustermap(x, col_cluster=False, vmin=-1, vmax=1, cmap=plt.get_cmap("seismic"))
     t = [int(tick_label.get_text()) for tick_label in g.ax_heatmap.axes.get_yticklabels()]
     sorted_e = [x for _,x in sorted(zip(t,ind))]
     g.ax_heatmap.axes.set_yticklabels(sorted_e,  rotation=0)
