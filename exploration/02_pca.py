@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import matplotlib.colors as colors
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import normalize
 
@@ -61,7 +62,13 @@ for i, ds in enumerate(dss):
     print(f"Maximum emotion and dim: {max_emo}, {max_dim[0]}")
 
     # correlation
-    g = sns.clustermap(x, col_cluster=False)
+    x_r = x[:, 0:len(ind)]
+    g = sns.clustermap(x_r, col_cluster=False,
+                       annot=x_r, vmin=-.4, vmax=.4,
+                       cmap=plt.get_cmap("BrBG"),
+                       # norm=colors.SymLogNorm(linthresh=0.03, linscale=0.03,
+                       #                        vmin=-1.0, vmax=1.0))
+                       )
     t = [int(tick_label.get_text()) for tick_label in g.ax_heatmap.axes.get_yticklabels()]
     sorted_e = [x for _,x in sorted(zip(t,ind))]
     g.ax_heatmap.axes.set_yticklabels(sorted_e,  rotation=0)

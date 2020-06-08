@@ -73,7 +73,9 @@ for emotion in emotions:
 cors = np.array(cors)
 x = np.nan_to_num(cors)
 assert np.isfinite(x).all() == True, "Some infinites or nan in correlations"
-g = sns.clustermap(x, col_cluster=False)
+
+sns.color_palette("deep")
+g = sns.clustermap(x, col_cluster=False, vmin=-.5, vmax=.5, cmap=plt.get_cmap("seismic"))
 t = [int(tick_label.get_text()) for tick_label in g.ax_heatmap.axes.get_yticklabels()]
 ind = list(np.unique(Y))
 sorted_e = [x for _,x in sorted(zip(t,ind))]
@@ -89,11 +91,11 @@ print(f"Maximum emotion and dim: {max_emo}, {max_dim[0]}")
 
 #========================== PCA
 projection = PCA().fit_transform(X)
-n_classes = len(np.unique(Y))
+# n_classes = len(np.unique(Y))
 # palette = np.array(sns.color_palette("hls", n_classes))
-palette = Category10[n_classes]
-ind = list(np.unique(Y))
+# palette = Category10[n_classes]
 
+ind = list(np.unique(Y))
 cors = []
 for emotion in ind:
     y = (Y == emotion).astype(int)
@@ -115,14 +117,25 @@ max_emo, max_dim = np.where(x == np.amax(x))
 max_emo = emotions[max_emo[0]]
 print(f"Maximum emotion and dim: {max_emo}, {max_dim[0]}")
 
-# correlation clustermap
-g = sns.clustermap(x, col_cluster=False)
+# PCA correlation clustermap
+g = sns.clustermap(x, col_cluster=False, vmin=-.5, vmax=.5, cmap=plt.get_cmap("seismic"))
 t = [int(tick_label.get_text()) for tick_label in g.ax_heatmap.axes.get_yticklabels()]
 sorted_e = [x for _, x in sorted(zip(t, ind))]
 g.ax_heatmap.axes.set_yticklabels(sorted_e,  rotation=0)
 g.fig.suptitle(f"Correlation of PCA Emolex/GloVe", fontsize=18)
 g.savefig(f"./img/emolex/pca_cor_emolex_glove.png")
 plt.close()
+
+# PCA minimized correlation clustermap
+x_r = x[:, 0:len(ind)]
+g = sns.clustermap(x_r, annot=x_r, col_cluster=False, vmin=-.5, vmax=.5, cmap=plt.get_cmap("BrBG"))
+t = [int(tick_label.get_text()) for tick_label in g.ax_heatmap.axes.get_yticklabels()]
+sorted_e = [x for _, x in sorted(zip(t, ind))]
+g.ax_heatmap.axes.set_yticklabels(sorted_e,  rotation=0)
+g.fig.suptitle(f"Correlation of PCA Emolex/GloVe (reduced)", fontsize=18)
+g.savefig(f"./img/emolex/pca_cor_emolex_glove_min.png")
+plt.close()
+
 
 # Static scatter plot
 data = pd.DataFrame(list(zip(projection[:, 0],projection[:, 1],Y)),
@@ -133,14 +146,11 @@ sns.scatterplot(ax=ax,
                 x="Component0", y="Component1",
                 hue="Emotion",
                 data=data)
-ax.spines['right'].set_visible(False)
-ax.spines['top'].set_visible(False)
-ax.spines['bottom'].set_visible(True)
-ax.spines['left'].set_visible(True)
 fig.suptitle(f"PCA of Emolex/GloVe", fontsize=24)
 fig.savefig(f"./img/emolex/pca_scat_emolex_glove.png")
 
 # Interactive scatter plot
+n_classes = len(np.unique(Y))
 palette = Category10[n_classes]
 
 # output to static HTML file
@@ -268,7 +278,7 @@ show(p)
 
 # ============================== Clustermap of emotion correlation
 x = df.drop("Word", axis=1).corr()
-g = sns.clustermap(x, annot=x)
+g = sns.clustermap(x, annot=x, vmin=-.5, vmax=.5, cmap=plt.get_cmap("seismic"))
 g.ax_col_dendrogram.set_visible(False)
 g.fig.suptitle(f"Correlation of emotion-emotion Emolex/GloVe", fontsize=20)
 g.savefig(f"./img/emolex/cor_emolex_GloVe_e_e.png")
