@@ -25,7 +25,7 @@ Galen at took this theory and created what can be considered as the first theory
 \end{figure}\label{fig:temperaments}
 
 % Darwin
-Charles Darwin first described the importance of emotions in communication, and their relevance across cultures and even species. In his book \" \emph{The Expression of the Emotions in Man and Animals} \" he writes \" \ldots the young and the old of widely different races, both with man and animals, express the same state of mind by the same movements. \" ~\cite{darwin1872emotions} He noticed that surprise was shown in humans across cultures, and even some mamals by raising the eyebrows. By framing emotions as a mean of communication, Darwin enabled the study of expression, and understanding of emotions as an evolutive advantage.
+Charles Darwin first described the importance of emotions in communication, and their relevance across cultures and even species. In his book ' \emph{The Expression of the Emotions in Man and Animals} ' he writes ' \ldots the young and the old of widely different races, both with man and animals, express the same state of mind by the same movements.' ~\cite{darwin1872emotions} He noticed that surprise was shown in humans across cultures, and even some mamals by raising the eyebrows. By framing emotions as a mean of communication, Darwin enabled the study of expression, and understanding of emotions as an evolutive advantage.
 
 \begin{figure}[H]
   \includegraphics[width=1\textwidth]{darwin}
@@ -79,7 +79,7 @@ This project is focused on language expressions of emotion. More specifically on
 
 \subsection{Models of Emotions}\label{sub:Models of Emotions}
 When searching for expressions of emotions in text, one must know what kind of emotions are being searched for. When asking a person what emotions do they know, a plethora of emotions can be named, but most of these are language, culture, or context dependant. Under certain cultures, or even sub-cultures, new emotion names can emerge, that describe a general emotion under different context. Considering the theory of constructed emotions, there is as many emotions as context there are. Fortunately, the study of emotions being done here is restricted to the communication of emotions. For the communication of emotions a consensus must be made.
-A model of emotions is the selection and structure of categories in which the expression of an emotion can fall, commonly called \"Universal Emotions\". These are usually formed through the analysis of human (and some times animal) behaviour, with the framework of a theory of behaviour. In this section we introduce some relevant models of emotion for ML and NLP.
+A model of emotions is the selection and structure of categories in which the expression of an emotion can fall, commonly called 'Universal Emotions'. These are usually formed through the analysis of human (and some times animal) behaviour, with the framework of a theory of behaviour. In this section we introduce some relevant models of emotion for ML and NLP.
 
 \subsubsection{Ekman's model of Emotions}\label{subs:Ekman's model of Emotions}
 As mentioned in \ref{sub:Historic Milestones}, the most widely recognized model of universal emotions in humans was created by Paul Ekman\cite{ekman1992basic}. This was created through the observation of facial expressions. Facial expressions are measured through Activation Units (AU's): Sets of muscles that, when contracted, deform the figure of the human face in specific ways. Emotions are then characterized by the activation of different sets of AU's. The current model of universal emotions contains seven emotions:
@@ -105,7 +105,7 @@ Although Ekman's model provides a firm base for universal emotions, it lacks str
   \caption{Wikicommons PD. Plutchik's wheel of emotions}
 \end{figure}\label{fig:plutchik}
 
-The model shown in figure \ref{fig:plutchik} shows these characteristics. The main emotions are expressed in different intensities, and named acordingly. The combination, or superposition of some emotions receives a new name. This model is so well structured and colored, that it has called the attention of the scientific and engineering community. Unfortunately the premises of this model are faulty, and the scientific basis are questionable. The subjective nature of emotions doesn't allow for strict dichotomies. A simple poll asking \"What's the opposite of joy?\" will turn in two answers: Anger and Sadness, deppending on the context.
+The model shown in figure \ref{fig:plutchik} shows these characteristics. The main emotions are expressed in different intensities, and named acordingly. The combination, or superposition of some emotions receives a new name. This model is so well structured and colored, that it has called the attention of the scientific and engineering community. Unfortunately the premises of this model are faulty, and the scientific basis are questionable. The subjective nature of emotions doesn't allow for strict dichotomies. A simple poll asking 'What's the opposite of joy?' will turn in two answers: Anger and Sadness, deppending on the context.
 
 Acording to the theory of Constructed Emotions, it is exactly context that creates emotions. This means that culture, language, learning, and many other environmental factors contribute to the characterization of an emotion. For this reason, when studying emotions in text, a mean of contextualizing an emotion word is necessary.
 
@@ -113,6 +113,7 @@ Acording to the theory of Constructed Emotions, it is exactly context that creat
 When it comes to contextualizing words, linguists have had tools since the 1930's~\cite{corson1996fields}. This is the case of Lexical Fields. In it's simplest version, this tools ask people what words are most closely related to a concept. The result of a free assosiaton can be a network of interrelated words, or a set of words that relate to a concept. This set is also called a semantic field.
 By asking people what emotions are related to a specific word, a semantic field of emotions can be created.
 
+% TODO: text on border
 This is exactly what Saif Mohammad did in 2013~\cite{mohammad2013crowdsourcing}, creating the Canadian National Research Counsil Emotional Lexicon (NRC EmoLex). This contains around 14 thousand words, and their association with the 8 basic emotions of the plutchik emotion model. This was an incredible effort, since several people must review every single word and emotion relationship, and evaluate them.
 All this work can actually be infered from large corpus. By creating a network of word relationships, WordNet provides a way to cluster into affective words~\cite{strapparava2004wordnet}. This proves that a representation of emotions in text can be learned from text, without human intervention. Machine Learninng provides tools to optimize this representations.
 

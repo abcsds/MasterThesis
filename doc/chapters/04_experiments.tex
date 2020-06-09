@@ -21,7 +21,7 @@ A correlational plot is used here to analyze the deviation of the distribution o
   \caption{EmoLex Correlation Plot}
 \end{figure}\label{fig:cor_emolex_GloVe}
 
-In Figure~\ref{fig:cor_emolex_GloVe} it can be observed that represented by the GloVe model, the words contained in the EmoLex are uniformely distributed through the dimensions. The maximum correlation is 0.251, between the emotion \"Trust\" and dimension 121 of the model. Although this is double the correlation that could be found throgh chance, it does not satisfy the baseline condition, and thus, we cannot consider that there is a linear correlation between the emotions of the EmoLex, and the dimensonal representation of the Language Model.
+In Figure~\ref{fig:cor_emolex_GloVe} it can be observed that represented by the GloVe model, the words contained in the EmoLex are uniformely distributed through the dimensions. The maximum correlation is 0.251, between the emotion 'Trust' and dimension 121 of the model. Although this is double the correlation that could be found throgh chance, it does not satisfy the baseline condition, and thus, we cannot consider that there is a linear correlation between the emotions of the EmoLex, and the dimensonal representation of the Language Model.
 
 The corresponding clustering algorithm shows that through their vectorial representation, the two most related emotions are joy and anger. This does not comply with the findings of dichotomical emotions, fitting into a valence model, as shown in the 2016 study~\cite{barradas2016thesis}.
 
@@ -88,7 +88,7 @@ One of the subclusters with the trust label is the one formed by the words: apos
 
 With this example we can comment on what we expect to see in further experiments. Subclusters are formed by words that have semantic relationship, as it is expected from a functional language model, and the emotions labeled on to that word are an expression of the context of the person labeling the word, more than the intrinsic emotion of the word. This is conformant with the theory of constructed emotions.
 
-These subclusters form an important part of the analysis, and have therefore been given a name: \"semantic islands\". A semantic island is a cluster of datapoints that have a semantic relationship.
+These subclusters form an important part of the analysis, and have therefore been given a name: 'semantic islands'. A semantic island is a cluster of datapoints that have a semantic relationship.
 
 As it is expected from a non-organic dataset, the structure to be found seems artificial. The distribution of the labels and words is uniform, and no conclusion must be drawn form it to apply to general language. Nontheless, the visualization of the EmoLex as a dataset lets us develop the beggining of an intuition, and a technique as of how to approach this problem. In the following section, the same methodology will be followed to analyze the selected datasets and models.
 
@@ -97,10 +97,6 @@ As it is expected from a non-organic dataset, the structure to be found seems ar
 \section{Results}\label{sec:Results}
 
 The following results are separated into three: The correlation analisis, the PCA, or linear transformation, and the TSNE, or non-linear transformation.
-
-%TODO: talk about the specifics of crowdflower
-
-%TODO: expand
 
 %===============================================================================
 \subsection{Correlation Analysis}\label{sub:Correlation Analysis}
@@ -216,7 +212,6 @@ As expected, the Word2Vec scatterinng does not present such clear groups as the 
   \caption{Scatter plot for TSNE of Word2Vec}
 \end{figure}\label{fig:scat_CrowdFlower_Word2Vec}
 Figure~\ref{fig:scat_CrowdFlower_Word2Vec} shows a phenomenon present in pre-trained models. Some data points are separated from the main cluster, but are maintained relatively close to each other. These are sentences that are similiar in meaning, sometimes even identical sentences, but contain a distict emotional meaning.
-% TODO: talk about the may4
 \subsubsection{GloVe}
 For the GloVe model, the gradient of positive and negative valenced emotions is not as clear as with the Word2Vec model.
 \begin{figure}[H]
@@ -241,8 +236,6 @@ All models presented in this project are created through non-linear methods. The
 %===============================================================================
 \subsection{Result Analysis}\label{sub:Result Analysis}
 The models presented here seem to have very little representation of emotions, but a strong relationship with valence. Although this could indicate that the models for human language do not conceptualize emotions, some cases have been found, that might indicate that it is in fact, the dataset that makes it difficult to cluster the conceptualization of certain emotions.
-% TODO:
-N of those cases are presented next.
 
 \subsubsection{Class unbalance}
 The class distribution of the CrowdFlower dataset is severely unbalanced. Table~\ref{tab:CrowdFlower_distribution} shows the classes, including neutral, which has been removed from this analysis.
@@ -273,9 +266,9 @@ For this reason, the majority of the datapoints visualized in this project are W
 \subsubsection{Semantic Clusters}
 In the TSNE visualizations it's hard to pin down which datapoints represent what. For this reason, interactive visualizations have been made to explore freely the 2D space generated by this trasformation. This visualizations can be found in the project repository. By examining these visualizations several observations can be made.
 
-The first one is that the models abstract semantics pretty well, as expected. Creating semantic clusters, or \"Meaning Islands\" for sentences that express the same idea, even if it's with different words. That's the case of the Star Wars island. This is a cluster in the Word2Vec TSNE transformation that clusters tweets sent on May 4th. (\textbf{Note}: the model did not have access to the date of the tweet, May the 4th is considered Star Wars day by the franchise's Fanbase) This cluster has a center around (26, -5). Tweets from this cluster include text like \"Happy Star Wars Day! May the 4th be with you\", \"Happy Star Wars day!\", or simply \"May the 4th be with you!\". Other tweets nearby include mentions of Bank's day, National days, or Fight Club's 10th aniversary.
+The first one is that the models abstract semantics pretty well, as expected. Creating semantic clusters, or 'Meaning Islands' for sentences that express the same idea, even if it's with different words. That's the case of the Star Wars island. This is a cluster in the Word2Vec TSNE transformation that clusters tweets sent on May 4th. (\textbf{Note}: the model did not have access to the date of the tweet, May the 4th is considered Star Wars day by the franchise's Fanbase) This cluster has a center around (26, -5). Tweets from this cluster include text like 'Happy Star Wars Day! May the 4th be with you', 'Happy Star Wars day!', or simply 'May the 4th be with you!'. Other tweets nearby include mentions of Bank's day, National days, or Fight Club's 10th aniversary.
 
-Another interesting feature of this model is the \"ALL-CAPS\" peninsula on Figure~\ref{fig:CapsPeninsula}, on the other side of the plot, at around (-25, 11). This feature's most compact cluster are tweets of people whishing a happy mother's day, but also features some tweets cursing (with and without mentioning of mothers in the cursing), whishing happy birth day, and one about Star Wars day. All these tweets have in common that at least some part of it is written in all capital letters.
+Another interesting feature of this model is the 'ALL-CAPS' peninsula on Figure~\ref{fig:CapsPeninsula}, on the other side of the plot, at around (-25, 11). This feature's most compact cluster are tweets of people whishing a happy mother's day, but also features some tweets cursing (with and without mentioning of mothers in the cursing), whishing happy birth day, and one about Star Wars day. All these tweets have in common that at least some part of it is written in all capital letters.
 
 \begin{figure}[H]
   \includegraphics[width=1\textwidth]{plots/CapsPeninsula}

@@ -3,7 +3,8 @@
 
 There have been many atempts at understanding automatically learned language models, but none has been focused on understanding emotions as we do here. For this reason, similar methods from close fields of research have been used to establish a methodology. In this chapter we talk about those methods and their contribution to this project.
 
-The embedding of emotional words is ML Language Models can be compared directly to Emotion Lexicons. In this project we make use of that one created by Mohamad and Turney through crowdsourcing~\cite{mohammad2013crowdsourcing}.
+The embedding of emotional words is ML Language Models can be compared directly to Emotion Lexicons. In this project we make use of that one created by Mohamad and Turney through crowdsourcing~\cite{mohammad2013crowdsourcing}. % TODO: text on border
+
 
 Since creating an Emotion Lexicon through crowdsourcing is a costly taks, the rest of the models use are automatic aproaches to do so. Vo and Zhang proved that an automatic approach to learning sentiment lexicons for short texts can be done through the use of emojis~\cite{vo2016count}. This method uses the intrinsic usage of emojis to express positive or negative valence in a sentence, and exploded this to expand that valence to words used in the same context.
 
@@ -35,11 +36,13 @@ Under this criteria, four models have been spotted as candidates for the experim
   \item \textbf{BERT}: Bidirectional Encoder Representations from Transformers
 \end{itemize}
 
-Word2Vec is the result of converting large corpus into itself, by using an auto-encoder method, with help of a one-hot encoding of the corpus vocabulary~\cite{mikolov2013word2vec}. At the time of its publication it captured much atention, mostly due to the posibility of semantic artimetic. This was tipified by the \"King - Man + Woman = Queen\" example. Due to the one-hot encoding step in the algorithm, it does not solve the problem of words with multiple meanings.
+Word2Vec is the result of converting large corpus into itself, by using an auto-encoder method, with help of a one-hot encoding of the corpus vocabulary~\cite{mikolov2013word2vec}. At the time of its publication it captured much atention, mostly due to the posibility of semantic artimetic. This was tipified by the 'King - Man + Woman = Queen' example. Due to the one-hot encoding step in the algorithm, it does not solve the problem of words with multiple meanings.
 
-Glove is recognizable between other language models, for its linear substructures of meaning. Since it was trained on aggregated co-occurrence statistics, it captures semantic structure better than Word2Vec~\cite{penningto2014glove}. It still asigns a one-to-one representation of words and embedded vectors, so it does not solve ambiguities.
+Glove is recognizable between other language models, for its linear substructures of meaning. Since it was trained on aggregated co-occurrence statistics, it captures semantic structure better than Word2Vec~\cite{penningto2014glove}. % TODO: text on border
+It still asigns a one-to-one representation of words and embedded vectors, so it does not solve ambiguities.
 
-ELMo solved this last mentioned problem by analyzing context~\cite{peters2018elmo}. This was acheived by training on prediction of words in forwards and backwards passes. Even though this model solved the problem of context-dependant meaning, it was created with the premise that context in text is secuential, and it's architecture dependant on LSTMs showed this.
+ELMo solved this last mentioned problem by analyzing context~\cite{peters2018elmo}. % TODO: text on border
+This was acheived by training on prediction of words in forwards and backwards passes. Even though this model solved the problem of context-dependant meaning, it was created with the premise that context in text is secuential, and it's architecture dependant on LSTMs showed this.
 
 BERT was the first algorithm to solve this problem, by implementing a context-dependant learning, that is not based on the secuential structures. This was done with the use of Transformers. A deep learning architecture based on the atention model, that does not depend on secuential structures.
 
@@ -72,7 +75,7 @@ Two algorithms have been chosen for dimensionality reduction:
 PCA can be interpreted as a linear transformation on the input space, that yields the maximum explainability by the least amount of dimensions. While TSNE uses statistical information to maximize the distribution of information of groups, while minimizing the distribution of information within groups.
 
 \section{Datasets}\label{sec:Datasets}
-There are many datasets of \"emotion in text\" on the internet, and finding them is not a new problem. Unfortunately, the methodology and rigor for their creation cannot be easily tested. A heavy use of the paper \"An analysis of annotated corpora for emotion classification in text\" by Klinger in 2018~\cite{klinger2018analysis} was done. This paper not only collects information about the datasets, but also tests their valididty in the context of a text cliassifier.
+There are many datasets of 'emotion in text' on the internet, and finding them is not a new problem. Unfortunately, the methodology and rigor for their creation cannot be easily tested. A heavy use of the paper 'An analysis of annotated corpora for emotion classification in text' by Klinger in 2018~\cite{klinger2018analysis} was done. This paper not only collects information about the datasets, but also tests their valididty in the context of a text cliassifier.
 
 \subsection{Inclusion Criteria}\label{sub:Inclusion Criteria}
 To be included into these experiments, the following criteria must be met by a dataset:
@@ -85,7 +88,7 @@ To be included into these experiments, the following criteria must be met by a d
 The text to be analyzed must be in english, since the methods and language models that we are testing will not all be available in other languages. The single-single label criterion has been chosen due to the restriction of two-dimensional projections, and their visualizations as scatter plots. The label is to be exrpessed as a single color on scatter plots, and a multi-label problem would not present the effect desired  when developing the desired intuitions.
 
 \subsection{Candidate datasets}\label{sub:Candidate datasets}
-For the datasets included in Klinger's original paper~\cite{klinger2018analysis} the naming in the paper was not followed. This is due to the inconsistencies between the paper and their github repository, which (as the moment of writing this thesis) was last updated on Dec 17 2019 (commit e58d676). The dataset naming conventions used here is the same as in the document called \" \emph{unified dataset of emotion in text} \": \url{https://github.com/sarnthil/unify-emotion-datasets/tree/master/datasets}.
+For the datasets included in Klinger's original paper~\cite{klinger2018analysis} the naming in the paper was not followed. This is due to the inconsistencies between the paper and their github repository, which (as the moment of writing this thesis) was last updated on Dec 17 2019 (commit e58d676). The dataset naming conventions used here is the same as in the document called ' \emph{unified dataset of emotion in text} ': \url{https://github.com/sarnthil/unify-emotion-datasets/tree/master/datasets}.
 
 Lastly, the candidate list includes the datasets mentioned, but is not restricted to them:
 \begin{itemize}
@@ -100,7 +103,7 @@ Lastly, the candidate list includes the datasets mentioned, but is not restricte
   \item fb-valence-arousal~\cite{preoctiuc2016modelling} % VAD
   \item Friends~\cite{chen2018emotionlines} % USED
   \item Grounded-Emotions~\cite{liu2017grounded} % I seriously don't know what's up with this ds
-  \item ISEAR International Survey On Emotion Antecedents And Reactions~\cite{scherer1990international} % Format not open source
+  \item ISEAR International Survey On Emotion \\ Antecedents And Reactions~\cite{scherer1990international} % Format not open source
   \item Tales~\cite{alm2005emotions} % Two different annotators, two different labels.
   \item EmoInt~\cite{MohammadB17starsem}
   \item TEC The Twitter Emotion Corpus published~\cite{mohammad2012emotional}
@@ -120,7 +123,7 @@ From this list, several datasets use an affective model of valence, arousal or d
   \item EmoInt~\cite{MohammadB17starsem} %TODO: might need to be included
   \item TEC The Twitter Emotion Corpus published~\cite{mohammad2012emotional} %TODO: might need to be included
   \item Electoral-Tweets~\cite{mohammad2014semantic} %TODO: might need to be included
-  \item SSEC The Stance Sentiment Emotion Corpus published~\cite{schuff2017annotation} %TODO: might need to be included
+  \item SSEC The Stance Sentiment \\ Emotion Corpus published~\cite{schuff2017annotation} %TODO: might need to be included
 \end{itemize}
 
 \subsection{Selected Datasets}\label{sub:Selected Datasets}
@@ -147,7 +150,7 @@ CrowdFlower has a total of 40000 tweets, each tagged with one of 14 emotions fro
 
 From these, empty, and neutral were taken off the dataset. More about this on~\ref{chap:Methodology}. Tweets are for the most part self-contained, and are thus considered as containing the context necesary to analyze.
 
-For both Friends and EmotionPush, a thousand dialogues are included, where every line is labeled with one of the six emotions from the Ekman model, or a \"neutral\" label.
+For both Friends and EmotionPush, a thousand dialogues are included, where every line is labeled with one of the six emotions from the Ekman model, or a 'neutral' label.
 
 \section{EmoLex}\label{sec:Research Question}
 The NRC EmoLex has been a useful reference. Due to the fact that it relates words with emotions, it can be seen both as a dataset and as a very simple language model of emotions. In this project it will only be used as a dataset.
