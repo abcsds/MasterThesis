@@ -1,22 +1,22 @@
 %!TEX root = ../thesis.tex
 \chapter{Related Work}\label{chap:Related Work}
 
-There have been many atempts at understanding automatically learned language models, but none has been focused on understanding emotions as we do here. For this reason, similar methods from close fields of research have been used to establish a methodology. In this chapter we talk about those methods and their contribution to this project.
+There have been many attempts at understanding automatically learned language models, but none has been focused on understanding emotions as we do here. For this reason, similar methods from close fields of research have been used to establish a methodology. In this chapter we talk about those methods and their contribution to this project.
 
 The embedding of emotional words is ML Language Models can be compared directly to Emotion Lexicons. In this project we make use of that one created by Mohamad and Turney through crowdsourcing~\cite{mohammad2013crowdsourcing}. % TODO: text on border
 
 
-Since creating an Emotion Lexicon through crowdsourcing is a costly taks, the rest of the models use are automatic aproaches to do so. Vo and Zhang proved that an automatic approach to learning sentiment lexicons for short texts can be done through the use of emojis~\cite{vo2016count}. This method uses the intrinsic usage of emojis to express positive or negative valence in a sentence, and exploded this to expand that valence to words used in the same context.
+Since creating an Emotion Lexicon through crowdsourcing is a costly tasks, the rest of the models use are automatic approaches to do so. Vo and Zhang proved that an automatic approach to learning sentiment lexicons for short texts can be done through the use of emojis~\cite{vo2016count}. This method uses the intrinsic usage of emojis to express positive or negative valence in a sentence, and exploded this to expand that valence to words used in the same context.
 
 Maas et al\. created a method to learn word vectors for sentiment analysis in 2011~\cite{maas2011learning}.
 
-By applying machine learned automatic embeddings, the creation of word embeddings based only on text data was open as a possibility. This is also a method that later became the popular Word2Vec model~\cite{mikolov2013word2vec}. The methods used in this paper were used to create word embeddings specific for the used datasets. More about this can be read on this same chapter~\ref{sub:Selected Language Models}. The Word2Vec model proved that concepts can be abstracted by providing semantic arthimetic. This allows for functions like the substraction of concepts to obtain their root meaning.
+By applying machine learned automatic embeddings, the creation of word embeddings based only on text data was open as a possibility. This is also a method that later became the popular Word2Vec model~\cite{mikolov2013word2vec}. The methods used in this paper were used to create word embeddings specific for the used datasets. More about this can be read on this same chapter~\ref{sub:Selected Language Models}. The Word2Vec model proved that concepts can be abstracted by providing semantic arithmetic. This allows for functions like the subtraction of concepts to obtain their root meaning.
 
-Although Word2Vec was inarguably useful when it was created, it was also proved redundant by experiments like the one by Rothe et al\., who suggested an orthogonal transformation to word embeddings used on SemEval2015~\cite{rothe2016orthogonal}. This yielded ultradense word embeddings for affect concepts. This first example of a linear transformation on an abstract space opened the posibility of transforming the vector space to understand it.
+Although Word2Vec was unarguably useful when it was created, it was also proved redundant by experiments like the one by Rothe et al\., who suggested an orthogonal transformation to word embeddings used on SemEval2015~\cite{rothe2016orthogonal}. This yielded ultra-dense word embeddings for affect concepts. This first example of a linear transformation on an abstract space opened the possibility of transforming the vector space to understand it.
 
-As a way to reduce redundancies, and understand the absraction of valence, affect, and other similar concepts, Hollis et al\. further explored transformations of a word vector space by means of component analysis, thus creating models of semantics from text~\cite{hollis2016principals}. The current project heavely relies on this specific research. Under our theoretical framework, affect is a superset of emotion, and since Hollis et al\. have already found abstractions of affect in Word2Vec, we expect to find similar results.
+As a way to reduce redundancies, and understand the abstraction of valence, affect, and other similar concepts, Hollis et al\. further explored transformations of a word vector space by means of component analysis, thus creating models of semantics from text~\cite{hollis2016principals}. The current project heavily relies on this specific research. Under our theoretical framework, affect is a super-set of emotion, and since Hollis et al\. have already found abstractions of affect in Word2Vec, we expect to find similar results.
 
-The mentioned research has only been done with affect. Research in the field of emotion detection is scarce, and generaly doesn't fulfill the prestige or quality requirements suggested by the Masters of Science in Data Analytics. A reason for this might be the abstract nature of emotions, the outdated emotion model, the lack of scientific foundations in the creation of datasets of emotion in text, or simply the overwhelming usefulness of affect in comparison with emotion analysis.
+The mentioned research has only been done with affect. Research in the field of emotion detection is scarce, and generally doesn't fulfill the prestige or quality requirements suggested by the Masters of Science in Data Analytics. A reason for this might be the abstract nature of emotions, the outdated emotion model, the lack of scientific foundations in the creation of datasets of emotion in text, or simply the overwhelming usefulness of affect in comparison with emotion analysis.
 
 
 \section{Language Models}\label{sec:Language Models}
@@ -36,34 +36,34 @@ Under this criteria, four models have been spotted as candidates for the experim
   \item \textbf{BERT}: Bidirectional Encoder Representations from Transformers
 \end{itemize}
 
-Word2Vec is the result of converting large corpus into itself, by using an auto-encoder method, with help of a one-hot encoding of the corpus vocabulary~\cite{mikolov2013word2vec}. At the time of its publication it captured much atention, mostly due to the posibility of semantic artimetic. This was tipified by the 'King - Man + Woman = Queen' example. Due to the one-hot encoding step in the algorithm, it does not solve the problem of words with multiple meanings.
+Word2Vec is the result of converting large corpus into itself, by using an auto-encoder method, with help of a one-hot encoding of the corpus vocabulary~\cite{mikolov2013word2vec}. At the time of its publication it captured much attention, mostly due to the possibility of semantic arithmetic. This was typified by the 'King - Man + Woman = Queen' example. Due to the one-hot encoding step in the algorithm, it does not solve the problem of words with multiple meanings.
 
 Glove is recognizable between other language models, for its linear substructures of meaning. Since it was trained on aggregated co-occurrence statistics, it captures semantic structure better than Word2Vec~\cite{penningto2014glove}. % TODO: text on border
-It still asigns a one-to-one representation of words and embedded vectors, so it does not solve ambiguities.
+It still assigns a one-to-one representation of words and embedded vectors, so it does not solve ambiguities.
 
 ELMo solved this last mentioned problem by analyzing context~\cite{peters2018elmo}. % TODO: text on border
-This was acheived by training on prediction of words in forwards and backwards passes. Even though this model solved the problem of context-dependant meaning, it was created with the premise that context in text is secuential, and it's architecture dependant on LSTMs showed this.
+This was achieved by training on prediction of words in forwards and backwards passes. Even though this model solved the problem of context-dependant meaning, it was created with the premise that context in text is sequential, and it's architecture dependant on LSTMs showed this.
 
-BERT was the first algorithm to solve this problem, by implementing a context-dependant learning, that is not based on the secuential structures. This was done with the use of Transformers. A deep learning architecture based on the atention model, that does not depend on secuential structures.
+BERT was the first algorithm to solve this problem, by implementing a context-dependant learning, that is not based on the sequential structures. This was done with the use of Transformers. A deep learning architecture based on the attention model, that does not depend on sequential structures.
 
 Both BERT and ELMo give different embeddings to words in different contexts, but BERT has proven better at solving language tasks. For this reason, only BERT will be used in this project.
 
-One last model will be used as a mean of comparing results between the different models. This is FastText~\cite{joulin2017fasttext}. FastText is very similar to the algorithm with which word2vec was created. It creates a one hot encoding of a corpus, and creates a latent dimension through training either an autoencoder, for an unsupervised approach, or a classifier, for a supervised one. This algorithm requires traning on the corpus. Since the corpus selected on this project are relatively small, FastText provides a way to create a baseline for pretrained models, by analyzing what a basic model trained only on the corpus would look like.
+One last model will be used as a mean of comparing results between the different models. This is FastText~\cite{joulin2017fasttext}. FastText is very similar to the algorithm with which word2vec was created. It creates a one hot encoding of a corpus, and creates a latent dimension through training either an autoencoder, for an unsupervised approach, or a classifier, for a supervised one. This algorithm requires training on the corpus. Since the corpus selected on this project are relatively small, FastText provides a way to create a baseline for pre-trained models, by analyzing what a basic model trained only on the corpus would look like.
 
 \subsection{Selected Language Models}\label{sub:Selected Language Models}
 All candidate language models have been used in this project. Following are some of the peculiarities about them.
 
 \subsubsection{FastText}\label{subs:FastText}
-Python's FastText library\cite{joulin2017fasttext} is used in this project. This provides two approaches for training the model: an unsupervised, and a supervised. The unsupervised requires a text file with one sentence per line. The algorithm is in charge of the tokenization. This of course only works in english. The supervised approach requires a similar file for the corpus, but at the end of every line, two underscores most be followed by the label of the given sentence.
+Python's FastText library\cite{joulin2017fasttext} is used in this project. This provides two approaches for training the model: an unsupervised, and a supervised. The unsupervised requires a text file with one sentence per line. The algorithm is in charge of the tokenization. This of course only works in English. The supervised approach requires a similar file for the corpus, but at the end of every line, two underscores most be followed by the label of the given sentence.
 
 \subsubsection{Word2Vec}\label{subs:Word2Vec}
-Since this pre-trained model has a one-to-one correspondance between word and embedding, a dictionary can be downloaded and imported via the gensim python library~\cite{mikolov2013word2vec}. This model has been trained with the Google News corpus. It weights about 1.5 Gb, and has a latent space of 300 dimensions. It is supposed to be located at the url \url{https://code.google.com/archive/p/word2vec/}, but the file is not to be found. Forums on google groups for the word2vec (\url{https://groups.google.com/forum/#!topic/word2vec-toolkit/z0Aw5powUco}) point several urls where the model can be found.
+Since this pre-trained model has a one-to-one correspondence between word and embedding, a dictionary can be downloaded and imported via the Gensim python library~\cite{mikolov2013word2vec}. This model has been trained with the Google News corpus. It weights about 1.5 Gb, and has a latent space of 300 dimensions. It is supposed to be located at the URL \url{https://code.google.com/archive/p/word2vec/}, but the file is not to be found. Forums on google groups for the word2vec (\url{https://groups.google.com/forum/#!topic/word2vec-toolkit/z0Aw5powUco}) point several URLs where the model can be found.
 
 \subsubsection{GloVe}\label{subs:GloVe}
-This model, provided by the Standford University, is of easy access, and as Word2Vec, can be imported as a dictionary~\cite{penningto2014glove}. The download can be found under \url{https://nlp.stanford.edu/projects/glove/}. This specific version selected was trained on the Wikipedia corpus, contains 6 billion words, uses 300 latent dimensions, and weights less than 1Gb.
+This model, provided by the Stanford University, is of easy access, and as Word2Vec, can be imported as a dictionary~\cite{penningto2014glove}. The download can be found under \url{https://nlp.stanford.edu/projects/glove/}. This specific version selected was trained on the Wikipedia corpus, contains 6 billion words, uses 300 latent dimensions, and weights less than 1Gb.
 
 \subsubsection{BERT}\label{subs:BERT}
-The BERT model is trained not with one, but two types of tasks. The first one is masked word or sentence prediction, and a second one requires extra layers on the architecture and a fine-tunning training for task specific performance~\cite{devlin2019bert}. The pre-trained model that one can get is the language model trained with the masked-language task. This model is not as easy to get, since the defoult python libraries to import BERT, require training and fine-tunning. For this reason, the bert-embeddings python library has been selected for this task.
+The BERT model is trained not with one, but two types of tasks. The first one is masked word or sentence prediction, and a second one requires extra layers on the architecture and a fine-tuning training for task specific performance~\cite{devlin2019bert}. The pre-trained model that one can get is the language model trained with the masked-language task. This model is not as easy to get, since the defoult python libraries to import BERT, require training and fine-tuning. For this reason, the bert-embeddings python library has been selected for this task.
 
 \section{Analysis Algorithms}\label{sec:Analysis Algorithms}
 Two algorithms have been chosen for dimensionality reduction:
@@ -75,17 +75,17 @@ Two algorithms have been chosen for dimensionality reduction:
 PCA can be interpreted as a linear transformation on the input space, that yields the maximum explainability by the least amount of dimensions. While TSNE uses statistical information to maximize the distribution of information of groups, while minimizing the distribution of information within groups.
 
 \section{Datasets}\label{sec:Datasets}
-There are many datasets of 'emotion in text' on the internet, and finding them is not a new problem. Unfortunately, the methodology and rigor for their creation cannot be easily tested. A heavy use of the paper 'An analysis of annotated corpora for emotion classification in text' by Klinger in 2018~\cite{klinger2018analysis} was done. This paper not only collects information about the datasets, but also tests their valididty in the context of a text cliassifier.
+There are many datasets of 'emotion in text' on the internet, and finding them is not a new problem. Unfortunately, the methodology and rigor for their creation cannot be easily tested. A heavy use of the paper 'An analysis of annotated corpora for emotion classification in text' by Klinger in 2018~\cite{klinger2018analysis} was done. This paper not only collects information about the datasets, but also tests their validity in the context of a text classifier.
 
 \subsection{Inclusion Criteria}\label{sub:Inclusion Criteria}
 To be included into these experiments, the following criteria must be met by a dataset:
 \begin{itemize}
-  \item The dataset must contain short labeled texts, in english.
-  \item The label must be a single emotion, from an eckman-analogous emotional model.
+  \item The dataset must contain short labeled texts, in English.
+  \item The label must be a single emotion, from an Ekman-analogous emotional model.
   \item The labels must not be a reference to valence, arousal, dominance, or other affect models.
 \end{itemize}
 % Justification
-The text to be analyzed must be in english, since the methods and language models that we are testing will not all be available in other languages. The single-single label criterion has been chosen due to the restriction of two-dimensional projections, and their visualizations as scatter plots. The label is to be exrpessed as a single color on scatter plots, and a multi-label problem would not present the effect desired  when developing the desired intuitions.
+The text to be analyzed must be in English, since the methods and language models that we are testing will not all be available in other languages. The single-single label criterion has been chosen due to the restriction of two-dimensional projections, and their visualizations as scatter plots. The label is to be expressed as a single color on scatter plots, and a multi-label problem would not present the effect desired  when developing the desired intuitions.
 
 \subsection{Candidate datasets}\label{sub:Candidate datasets}
 For the datasets included in Klinger's original paper~\cite{klinger2018analysis} the naming in the paper was not followed. This is due to the inconsistencies between the paper and their github repository, which (as the moment of writing this thesis) was last updated on Dec 17 2019 (commit e58d676). The dataset naming conventions used here is the same as in the document called ' \emph{unified dataset of emotion in text} ': \url{https://github.com/sarnthil/unify-emotion-datasets/tree/master/datasets}.
@@ -127,7 +127,7 @@ From this list, several datasets use an affective model of valence, arousal or d
 \end{itemize}
 
 \subsection{Selected Datasets}\label{sub:Selected Datasets}
-Due to availability, the selected datasets are CrowdFlower, EmotionPush, and Friends. The analysis has been done on the three datasets, but this document only presents the visualizations of the first dataset. The CrowdFlower dataset has been selected due to it's internal structur, and it's best demonstration of the methods, used in this project. Nontheless, the three datasets have been analyzed, and the results can be examined on the project repository.
+Due to availability, the selected datasets are CrowdFlower, EmotionPush, and Friends. The analysis has been done on the three datasets, but this document only presents the visualizations of the first dataset. The CrowdFlower dataset has been selected due to it's internal structure, and it's best demonstration of the methods, used in this project. Nonetheless, the three datasets have been analyzed, and the results can be examined on the project repository.
 
 CrowdFlower has a total of 40000 tweets, each tagged with one of 14 emotions from the following list:
 
@@ -148,7 +148,7 @@ CrowdFlower has a total of 40000 tweets, each tagged with one of 14 emotions fro
   \item anger
 \end{itemize}
 
-From these, empty, and neutral were taken off the dataset. More about this on~\ref{chap:Methodology}. Tweets are for the most part self-contained, and are thus considered as containing the context necesary to analyze.
+From these, empty, and neutral were taken off the dataset. More about this on~\ref{chap:Methodology}. Tweets are for the most part self-contained, and are thus considered as containing the context necessary to analyze.
 
 For both Friends and EmotionPush, a thousand dialogues are included, where every line is labeled with one of the six emotions from the Ekman model, or a 'neutral' label.
 
@@ -157,7 +157,7 @@ The NRC EmoLex has been a useful reference. Due to the fact that it relates word
 
 The EmoLex was created with the Plutchik model of emotions, but two other variables were included. Words can be related to two other concepts: positive and negative. These are considered emotions, and have been removed form our analysis for two reasons. The first one is that, as it has been delimited, this project's goal is to analyze emotions, and not valence. The second one is that valence is in all models of valence a dichotomical variable, and some words in the EmoLex contain both relationships with the positive and negative concepts. This is a conflicting find worth mentioning, but one that falls out of the scope of this thesis.
 
-The lexicon is also filled with words that do not relate to any variable. This effectively reduces the size of the dataset from 14181 words to a few thousands. A further reduction of the selected words has been made, by selecting only words thar relate to a single emotion. The total number of words that fullfills these criteria is 2344.
+The lexicon is also filled with words that do not relate to any variable. This effectively reduces the size of the dataset from 14181 words to a few thousands. A further reduction of the selected words has been made, by selecting only words that relate to a single emotion. The total number of words that fulfills these criteria is 2344.
 
 \section{Research Question}\label{sec:Research Question}
 When using pre-trained models for word and sentence embedding, \textbf{is the information about the emotional and affective content or context of the word or sentence represented in the vector space?}

@@ -10,12 +10,12 @@ The process for finding information on the desired embedded structure has been d
   \item \textbf{Correlation}: A correlation between embedded dimensions and labels.
   \item \textbf{Linear Transformation}: A correlation between the labels and a linear transformation of the embedded dimensions.
   \item \textbf{Non-Linear Transformation}: A non-linear transformation for obtaining separable clusters.
-  \item \textbf{Hierarchical clusterinng}: Clustering the embedded dimensions, or linear transformations of these.
+  \item \textbf{Hierarchical clustering}: Clustering the embedded dimensions, or linear transformations of these.
 \end{enumerate}
 
-These steps also correspond to the complexity of a theoretical classifier on the embedded dimension. The first one answering to the question: Can the output of the embeddings be used directly to classify the labels? The second step corresponds to asking if a linear transformation of the embedded space could yield a classifier. For example, can an LDA preform on this dataset and embedding? The third question relates to the preformance of a non-linear classifier. This is the case of a Single Layer Perceptron. Considering the embeddings can be used as an intermediate step, for a further clasification, this step should already yield the results of baseline emotion classifiers. The fourth question relates to the relation of emotion and valence. Emotions tend to fit hierarchicaly into affective models of arousal and valence~\cite{barradas2016thesis}. By searching for a hierarchy in the representation of emotions, we should be able to trace back the representation of valence.
+These steps also correspond to the complexity of a theoretical classifier on the embedded dimension. The first one answering to the question: Can the output of the embeddings be used directly to classify the labels? The second step corresponds to asking if a linear transformation of the embedded space could yield a classifier. For example, can an LDA preform on this dataset and embedding? The third question relates to the performance of a non-linear classifier. This is the case of a Single Layer Perceptron. Considering the embeddings can be used as an intermediate step, for a further classification, this step should already yield the results of baseline emotion classifiers. The fourth question relates to the relation of emotion and valence. Emotions tend to fit hierarchically into affective models of arousal and valence~\cite{barradas2016thesis}. By searching for a hierarchy in the representation of emotions, we should be able to trace back the representation of valence.
 
-Separating the methodology in this way, enables a progressive apporximatons approach to answering the research question. It is highly unlikely that a general lenguage model in machine learning represents emotions into a single dimension in a linear manney, but it is increasingly more likely that some correlation is found with a linear transformation of the aforementioned. In case these two approaches present no information about emotions, a hierarchical clustering can extract the intrinsic information of affect in emotions. Since previous works have already shown that affect can be represented in vector spaces, created with a linear transformation of word embeddings~\cite{hollis2016principals}, it would be contradictory to not find a hierarchical structure of emotions in this last step. If this were to happen, it would be reasonable to question the dataset and it's methodology, or the contextual information lost in the embedding process.
+Separating the methodology in this way, enables a progressive approximations approach to answering the research question. It is highly unlikely that a general language model in machine learning represents emotions into a single dimension in a linear manner, but it is increasingly more likely that some correlation is found with a linear transformation of the aforementioned. In case these two approaches present no information about emotions, a hierarchical clustering can extract the intrinsic information of affect in emotions. Since previous works have already shown that affect can be represented in vector spaces, created with a linear transformation of word embeddings~\cite{hollis2016principals}, it would be contradictory to not find a hierarchical structure of emotions in this last step. If this were to happen, it would be reasonable to question the dataset and it's methodology, or the contextual information lost in the embedding process.
 
 \section{Preliminaries}\label{sec:Preliminaries}
 This research was managed as both, a research project, and a software development project.
@@ -25,18 +25,18 @@ With scientific rigor, order, and reproducibility in mind, a git repository has 
 The environment is all required hardware and software necessary to execute this computational experiment. Here it is presented how to reproduce the same environment, to be able to reproduce the results presented. A short organizational note is also included, to keep track of the project management.
 
 \subsubsection{Organizational}\label{subs:Organizational}
-The project planning was layed out throught three months: March, April and May of 2020. A total of twelve weeks were divided into four equal sprints, where the four main tasks in the project were equaly separated in time: Exploration and Preparation, Programming, Experiments, and Writing. The four sprints were described by tasks, further divided by sub-tasks. These were kept in track and followed by me, and both Supervisors through the Asana application.
+The project planning was planned for three months: March, April and May of 2020. A total of twelve weeks were divided into four equal sprints, where the four main tasks in the project were equally separated in time: Exploration and Preparation, Programming, Experiments, and Writing. The four sprints were described by tasks, further divided by sub-tasks. These were kept in track and followed by me, and both Supervisors through the Asana application.
 
 The repository is accessible through github: \\
 \url{https://github.com/abcsds/MasterThesis}
 
 \subsubsection{Hardware}\label{subs:Hardware}
 % The computer
-This project was implemented and executed in my personal computer: A Manjaro Linux x86_64, with Kernel 5.6.11-1-MANJARO. The available CPU is an Intel i7-8700K (12) @ 5.000GHz, and the GPU is an NVIDIA GeForce GTX 1080 Ti. A total of 15937MB of RAM memory were available for experiments, as well as 16GB of swap disk. Although much of the technology available for these experiments is more than necesary, the execution of some BERT models is not possible with these technical specifications. This influenced the selection of the BERT model to be used, and played a big part in selecting a pre-embedding of models.
+This project was implemented and executed in my personal computer: A Manjaro Linux x86_64, with Kernel 5.6.11-1-MANJARO. The available CPU is an Intel i7-8700K (12) @ 5.000GHz, and the GPU is an NVIDIA GeForce GTX 1080 Ti. A total of 15937MB of RAM memory were available for experiments, as well as 16GB of swap disk. Although much of the technology available for these experiments is more than necessary, the execution of some BERT models is not possible with these technical specifications. This influenced the selection of the BERT model to be used, and played a big part in selecting a pre-embedding of models.
 
 \subsubsection{Software}\label{subs:Software}
 % The operating system
-As mentioned, the development and execution were on a Linux Operating Systetm (OS). The Distribution used was Manjaro. This OS is a rolling release distribution, so the version used changed allong the development. This is one of the reasons why virtual development and execution environments were used: to keep reproductability, and ensure a stable testing. The only reason for this OS to be used is that it is my personal computer.
+As mentioned, the development and execution were on a Linux Operating System (OS). The Distribution used was Manjaro. This OS is a rolling release distribution, so the version used changed along the development. This is one of the reasons why virtual development and execution environments were used: to keep reproducibility, and ensure a stable testing. The only reason for this OS to be used is that it is my personal computer.
 % The repo
 As a Version Control System (VCS), git was added to the repository. This enables distributed access and historical revision for anyone trying to reproduce or supervise the project.
 % The development environment
@@ -45,27 +45,27 @@ For some exploratory analysis, Jupyter Notebooks~\cite{kluyver2016jupyter} were 
 % How was the day to day? Explain on atom and script running
 While the notebooks provided were used for data exploration, and visualization. Most of the development was done on the text editor. For this, python virtual environments were created with the help of the \lstinline{virtualenv} and \lstinline{virtualenvwrapper} python libraries. For these, a 'requirements.txt' file was provided with the libraries used, and their versions.
 % The development environment
-When developping, the desired virtualenvironment was activated. After this, the atom editor is open on the desired folder. By doing so, the Hydrogen library takes the virtual environment for the execution of the code in the project.
-By developing in this way, the whole project is available from the folder view on Atom. Code can be executed, and tested on the run, as if it were a Jupyter notebook, but changes are inmediately integrated into the code repository.
+When developing, the desired virtual environment was activated. After this, the atom editor is open on the desired folder. By doing so, the Hydrogen library takes the virtual environment for the execution of the code in the project.
+By developing in this way, the whole project is available from the folder view on Atom. Code can be executed, and tested on the run, as if it were a Jupyter notebook, but changes are immediately integrated into the code repository.
 % Justification
-This specific development environment was seleted to avoid conflicts between Jupyter Notebooks, and the VCS. The explorations are stored as notebooks, but cannot really represent the development of the project.
+This specific development environment was selected to avoid conflicts between Jupyter Notebooks, and the VCS. The explorations are stored as notebooks, but cannot really represent the development of the project.
 % The programming language
 The Python programming language was used for the programming of the current project. This is due to it's incredible flexibility, access to the main ML libraries, and the predisposition of the Wirtschaftsinformatik und Maschinelles Lernen Institut. Under Python's umbrella of libraries, several were specifically added to enable this study. A List of the used libraries is provided in the appendix~\ref{sec:Python Virtual Environment}.
 
 % The ML frameworks
-Two main ML frameworks were selected for the current project: TensorFlow 2.1.0~\cite{tensorflow2015whitepaper} (TF), and PyTorch 1.4.0~\cite{pytorch2019} (Also called Torch, for simplicity.). TF was selected specifically for it's access to a pre-trained BERT library~\cite{lai2015bertembedding} for embedding sentences. This was very usefull, since, compared to the Transformers library~\cite{wolf2019huggingface}, it must not be fine-tunned. TF confronts developers with two main compatibility issues:
+Two main ML frameworks were selected for the current project: TensorFlow 2.1.0~\cite{tensorflow2015whitepaper} (TF), and PyTorch 1.4.0~\cite{pytorch2019} (Also called Torch, for simplicity.). TF was selected specifically for it's access to a pre-trained BERT library~\cite{lai2015bertembedding} for embedding sentences. This was very useful, since, compared to the Transformers library~\cite{wolf2019huggingface}, it must not be fine-tuned. TF confronts developers with two main compatibility issues:
 
 \begin{itemize}
-  \item The cuda library being used most be a specific version. Most TF libraries will only work under CUDA library 9.2. Some might run under 10.1, but not under 10.2. Since the development environment is a rolling release linux distribution, the latest version of libraries is provided. Installing multiple versions brings problems to the day-to-day usage. Since the environment is also my personal computer, a virtual environment with containers were used instead, and for these, NVIDIA-Docker.
+  \item The cuda library being used most be a specific version. Most TF libraries will only work under CUDA library 9.2. Some might run under 10.1, but not under 10.2. Since the development environment is a rolling release Linux distribution, the latest version of libraries is provided. Installing multiple versions brings problems to the day-to-day usage. Since the environment is also my personal computer, a virtual environment with containers were used instead, and for these, NVIDIA-Docker.
 
-  \item at the moment of the development of this project, TF is undergoing a major version change, from 1.x to 2.x. Many reference libraries, and all code I have creted, used, or studied in my masters is depricated. The techniques learned during my studies need to be updated, and in many cases, re-learned.
+  \item at the moment of the development of this project, TF is undergoing a major version change, from 1.x to 2.x. Many reference libraries, and all code I have created, used, or studied in my masters is deprecated. The techniques learned during my studies need to be updated, and in many cases, re-learned.
   This is not an uncommon problem in technology, but it opens the opportunity for changing the work framework.
 \end{itemize}
 
 For all ML programming requirements that did not use the pre-trained BERT library, PyTorch was used. Certain algorithms were not programmed, but simply integrated from their implementation on python:
 
 \begin{itemize}
-  \item FastText: This algorithm was not implemented. It's python library from the implementaiton of Facebook Research was used~\cite{joulin2017fasttext}. % TODO: text on border
+  \item FastText: This algorithm was not implemented. It's python library from the implementation of Facebook Research was used~\cite{joulin2017fasttext}. % TODO: text on border
 
   \item MulticoreTSNE: The TSNE algorithm was not implemented. Since it has heavy requirements on hardware, its implementation using distributed computing was used~\cite{ulyanov2016tsne}.
   \item Normalize: The sklearn version of the normalization algorithm was used due to its optimization~\cite{sklearn}.
@@ -77,21 +77,21 @@ For all ML programming requirements that did not use the pre-trained BERT librar
 Three datasets were selected to be used for this project. Here it's described how and when they were accessed, stored and embedded into the intermediate representation.
 
 \subsubsection{Access}\label{subs:Access}
-Accessing datasets to train machine learning models is not a standarized process. The developer of every dataset is in charge of the distribution method. Fortunately, two of the three datasets used in this project were distributed by the same organization: the EmotionPush, and Friends datasets were, while CrowdFlower was distributed originally by a company with the same name.
+Accessing datasets to train machine learning models is not a standardized process. The developer of every dataset is in charge of the distribution method. Fortunately, two of the three datasets used in this project were distributed by the same organization: the EmotionPush, and Friends datasets were, while CrowdFlower was distributed originally by a company with the same name.
 
-The CrowdFlower dataset was downloaded from the official CrowdFlower website in October 2019. The url to this dataset is \url{http://www.crowdflower.com/wp-content/uploads/2016/07/text_emotion.csv}. As of May 20, 2020, this link still works, but the website \url{www.CrowdFlower.com} redirects to \url{www.appen.com} a company that 'collects [data] to build [\ldots] artificial intelligence systems.' This company offers access to some open source datasets, but the mentioned crowdflower emotion dataset is not listed there. A discussion on this is provided on chapter \ref{chap:05_conclusion}.
+The CrowdFlower dataset was downloaded from the official CrowdFlower website in October 2019. The URL to this dataset is \url{http://www.crowdflower.com/wp-content/uploads/2016/07/text_emotion.csv}. As of May 20, 2020, this link still works, but the website \url{www.CrowdFlower.com} redirects to \url{www.appen.com} a company that 'collects [data] to build [\ldots] artificial intelligence systems.' This company offers access to some open source datasets, but the mentioned CrowdFlower emotion dataset is not listed there. A discussion on this is provided on chapter \ref{chap:05_conclusion}.
 
 The EmotionPush and Friends datasets were distributed as part of the EmotionX Task, which in turn is part of a set of Social NLP tasks, created by the Academia Sinica of Taiwan~\cite{chen2018emotionlines}. To access this datasets, one must register on the EmotionX 2019 website: \url{https://sites.google.com/view/emotionx2019}. Access to a google drive is then granted via email, and a zip file with both datasets can be downloaded. This dataset has been used more than once in different analysis on the internet, and it can be therefore accessed without permissions to the official method. Here, the original dataset is used.
 
 \subsubsection{Storage}\label{subs:Storage}
 The datasets were downloaded and stored under the project folder 'data'. Since every dataset is provided in different format and under different folder structures, every dataset is simply stored inside a folder with it's name.
-Under the datasets folder, every selected dataset is accompanied by folders with the embedding model used to embed the dataset. Thus every dataset folder has several subfolders. On these subfolders, a python script called 'embed.py'. This script varies for every model and dataset. In general terms, it extracts the text and label from the dataset, embeds the text into the desired model, and stores it in a 'csv' file under the same folder.
+Under the datasets folder, every selected dataset is accompanied by folders with the embedding model used to embed the dataset. Thus every dataset folder has several sub-folders. On these sub-folders, a python script called 'embed.py'. This script varies for every model and dataset. In general terms, it extracts the text and label from the dataset, embeds the text into the desired model, and stores it in a 'csv' file under the same folder.
 The 'csv' file is stored under the name 'embedded.py', except for the FastText model. In this case, there are two embedding approaches, one supervised and one unsupervised. Thus the names of the FastText embedding files are 'embeddings_supervised.csv', and 'embeddings_unsupervised.csv'. Every other script creates a single 'csv' file called 'embeddings.csv'.
 
-Thie file structure of the embedded files allows for exploration and experimental scripts to access the embedded data of different datasets, by building a single string with the dataset and model selected. This string must be prepended by the './data/' folder name, and appended with the 'embeddings.csv' string to generate a path that creates accesibility to the different datasets via a python coma-sepparated-value library, such as the built in \lstinline{csv}, or Pandas~\cite{reback2020pandas} and it's \lstinline{read_csv} function. This effectively create a data source to be used in a data pipeline. This approach was selected due to it's simplicity.
+The file structure of the embedded files allows for exploration and experimental scripts to access the embedded data of different datasets, by building a single string with the dataset and model selected. This string must be prepended by the './data/' folder name, and appended with the 'embeddings.csv' string to generate a path that creates accessibility to the different datasets via a python coma-separated-value library, such as the built in \lstinline{csv}, or Pandas~\cite{reback2020pandas} and it's \lstinline{read_csv} function. This effectively create a data source to be used in a data pipeline. This approach was selected due to it's simplicity.
 
 \section{Embedding}\label{sec:Embedding}
-The comparisson of the representation of different language models in this project requires a convergence of many different techniques. For this reason it was chosen to embed the datasets into an intermediate format, to later use them in experiments.
+The comparison of the representation of different language models in this project requires a convergence of many different techniques. For this reason it was chosen to embed the datasets into an intermediate format, to later use them in experiments.
 
 The embedding of the datasets is comprised of 5 steps:
 
@@ -107,7 +107,7 @@ The embedding of the datasets is comprised of 5 steps:
 
 Loading text, and labels was done with either the CSV or the JSON python library, depending on the format of the data.
 
-Tokenizing was done with Spacy's 'en_core_web_sm' model, which allows access to the tokens via an iterator on the model, and the sub-compontent 'text'. An small snippet showing this process is shown in~\ref{lst:spacy}. This snippet considers a model has been loaded as a dictionary on tokens.
+Tokenizing was done with Spacy's 'en_core_web_sm' model, which allows access to the tokens via an iterator on the model, and the sub-component 'text'. An small snippet showing this process is shown in~\ref{lst:spacy}. This snippet considers a model has been loaded as a dictionary on tokens.
 
 \begin{lstlisting}[caption={Tokenizing with Spacy},label=lst:spacy,frame=single]
 import spacy
@@ -116,23 +116,23 @@ for token in nlp("This is a sentence in English"):
   word_embedding = model[token.text]
 \end{lstlisting}
 
-Every token is embedded in this way, but some models might not contain some tokens. In this case, the token is simply skipped. Some tokens with relevant information can be lost with using pretrained models that don't contain the complete vocabulary of the dataset, but it is expected, that the information distribution converge to the real distribution when large number of samples are integrated.
+Every token is embedded in this way, but some models might not contain some tokens. In this case, the token is simply skipped. Some tokens with relevant information can be lost with using pre-trained models that don't contain the complete vocabulary of the dataset, but it is expected, that the information distribution converge to the real distribution when large number of samples are integrated.
 
-Once every token has been embedded into the model's latent space. A simple average is done across the tokens, keeping the dimensionality of the vector representation, and effectively creating a sentence embedding, represented in the model's latent space. This technique was selected since it's the most common method for sentence representation. With this method, the secuential nature of the tokens in the sentence is lost, in favor of providing a constant sized sentence embedding to compare between methods and datasets.
+Once every token has been embedded into the model's latent space. A simple average is done across the tokens, keeping the dimensionality of the vector representation, and effectively creating a sentence embedding, represented in the model's latent space. This technique was selected since it's the most common method for sentence representation. With this method, the sequential nature of the tokens in the sentence is lost, in favor of providing a constant sized sentence embedding to compare between methods and datasets.
 
-Lastly, the sentence embeddings are stored along with the label information. For this, the CSV format was selected, due to it's interoperabiliy, and accessibility. The statistics library Pandas has an excellent csv reader, but the data can also be imported into spreadsheet software, other statistical software, or very quickl loaded on to python with the CSV library. Every CSV file contains a header on the first row. The header is composed by $N+1$ columns where $N$ is the number of latent dimensions in the model. The last column is the "Emotion" column, where the label is stored. The name of every column starts with the letter 'd', and is followed by consecutive numbers.
+Lastly, the sentence embeddings are stored along with the label information. For this, the CSV format was selected, due to it's interoperabiliy, and accessibility. The statistics library Pandas has an excellent csv reader, but the data can also be imported into spreadsheet software, other statistical software, or very quickly loaded on to python with the CSV library. Every CSV file contains a header on the first row. The header is composed by $N+1$ columns where $N$ is the number of latent dimensions in the model. The last column is the "Emotion" column, where the label is stored. The name of every column starts with the letter 'd', and is followed by consecutive numbers.
 
 Since every pre-trained model is different, there were specific requirements on loading the model and embedding the tokens:
 
 \subsection{FastText}\label{sub:FastText}
-As previously mentioned, the FastText algorithm is an exception in this project, since it is NOT a pretrained model. The model is trained based on the dataset given. This can be done in a supervised, or an unsupervised manner. Due to the two methods for the usage of the FastText python library, the process of embedding a dataset with it requires two extra text files one with a sentence per line, and a second one, which includes the label as the last word of every line, prepended by two underscores (\lstinline{__}).
+As previously mentioned, the FastText algorithm is an exception in this project, since it is NOT a pre-trained model. The model is trained based on the dataset given. This can be done in a supervised, or an unsupervised manner. Due to the two methods for the usage of the FastText python library, the process of embedding a dataset with it requires two extra text files one with a sentence per line, and a second one, which includes the label as the last word of every line, prepended by two underscores (\lstinline{__}).
 
-In both ways of training, the language model is being trained specifically for the dataset vocabulary. For this reason, all tokens will be available in the model's vocabulary, resulting in the most complete language model. This is at the cost of representing only the topics on the dataset. This is therefore also not a general languge model.
+In both ways of training, the language model is being trained specifically for the dataset vocabulary. For this reason, all tokens will be available in the model's vocabulary, resulting in the most complete language model. This is at the cost of representing only the topics on the dataset. This is therefore also not a general language model.
 
 \subsection{Word2Vec}\label{sub:Word2Vec}
-Word2Vec is trained in a very similar way as fasttext. Therefore, the expected results are similar. Word2Vec is treated within the context of this experiments as the pre-trained equivalent of fast text. The same number of latent dimensions, and a similar training approach were used. In this case, if a word in the dataset is not contained in the Word2Vec model, it is droped, and its analysis won't be included in the results of this project. Word2Vec was trained with a very large corpus, it is therefore considered a general language model.
+Word2Vec is trained in a very similar way as FastText. Therefore, the expected results are similar. Word2Vec is treated within the context of this experiments as the pre-trained equivalent of fast text. The same number of latent dimensions, and a similar training approach were used. In this case, if a word in the dataset is not contained in the Word2Vec model, it is dropped, and its analysis won't be included in the results of this project. Word2Vec was trained with a very large corpus, it is therefore considered a general language model.
 
-The pre-trained model has been stored under the project folder \\ './models/Word2Vec/GoogleNews-vectors-negative300.bin.gz'. The gensim python library is used to load the model in binary format without having to decompress it. This model is loaded as a dictionary. An example of this is shown in snippet~\ref{lst:load_w2v} that considers an iterator over a tokenized sentence.
+The pre-trained model has been stored under the project folder \\ './models/Word2Vec/GoogleNews-vectors-negative300.bin.gz'. The Gensim python library is used to load the model in binary format without having to decompress it. This model is loaded as a dictionary. An example of this is shown in snippet~\ref{lst:load_w2v} that considers an iterator over a tokenized sentence.
 
 \begin{lstlisting}[caption={Loading Word2Vec},label=lst:load_w2v,frame=single]
 import gensim
@@ -142,10 +142,10 @@ for token in tokenized_sentence:
 \end{lstlisting}
 
 \subsection{GloVe}\label{sub:GloVe}
-Pre-trained GloVe models can be downloaded from the official website \url{https://nlp.stanford.edu/projects/glove/}. This model was downloaded and stored under the project folder './models/GloVe/glove.6B/glove.6B.300d.txt'. The name of this file contains two numbers: 6B is the number of words that are represented in this model, while 300d is the number of latent dimensions used to represent the vocabulary. This model has been trained for 50, 100, 200, and 300 dimensions. Since a smaller number of dimensions represents a lesser capability for representing complex language concepts~\cite{penningto2014glove}, the larger version of this model was selected. This also concides with the number of dimensions used in Word2Vec, which makes results easier to compare.
+Pre-trained GloVe models can be downloaded from the official website \url{https://nlp.stanford.edu/projects/glove/}. This model was downloaded and stored under the project folder './models/GloVe/glove.6B/glove.6B.300d.txt'. The name of this file contains two numbers: 6B is the number of words that are represented in this model, while 300d is the number of latent dimensions used to represent the vocabulary. This model has been trained for 50, 100, 200, and 300 dimensions. Since a smaller number of dimensions represents a lesser capability for representing complex language concepts~\cite{penningto2014glove}, the larger version of this model was selected. This also coincides with the number of dimensions used in Word2Vec, which makes results easier to compare.
 
 \subsection{BERT}\label{sub:BERT}
-Although BERT is a pretrained model, it's original distribution is considered to be only partialy trained. On the original paper~\cite{devlin2019bert}, a fine-tunning task-specific phase is mentioned, and generally required for the model to work best. This fine\-tunning also presents a great infrastructure challenge, since some pre-trained BERT models simply wont fit into a personal computer's RAM.\@
+Although BERT is a pre-trained model, it's original distribution is considered to be only partially trained. On the original paper~\cite{devlin2019bert}, a fine-tuning task-specific phase is mentioned, and generally required for the model to work best. This fine-tuning also presents a great infrastructure challenge, since some pre-trained BERT models simply wont fit into a personal computer's RAM.\@
 
 For this reason, the pre-trained BERT embedding library \url{https://github.com/imgarylai/bert-embedding} was used. This library allows for a selection of the BERT model, and the embedding of the whole sentence, without tokenization. The result is a json-like dictionary in Python that contains both the original sentence and the embedded sentence.
 
@@ -194,14 +194,14 @@ Running the embeddings for the datasets reported the following data:
   \multicolumn{1}{l|}{EmotionPush} & user 1h 28min 35s & 5min 25s  & 1h 34min 1s &  24min 31s   \\
   \multicolumn{1}{l|}{Friends    } & user 1h 26min 40s & 5min 3s   & 1h 31min 44s & 24min 9s
   \end{tabular}
-  \caption{Runtimes for embedding datasets with BERT}\label{tab:rt_BERT}
+  \caption{Run times for embedding datasets with BERT}\label{tab:rt_BERT}
 \end{table}
 
-This is much less than the 'several days' verbaly reported by colegues at the ISMLL. This might be due to the use of pre-trained models, and not running back-propagation to fine-tune the language models.
+This is much less than the 'several days' verbally reported by colleagues at the ISMLL. This might be due to the use of pre-trained models, and not running back-propagation to fine-tune the language models.
 
 While running the embeddings, almost no GPU memory was used. This signals that the library is actually not making use of the GPU resources available. This also might mean that the embedding of the datasets might be much faster if the correct hardware resources are used.
 
-At the beginning of the Year 2020, the library seemed a reliable way of getting the embedding done quickly. It allowed for embedding of the complete datasets in matter of minutes. Since I had been warned BERT embeddings could take days, I saw this as a gread advantage, and kept the method. Unfortunately as of May 2020, this library has been depricated. It's unmantained, and has requirements that might only be achievable under very specific conditions. This will not be a problem for reproduction, as long as the library is still available, and the provided docker image is used.
+At the beginning of the Year 2020, the library seemed a reliable way of getting the embedding done quickly. It allowed for embedding of the complete datasets in matter of minutes. Since I had been warned BERT embeddings could take days, I saw this as a great advantage, and kept the method. Unfortunately as of May 2020, this library has been deprecated. It's unmaintained, and has requirements that might only be achievable under very specific conditions. This will not be a problem for reproduction, as long as the library is still available, and the provided docker image is used.
 
 \section{Analysis}\label{sec:Analysis}
 The python scripts to analyze the data are found under the folder './exploration', where they are numbered, and named. The order of the scripts corresponds to the progressive steps in the search for structure in the embedded spaces. The scripts are the following:
@@ -212,7 +212,7 @@ The python scripts to analyze the data are found under the folder './exploration
   \item \lstinline{03_tsne.py}
 \end{enumerate}
 
-The order of these scripts corresponds to the methodology proposed in this thesis. They generate the visualizations, and test the hypotesis on the data. The last step in the methodology, Clustering, has been performed in all scripts. The scripts each contain a list of strings. Every string in that list is the relative path of one of the pre-processed datasets. These strings can be commented out. In doing so, the analysis will not be run on that specific instance. The full list is declared as follows:
+The order of these scripts corresponds to the methodology proposed in this thesis. They generate the visualizations, and test the hypothesis on the data. The last step in the methodology, Clustering, has been performed in all scripts. The scripts each contain a list of strings. Every string in that list is the relative path of one of the pre-processed datasets. These strings can be commented out. In doing so, the analysis will not be run on that specific instance. The full list is declared as follows:
 
 \begin{lstlisting}[caption={Pre-processed datasets},label=lst:datasets,frame=single]
 dss = ["data/CrowdFlower/FastText/embeddings_unsupervised.csv",
@@ -245,7 +245,7 @@ Every analysis script separates the embedded sentence from the label, into two s
 \subsection{Correlational Analysis}\label{sub:Correlational Analysis}
 The correlational analysis runs the numpy \lstinline{corcoef}~\cite{oliphant2006numpy} algorithm between every dimension of the model, and the labels vector. A snippet of the algorithm can be seen in listing~\ref{lst:cor}
 
-\begin{lstlisting}[caption={Corrlelation Algorithm},label=lst:cor,frame=single,numbers=left]
+\begin{lstlisting}[caption={Correlation Algorithm},label=lst:cor,frame=single,numbers=left]
 cors = []
 for emotion in ind:
     y = (Y == emotion).astype(int)
@@ -264,7 +264,7 @@ The next step, evaluating the numpy corrcoef function, returns the Pearson produ
 A matrix is formed from the correlations of every dimension, against every emotion. The resulting matrix is then of size $MxE$, where $E$ is the number of the emotions labeled in the dataset.
 
 
-\subsection{Linear Dimentionality Reduction}\label{sub:Linear Dimentionality Reduction}
+\subsection{Linear Dimensionality Reduction}\label{sub:Linear Dimentionality Reduction}
 For a linear dimensionality reduction algorithm, PCA has been selected. The methodology here only differs from the linear correlation analysis in that a PCA transformation is preformed before examining correlations. It looks as follows:
 
 \begin{lstlisting}[caption={PCA correlation Algorithm},label=lst:pca,frame=single]
@@ -283,9 +283,9 @@ x = np.nan_to_num(cors)
 \end{lstlisting}
 
 
-\subsection{Non-Linear Dimentionality Reduction}\label{sub:Non-Linear Dimentionality Reduction}
+\subsection{Non-Linear Dimensionality Reduction}\label{sub:Non-Linear Dimentionality Reduction}
 The non-linear dimensionality reduction algorithm selected was the \\ T-distributed Stochastic Neighbor Embedding (TSNE). This uses the distribution information from the embedded sentences to search for a linearly-separable two-dimensional projection. This algorithm was selected for its relationship to visualizations. The multi-core algorithm from the MulticoreTSNE library was used~\cite{ulyanov2016tsne}.
 
 
 \subsection{Clustering Analysis}\label{sub:Clustering Analysis}
-The clustering algorithm used was SciPy's linkage algorithm, a part of the cluster.hierarchy library~\cite{scipy2020}. This algorithm is an aglomerative, or bottom-up clustering algorithm. It measures euclidian distance between the selected data points, and clusters them one by one. The result of this algorithm can be seen as a dendrogram plot, next to every heatmap in the results section~\ref{sec:Results}.
+The clustering algorithm used was SciPy's linkage algorithm, a part of the cluster.hierarchy library~\cite{scipy2020}. This algorithm is an agglomerative, or bottom-up clustering algorithm. It measures euclidean distance between the selected data points, and clusters them one by one. The result of this algorithm can be seen as a dendrogram plot, next to every heat-map in the results section~\ref{sec:Results}.
