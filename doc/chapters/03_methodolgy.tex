@@ -13,7 +13,7 @@ The process for finding information on the desired embedded structure has been d
   \item \textbf{Hierarchical clustering}: Clustering the embedded dimensions, or linear transformations of these.
 \end{enumerate}
 
-These steps also correspond to the complexity of a theoretical classifier on the embedded dimension. The first one answering to the question: Can the output of the embeddings be used directly to classify the labels? The second step corresponds to asking if a linear transformation of the embedded space could yield a classifier. For example, can an LDA preform on this dataset and embedding? The third question relates to the performance of a non-linear classifier. This is the case of a Single Layer Perceptron. Considering the embeddings can be used as an intermediate step, for a further classification, this step should already yield the results of baseline emotion classifiers. The fourth question relates to the relation of emotion and valence. Emotions tend to fit hierarchically into affective models of arousal and valence~\cite{barradas2016thesis}. By searching for a hierarchy in the representation of emotions, we should be able to trace back the representation of valence.
+These steps also correspond to the complexity of a theoretical classifier on the embedded dimension. The first one answering to the question: Can the output of the embeddings be used directly to classify the labels? The second step corresponds to asking if a linear transformation of the embedded space could yield a classifier. For example, can an LDA be applied to this dataset and embedding? The third question relates to the performance of a non-linear classifier. This is the case of a Single Layer Perceptron. Considering the embeddings can be used as an intermediate step, for a further classification, this step should already yield the results of baseline emotion classifiers. The fourth question relates to the relation of emotion and valence. Emotions tend to fit hierarchically into affective models of arousal and valence~\cite{barradas2016thesis}. By searching for a hierarchy in the representation of emotions, we should be able to trace back the representation of valence.
 
 Separating the methodology in this way, enables a progressive approximations approach to answering the research question. It is highly unlikely that a general language model in machine learning represents emotions into a single dimension in a linear manner, but it is increasingly more likely that some correlation is found with a linear transformation of the aforementioned. In case these two approaches present no information about emotions, a hierarchical clustering can extract the intrinsic information of affect in emotions. Since previous works have already shown that affect can be represented in vector spaces, created with a linear transformation of word embeddings~\cite{hollis2016principals}, it would be contradictory to not find a hierarchical structure of emotions in this last step. If this were to happen, it would be reasonable to question the dataset and it's methodology, or the contextual information lost in the embedding process.
 
@@ -30,48 +30,7 @@ The project planning was planned for three months: March, April and May of 2020.
 The repository is accessible through github: \\
 \url{https://github.com/abcsds/MasterThesis}
 
-\subsubsection{Hardware}\label{subs:Hardware}
-% The computer
-This project was implemented and executed in my personal computer: A Manjaro Linux x86_64, with Kernel 5.6.11-1-MANJARO. The available CPU is an Intel i7-8700K (12) @ 5.000GHz, and the GPU is an NVIDIA GeForce GTX 1080 Ti. A total of 15937MB of RAM memory were available for experiments, as well as 16GB of swap disk. Although much of the technology available for these experiments is more than necessary, the execution of some BERT models is not possible with these technical specifications. This influenced the selection of the BERT model to be used, and played a big part in selecting a pre-embedding of models.
-
-\subsubsection{Software}\label{subs:Software}
-% The operating system
-As mentioned, the development and execution were on a Linux Operating System (OS). The Distribution used was Manjaro. This OS is a rolling release distribution, so the version used changed along the development. This is one of the reasons why virtual development and execution environments were used: to keep reproducibility, and ensure a stable testing. The only reason for this OS to be used is that it is my personal computer.
-% The repo
-As a Version Control System (VCS), git was added to the repository. This enables distributed access and historical revision for anyone trying to reproduce or supervise the project.
-% The development environment
-Several development tools were used. For text editing and script execution, Atom 1.46.0 was used. Within the Atom environment, community packages were used to simplify the workflow: Hydrogen 2.14.1, for example, allows the execution of python code from within the text editor, and can even show output of the lines executed.
-For some exploratory analysis, Jupyter Notebooks~\cite{kluyver2016jupyter} were used. To run these, a specific virtual environment was created with Docker 19.03 and NVIDIA-Docker. A docker image for theses notebooks was created. The dockerfile of this image contains the libraries used for data exploration. The downloading of the BERT models ran in TensorFlow is also contained in this dockerfile. The description and an initialization script for the virtual container are included in the project folder called 'TF'.
-% How was the day to day? Explain on atom and script running
-While the notebooks provided were used for data exploration, and visualization. Most of the development was done on the text editor. For this, python virtual environments were created with the help of the \lstinline{virtualenv} and \lstinline{virtualenvwrapper} python libraries. For these, a 'requirements.txt' file was provided with the libraries used, and their versions.
-% The development environment
-When developing, the desired virtual environment was activated. After this, the atom editor is open on the desired folder. By doing so, the Hydrogen library takes the virtual environment for the execution of the code in the project.
-By developing in this way, the whole project is available from the folder view on Atom. Code can be executed, and tested on the run, as if it were a Jupyter notebook, but changes are immediately integrated into the code repository.
-% Justification
-This specific development environment was selected to avoid conflicts between Jupyter Notebooks, and the VCS. The explorations are stored as notebooks, but cannot really represent the development of the project.
-% The programming language
-The Python programming language was used for the programming of the current project. This is due to it's incredible flexibility, access to the main ML libraries, and the predisposition of the Wirtschaftsinformatik und Maschinelles Lernen Institut. Under Python's umbrella of libraries, several were specifically added to enable this study. A List of the used libraries is provided in the appendix~\ref{sec:Python Virtual Environment}.
-
-% The ML frameworks
-Two main ML frameworks were selected for the current project: TensorFlow 2.1.0~\cite{tensorflow2015whitepaper} (TF), and PyTorch 1.4.0~\cite{pytorch2019} (Also called Torch, for simplicity.). TF was selected specifically for it's access to a pre-trained BERT library~\cite{lai2015bertembedding} for embedding sentences. This was very useful, since, compared to the Transformers library~\cite{wolf2019huggingface}, it must not be fine-tuned. TF confronts developers with two main compatibility issues:
-
-\begin{itemize}
-  \item The cuda library being used most be a specific version. Most TF libraries will only work under CUDA library 9.2. Some might run under 10.1, but not under 10.2. Since the development environment is a rolling release Linux distribution, the latest version of libraries is provided. Installing multiple versions brings problems to the day-to-day usage. Since the environment is also my personal computer, a virtual environment with containers were used instead, and for these, NVIDIA-Docker.
-
-  \item at the moment of the development of this project, TF is undergoing a major version change, from 1.x to 2.x. Many reference libraries, and all code I have created, used, or studied in my masters is deprecated. The techniques learned during my studies need to be updated, and in many cases, re-learned.
-  This is not an uncommon problem in technology, but it opens the opportunity for changing the work framework.
-\end{itemize}
-
-For all ML programming requirements that did not use the pre-trained BERT library, PyTorch was used. Certain algorithms were not programmed, but simply integrated from their implementation on python:
-
-\begin{itemize}
-  \item FastText: This algorithm was not implemented. It's python library from the implementation of Facebook Research was used~\cite{joulin2017fasttext}. % TODO: text on border
-
-  \item MulticoreTSNE: The TSNE algorithm was not implemented. Since it has heavy requirements on hardware, its implementation using distributed computing was used~\cite{ulyanov2016tsne}.
-  \item Normalize: The sklearn version of the normalization algorithm was used due to its optimization~\cite{sklearn}.
-  \item PCA: SKlearn version was used~\cite{sklearn}.
-  \item Tokenization: Part of the embedding pipeline requires the tokenization of the sentences. This was done with the Spacy library, and the "en_core_web_sm" model.\cite{spacy}
-\end{itemize}
+More information about the development environment can be found on section~\ref{sec:Development Environment}, in the Appendix.
 
 \subsection{The Datasets}\label{sub:The Datasets}
 Three datasets were selected to be used for this project. Here it's described how and when they were accessed, stored and embedded into the intermediate representation.
@@ -79,7 +38,7 @@ Three datasets were selected to be used for this project. Here it's described ho
 \subsubsection{Access}\label{subs:Access}
 Accessing datasets to train machine learning models is not a standardized process. The developer of every dataset is in charge of the distribution method. Fortunately, two of the three datasets used in this project were distributed by the same organization: the EmotionPush, and Friends datasets were, while CrowdFlower was distributed originally by a company with the same name.
 
-The CrowdFlower dataset was downloaded from the official CrowdFlower website in October 2019. The URL to this dataset is \url{http://www.crowdflower.com/wp-content/uploads/2016/07/text_emotion.csv}. As of May 20, 2020, this link still works, but the website \url{www.CrowdFlower.com} redirects to \url{www.appen.com} a company that 'collects [data] to build [\ldots] artificial intelligence systems.' This company offers access to some open source datasets, but the mentioned CrowdFlower emotion dataset is not listed there. A discussion on this is provided on chapter \ref{chap:05_conclusion}.
+The CrowdFlower dataset was downloaded from the official CrowdFlower website in October 2019. The URL to this dataset is \url{http://www.crowdflower.com/wp-content/uploads/2016/07/text_emotion.csv}. As of May 20, 2020, this link still works, but the website \url{www.CrowdFlower.com} redirects to \url{www.appen.com} a company that 'collects [data] to build [\ldots] artificial intelligence systems.' This company offers access to some open source datasets, but the mentioned CrowdFlower emotion dataset is not listed there. A discussion on this is provided on chapter \ref{chap:Conclusion}.
 
 The EmotionPush and Friends datasets were distributed as part of the EmotionX Task, which in turn is part of a set of Social NLP tasks, created by the Academia Sinica of Taiwan~\cite{chen2018emotionlines}. To access this datasets, one must register on the EmotionX 2019 website: \url{https://sites.google.com/view/emotionx2019}. Access to a google drive is then granted via email, and a zip file with both datasets can be downloaded. This dataset has been used more than once in different analysis on the internet, and it can be therefore accessed without permissions to the official method. Here, the original dataset is used.
 
@@ -119,6 +78,7 @@ for token in nlp("This is a sentence in English"):
 Every token is embedded in this way, but some models might not contain some tokens. In this case, the token is simply skipped. Some tokens with relevant information can be lost with using pre-trained models that don't contain the complete vocabulary of the dataset, but it is expected, that the information distribution converge to the real distribution when large number of samples are integrated.
 
 Once every token has been embedded into the model's latent space. A simple average is done across the tokens, keeping the dimensionality of the vector representation, and effectively creating a sentence embedding, represented in the model's latent space. This technique was selected since it's the most common method for sentence representation. With this method, the sequential nature of the tokens in the sentence is lost, in favor of providing a constant sized sentence embedding to compare between methods and datasets.
+% TODO: (wartena) That is true, but maybe you should discusss this in more detail in the related work. There has bee a lot of debate about this, and in fact there is no theoretic justification for taking the average. Since "snetnece embedding"is even in the title, it would be good to discuss the step from words to sentences a little bit.
 
 Lastly, the sentence embeddings are stored along with the label information. For this, the CSV format was selected, due to it's interoperabiliy, and accessibility. The statistics library Pandas has an excellent csv reader, but the data can also be imported into spreadsheet software, other statistical software, or very quickly loaded on to python with the CSV library. Every CSV file contains a header on the first row. The header is composed by $N+1$ columns where $N$ is the number of latent dimensions in the model. The last column is the "Emotion" column, where the label is stored. The name of every column starts with the letter 'd', and is followed by consecutive numbers.
 
@@ -199,7 +159,7 @@ Running the embeddings for the datasets reported the following data:
 
 This is much less than the 'several days' verbally reported by colleagues at the ISMLL. This might be due to the use of pre-trained models, and not running back-propagation to fine-tune the language models.
 
-While running the embeddings, almost no GPU memory was used. This signals that the library is actually not making use of the GPU resources available. This also might mean that the embedding of the datasets might be much faster if the correct hardware resources are used.
+While running the embeddings, almost no GPU memory was used. This signals that the selected library is actually not making use of the GPU resources available. This also might mean that the embedding of the datasets might be much faster if a custom BERT embedding algorithm is used, that uses GPU. Since there was no task-specific learning, and the embeddings were done only once, and stored, this step is seen as inefficient in the context of this project, but should be considered for the optimization of further studies.
 
 At the beginning of the Year 2020, the library seemed a reliable way of getting the embedding done quickly. It allowed for embedding of the complete datasets in matter of minutes. Since I had been warned BERT embeddings could take days, I saw this as a great advantage, and kept the method. Unfortunately as of May 2020, this library has been deprecated. It's unmaintained, and has requirements that might only be achievable under very specific conditions. This will not be a problem for reproduction, as long as the library is still available, and the provided docker image is used.
 
@@ -238,12 +198,12 @@ As mentioned before, the csv file contains a line for every sentence in the data
 Every analysis script separates the embedded sentence from the label, into two structures:
 
 \begin{itemize}
-  \item $X$: contains all the embedded sentences, and is therefore of size $NxM$, where $N$ is the number of sentences in the dataset, and $M$ is the number of latent dimensions in the model.
-  \item $Y$: contains all the labels of the dataset, and is of size $Nx1$.
+  \item $X$: contains all the embedded sentences, and is therefore of size $N \times M$, where $N$ is the number of sentences in the dataset, and $M$ is the number of latent dimensions in the model.
+  \item $Y$: contains all the labels of the dataset, and is of size $N \times 1$.
 \end{itemize}
 
-\subsection{Correlational Analysis}\label{sub:Correlational Analysis}
-The correlational analysis runs the numpy \lstinline{corcoef}~\cite{oliphant2006numpy} algorithm between every dimension of the model, and the labels vector. A snippet of the algorithm can be seen in listing~\ref{lst:cor}
+\subsection{Correlation Analysis}\label{sub:Correlation Analysis Method}
+The correlation analysis runs the numpy \lstinline{corcoef}~\cite{oliphant2006numpy} algorithm between every dimension of the model, and the labels vector. A snippet of the algorithm can be seen in listing~\ref{lst:cor}
 
 \begin{lstlisting}[caption={Correlation Algorithm},label=lst:cor,frame=single,numbers=left]
 cors = []
@@ -261,7 +221,7 @@ x = np.nan_to_num(cors)
 
 The correlation is done between every dimension, and every emotion. Therefore, the labels vector is filtered with the selected emotion, as it can be seen on line 3. This results in a vector of size $N$ filled with zeros, except in the places where the selected emotion is the label. This ones-and-zeros vector is the reason why the dimensions vector is normalized. The latent space of every model is different. By normalizing it, we restrict the embedding values between 0 and 1, since the default normalization algorithm uses the L2 norm.
 The next step, evaluating the numpy corrcoef function, returns the Pearson product-moment correlation matrix.
-A matrix is formed from the correlations of every dimension, against every emotion. The resulting matrix is then of size $MxE$, where $E$ is the number of the emotions labeled in the dataset.
+A matrix is formed from the correlations of every dimension, against every emotion. The resulting matrix is then of size $M \times E$, where $E$ is the number of the emotions labeled in the dataset.
 
 
 \subsection{Linear Dimensionality Reduction}\label{sub:Linear Dimentionality Reduction}
@@ -288,4 +248,9 @@ The non-linear dimensionality reduction algorithm selected was the \\ T-distribu
 
 
 \subsection{Clustering Analysis}\label{sub:Clustering Analysis}
-The clustering algorithm used was SciPy's linkage algorithm, a part of the cluster.hierarchy library~\cite{scipy2020}. This algorithm is an agglomerative, or bottom-up clustering algorithm. It measures euclidean distance between the selected data points, and clusters them one by one. The result of this algorithm can be seen as a dendrogram plot, next to every heat-map in the results section~\ref{sec:Results}.
+The clustering algorithm used was SciPy's single linkage algorithm, a part of the cluster.hierarchy library~\cite{scipy2020}. This algorithm is also known as Nearest Point Algorithm. For all points in the dataset, it selects the minimum distance between it, and all other. The distance equation can be expressed as:
+\begin{equation}
+  d(U,V) = \min(\text{dist} (U[i], V[j]))
+\end{equation}
+where $i$ are all points in cluster $U$ and $j$ all points in cluster $V$, and the distance is euclidiean.
+This is in result, an agglomerative, or bottom-up clustering algorithm. The result of this algorithm can be seen as a dendrogram plot, next to every heat-map in the results section~\ref{sec:Results}.

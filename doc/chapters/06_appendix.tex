@@ -2,32 +2,103 @@
 \chapter{Appendix}\label{chap:Appendix}
 
 
-\section{CUDA}\label{sec:CUDA}
+\section{Development Environment}\label{sec:Development Environment}
+
+\subsection{Hardware}\label{sub:Hardware}
+% The computer
+This project was implemented and executed in my personal computer: A Manjaro Linux x86_64, with Kernel 5.6.11-1-MANJARO. The available CPU is an Intel i7-8700K (12) @ 5.000GHz, and the GPU is an NVIDIA GeForce GTX 1080 Ti. A total of 15937MB of RAM memory were available for experiments, as well as 16GB of swap disk. Although much of the technology available for these experiments is more than necessary, the execution of some BERT models is not possible with these technical specifications. This influenced the selection of the BERT model to be used, and played a big part in selecting a pre-embedding of models.
+
+\subsection{Software}\label{sub:Software}
+% The operating system
+As mentioned, the development and execution were on a Linux Operating System (OS). The Distribution used was Manjaro. This OS is a rolling release distribution, so the version used changed along the development. This is one of the reasons why virtual development and execution environments were used: to keep reproducibility, and ensure a stable testing. The only reason for this OS to be used is that it is my personal computer.
+% The repo
+As a Version Control System (VCS), git was added to the repository. This enables distributed access and historical revision for anyone trying to reproduce or supervise the project.
+% The development environment
+Several development tools were used. For text editing and script execution, Atom 1.46.0 was used. Within the Atom environment, community packages were used to simplify the workflow: Hydrogen 2.14.1, for example, allows the execution of python code from within the text editor, and can even show output of the lines executed.
+For some exploratory analysis, Jupyter Notebooks~\cite{kluyver2016jupyter} were used. To run these, a specific virtual environment was created with Docker 19.03 and NVIDIA-Docker. A docker image for theses notebooks was created. The dockerfile of this image contains the libraries used for data exploration. The downloading of the BERT models ran in TensorFlow is also contained in this dockerfile. The description and an initialization script for the virtual container are included in the project folder called 'TF'.
+% How was the day to day? Explain on atom and script running
+While the notebooks provided were used for data exploration, and visualization. Most of the development was done on the text editor. For this, python virtual environments were created with the help of the \lstinline{virtualenv} and \lstinline{virtualenvwrapper} python libraries. For these, a 'requirements.txt' file was provided with the libraries used, and their versions.
+% The development environment
+When developing, the desired virtual environment was activated. After this, the atom editor is open on the desired folder. By doing so, the Hydrogen library takes the virtual environment for the execution of the code in the project.
+By developing in this way, the whole project is available from the folder view on Atom. Code can be executed, and tested on the run, as if it were a Jupyter notebook, but changes are immediately integrated into the code repository.
+% Justification
+This specific development environment was selected to avoid conflicts between Jupyter Notebooks, and the VCS. The explorations are stored as notebooks, but cannot really represent the development of the project.
+% The programming language
+The Python programming language was used for the programming of the current project. This is due to it's incredible flexibility, access to the main ML libraries, and the predisposition of the Wirtschaftsinformatik und Maschinelles Lernen Institut. Under Python's umbrella of libraries, several were specifically added to enable this study. A List of the used libraries is provided in the appendix~\ref{sec:Python Virtual Environment}.
+
+\subsection{Frameworks}\label{sub:Frameworks}
 
 The version of CUDA library used is release: 10.2, V10.2.89
+
+% The ML frameworks
+Two main ML frameworks were selected for the current project: TensorFlow 2.1.0~\cite{tensorflow2015whitepaper} (TF), and PyTorch 1.4.0~\cite{pytorch2019} (Also called Torch, for simplicity.). TF was selected specifically for it's access to a pre-trained BERT library~\cite{lai2015bertembedding} for embedding sentences. This was very useful, since, compared to the Transformers library~\cite{wolf2019huggingface}, it must not be fine-tuned. TF confronts developers with two main compatibility issues:
+
+\begin{itemize}
+  \item The cuda library being used most be a specific version. Most TF libraries will only work under CUDA library 9.2. Some might run under 10.1, but not under 10.2. Since the development environment is a rolling release Linux distribution, the latest version of libraries is provided. Installing multiple versions brings problems to the day-to-day usage. Since the environment is also my personal computer, a virtual environment with containers were used instead, and for these, NVIDIA-Docker.
+
+  \item at the moment of the development of this project, TF is undergoing a major version change, from 1.x to 2.x. Many reference libraries, and all code I have created, used, or studied in my masters is deprecated. The techniques learned during my studies need to be updated, and in many cases, re-learned.
+  This is not an uncommon problem in technology, but it opens the opportunity for changing the work framework.
+\end{itemize}
+
+For all ML programming requirements that did not use the pre-trained BERT library, PyTorch was used. Certain algorithms were not programmed, but simply integrated from their implementation on python:
+
+\begin{itemize}
+  \item FastText: This algorithm was not implemented. It's python library from the implementation of Facebook Research was used~\cite{joulin2017fasttext}. % TODO: text on border
+
+  \item MulticoreTSNE: The TSNE algorithm was not implemented. Since it has heavy requirements on hardware, its implementation using distributed computing was used~\cite{ulyanov2016tsne}.
+  \item Normalize: The sklearn version of the normalization algorithm was used due to its optimization~\cite{sklearn}.
+  \item PCA: SKlearn version was used~\cite{sklearn}.
+  \item Tokenization: Part of the embedding pipeline requires the tokenization of the sentences. This was done with the Spacy library, and the "en_core_web_sm" model.\cite{spacy}
+\end{itemize}
+
+\section{CrowdFlower Example}\label{sec:CrowdFlower_example}
+
+\begin{landscape}
+  \begin{table}
+      \centering
+      \begin{tabular}{|l|l|l|l}
+      \hline
+          "tweet_id" & "sentiment" & "content" \\ \hline
+
+          1956967341 & "empty" & "@tiffanylue i know  i was listenin to bad habit earlier and i started freakin at his part =[" \\
+          1956967666 & "sadness" & "Layin n bed with a headache  ughhhh...waitin on your call..." \\
+          1956967696 & "sadness" & "Funeral ceremony...gloomy friday..." \\
+          1956967789 & "enthusiasm" & "wants to hang out with friends SOON!" \\
+          1956968416 & "neutral" & "@dannycastillo We want to trade with someone who has Houston tickets, but no one will." \\
+          1956968477 & "worry" & "Re-pinging @ghostridah14: why didn't you go to prom? BC my bf didn't like my friends" \\
+          1956968636 & "worry" & "Hmmm. http://www.djhero.com/ is down" \\
+          1956969035 & "sadness" & "@charviray Charlene my love. I miss you" \\
+          1956969172 & "sadness" & "@kelcouch I'm sorry  at least it's Friday?" \\
+          \hline
+      \end{tabular}
+  \end{table}
+\end{landscape}
 
 
 \section{Emotion Datasets}\label{sec:Emotion Datasets}
 This table is part of the 2018 study from Klinger et Al. \cite{klinger2018analysis}. It presents the datasets they used, and have been considered for this study.
-\begin{table}
-    \centering
-    \begin{tabular}{|l|l|l|l|l|l|l|l|}
-    \hline
-        Dataset & Author & Year & License & Description & Format & Size & Emotion categories \\ \hline
-        affectivetext & Strapparava \& Mihalcea & 2007 &  & Classification of emotions in news headlines & SGML/txt & 250 headlines & anger, disgust, fear, joy, sadnees, surprise, V \\ \hline
-        crowdflower\_data & CrowdFlower & 2016 & available to download & Annotated dataset of tweets via crowdsourcing. & csv & 40k tweets & anger, enthusiasm, fun, happiness, hate, neutral, sadness, surprise, worry, love, boredom, worry, relief, empty \\ \hline
-        dailydialog & Li Yanrand et al & 2017 & available to download & Manually labelled conversations dataset with topics and emotions & text & 13k dialogs & anger, disgust, fear, joy, sadness, surprise \\ \hline
-        emotion-cause & Diman Ghazi\&Diana Inkpen\&Stan Szpakowicz & 2015 & research only & Automatically built dataset annotated with emotion and the stimulus using FrameNet’s emotions-directed frame & XML & 820 sents + 1594 sents & anger, sad, happy, surprise, fear, disgust \\ \hline
-        EmoBank & Sven Buechel & 2017 & redistributable CC-BY 4.0 & Large-scale corpus annotated with emotion according to  VAD scheme & text & 10k & VAD \\ \hline
-        emotiondata-aman & Saima Aman\&Stan Szpakowicz & 2007 & obtainable upon request & Manually annotated corpus with emotion categories. The agreement on emotion categories was \~0.66. & text & \~15k sents & joy, neutral, disgust, sadness, surprise, fear, anger \\ \hline
-        fb-valence-arousal-annon & Preotiuc Pietro & 2016 & available to download & description & csv & 2.8k posts & VA \\ \hline
-        grounded\_emotions & Liu, V.\&Banea, C.\&Mihalcea & 2017 & available to download & They look into wheter the effect of weather, news events, relates to the tweet sentiment & text & 2.5k tweets & joy, sadness \\ \hline
-        isear & Klaus R. Scherer and Harald Wallbott & 1990 & available to download & reported situations in which emotions were experienced & text (mdb/sav) & 3000 docs & joy, fear, anger, sadness, disgust,shame, guilt \\ \hline
-        tales-emotions & Cecilia Ovesdotter Alm & 2005 & gplv3 & Dataset of manually annotated tales used in a document classification task & text & 15k sents & angry, disgusted, fearful, happy, sad, surprised, mood (positive, negative) \\ \hline
-        emoint &  &  &  &  &  &  &  \\ \hline
-        electoraltweets &  &  &  &  &  &  &  \\ \hline
-    \end{tabular}
-\end{table}
+\begin{landscape}
+  \begin{table}
+      \centering
+      \begin{tabular}{|l|l|l|l|l|l|l|l|}
+      \hline
+
+Dataset       & Year & License         & Format  & Size          & Emotion categories \\
+\hline
+affectivetext & 2007 &                 & SGML    & 250 headlines & anger, disgust, fear, joy, sadnees, surprise, V \\
+crowdflower   & 2016 & Av. to download &  csv    & 40k tweets    & Mentioned \\
+dailydialog   & 2017 & Av. to download & text    & 13k dialogs   & anger, disgust, fear, joy, sadness, surprise \\
+emotion-cause & 2015 & research only   &  XML    & 2434 sents    & anger, sad, happy, surprise, fear, disgust \\
+EmoBank       & 2017 & CC-BY 4.0       & text    & 10k           & VAD \\
+emotiondata   & 2007 & upon request    & text    & \~15k sents   & joy, neutral, disgust, sadness, surprise, fear, anger \\
+fb-VA         & 2016 & Av. to download &  csv    & 2.8k posts    & VA \\
+grounded      & 2017 & Av. to download & text    & 2.5k tweets   & joy, sadness \\
+isear         & 1990 & Av. to download & mdb/sav & 3000 docs     & joy, fear, anger, sadness, disgust,shame, guilt \\
+tales         & 2005 & gplv3           & text    & 15k sents     & angry, disgusted, fearful, happy, sad, surprised, affect \\
+\hline
+      \end{tabular}
+  \end{table}
+\end{landscape}
 
 \section{Python Virtual Environment}\label{sec:Python Virtual Environment}
 The python virtual environment was created with VirtualEnv, and VirtualEnvWrapper. The requirements.txt file contains the used libraries to recreate this study. These are:
@@ -48,3 +119,23 @@ The python virtual environment was created with VirtualEnv, and VirtualEnvWrappe
   \item transformers
   \item fastcluster
 \end{itemize}
+
+\section{Emolex Example}\label{sec:Emolex Example}
+
+\begin{landscape}
+  \begin{table}
+    \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|}
+      \hline
+      Word        & anger & anticipation & disgust & fear & joy & negative & positive & sadness & surprise & trust \\
+      \hline
+      aback       & 0     & 0            & 0       & 0    & 0   & 0        & 0        & 0       & 0        & 0 \\
+      abacus      & 0     & 0            & 0       & 0    & 0   & 0        & 0        & 0       & 0        & 1 \\
+      abandon     & 0     & 0            & 0       & 1    & 0   & 1        & 0        & 1       & 0        & 0 \\
+      abandoned   & 1     & 0            & 0       & 1    & 0   & 1        & 0        & 1       & 0        & 0 \\
+      abandonment & 1     & 0            & 0       & 1    & 0   & 1        & 0        & 1       & 1        & 0 \\
+      abate       & 0     & 0            & 0       & 0    & 0   & 0        & 0        & 0       & 0        & 0 \\
+      \hline
+    \end{tabular}
+    \caption{Example of the NRC Emotion Lexicon}
+  \end{table}
+\end{landscape}

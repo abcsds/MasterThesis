@@ -2,39 +2,41 @@
 \chapter{Experiments}\label{chap:Experiments}
 The amount of experiments, data and visualizations created in this project are more than a dedicated reader is comfortable reading in one single pass. For this reason, the experiments and results in this chapter first presented with a simple example, the EmoLex. This example will guide the reader through the methodology to analyze the datasets, and introduce the intuitions presented through simpler visualizations with less data. With this intuitions in mind, the results of the other datasets, and language models are presented. In this way, the EmoLex works not only as an introduction to the methodology and results, but also as a lax baseline.
 
-\section{EmoLex}\label{sec:EmoLex}
+\section{EmoLex}\label{sec:EmoLex_Results}
 As an introductory experiment, EmoLex has been embedded into the abstract vector representation of the GloVe language model. This model was selected due to its one-to-one relation between word and embedding, and it's context independence. This means that a word will get one single embedding no matter what other words appear next to it. This in comparison to BERT, where the embedding of a single word depends on the tokens, words, and sentences that come with it. The EmoLex has single words related to emotions, so it must be noted that this experiment and it's results relate to word embedding, and not sentence embedding.
 
-\subsection{Correlational Analysis}
-A correlational analysis answers the question of how much does every dimension of the language model relates to every emotion. The result of this model is a correlation matrix where every element of that matrix is a number between -1 and 1.
-In the case of the EmoLex, abstracted into the GloVe language model, it is a $8x300$ matrix, where the rows correspond to the 8 emotions represented in the EmoLex. This matrix is visualized in Figure~\ref{fig:cor_emolex_GloVe}. The plot shown in this figure is called a clustermap. It was created with pythons Seaborn library, and consists of two parts:
+\subsection{Correlation Analysis}
+A correlation analysis answers the question of how much does every dimension of the language model relates to every emotion. The result of this model is a correlation matrix where every element of that matrix is a number between -1 and 1.
+In the case of the EmoLex, abstracted into the GloVe language model, it is a $8 \times 300$ matrix, where the rows correspond to the 8 emotions represented in the EmoLex. This matrix is visualized in Figure~\ref{fig:cor_emolex_GloVe}. The plot shown in this Figure is called a clustermap. It was created with pythons Seaborn library, and consists of two parts:
 
-The main part is the visualization of the matrix. In this visualization, every number of the matrix is given a color from a range of colors shown in the color bar. The range is automatically set from the maximum and minimum number in the matrix. This allows to see patterns in the relationships between the vector space dimensions and the emotions, if there are any.
+The main part is the visualization of the correlation matrix. Every correlation coeficient, between embedding dimension and label is represented not as a number, but as a color from a range of colors shown in the color bar. Since this table represents a matrix of correlation coeficients, it's important to remember, when analyzing the plot, that the maximum range of posible data is between -1 and 1. This visualization allows to see patterns in the relationships between the vector space dimensions and the emotions, if there are any.
 
 The second visualization of this plot is the left dendrogram. A dendrogram is the visualization of a clustering structure. This clustering is done through a nearest neighbor algorithm, using euclidean distance.
 
-A correlational plot is used here to analyze the deviation of the distribution of the representation of variables in the different dimensions of the vector space. In this case, there are 8 variables. A uniformly random distribution of the representation would yield a correlation of 0.125. Thus a correlation of  0.125 or lower is considered random. In our baseline reference by Hollis et al.~\cite{hollis2016principals}, where they analyzed 9 variables the minimum significant correlation reported was 0.35. This is more than three times the correlation of a uniformly random distribution: 0.111\underline{1}
+A correlation plot is used here to analyze the deviation of the distribution of the representation of variables in the different dimensions of the vector space. In this case, there are 8 variables. A uniformly random distribution of the representation would yield a correlation of 0.125. Thus a correlation of  0.125 or lower is considered random. In our baseline reference by Hollis et al.~\cite{hollis2016principals}, where they analyzed 9 variables the minimum significant correlation reported was 0.35. This is more than three times the correlation of a uniformly random distribution: 0.111\underline{1}
 
 \begin{figure}[H]
   \includegraphics[width=\textwidth]{plots/emolex/cor_emolex_GloVe}
   \centering
-  \caption{EmoLex Correlation Plot}
-\end{figure}\label{fig:cor_emolex_GloVe}
+  \caption{EmoLex Correlation Plot}\label{fig:cor_emolex_GloVe}
+\end{figure}
 
-In Figure~\ref{fig:cor_emolex_GloVe} it can be observed that represented by the GloVe model, the words contained in the EmoLex are uniformly distributed through the dimensions. The maximum correlation is 0.251, between the emotion 'Trust' and dimension 121 of the model. Although this is double the correlation that could be found thorough chance, it does not satisfy the baseline condition, and thus, we cannot consider that there is a linear correlation between the emotions of the EmoLex, and the dimensional representation of the Language Model.
+In Figure~\ref{fig:cor_emolex_GloVe} it can be observed a single label can have as many positive correlations with the embeddings, as negative. In the case of surprise and fear, most dimensions convey a correlation, but there is no definitive positive or negative correlation for the model in general.
+The maximum correlation is 0.251, between the emotion `Trust` and dimension 121 of the model. Although this is double the correlation that could be found thorough chance, it does not satisfy the baseline % TODO: (wartena) Baseline ist that it needs to be 3 times the baseline? I woul think that correlation coefficients can be interpreted as absolute numbers. I woud say 0.251 is a weak correllation
+condition, and thus, we cannot consider that there is a linear correlation between the emotions of the EmoLex, and the dimensional representation of the Language Model.
 
 The corresponding clustering algorithm shows that through their vectorial representation, the two most related emotions are joy and anger. This does not comply with the findings of dichotomical emotions, fitting into a valence model, as shown in the 2016 study~\cite{barradas2016thesis}.
 
 These two results are enough to reject the hypothesis that there is a linear correlation between the emotions in the EmoLex and the vectorial representation of the GloVe model.
 
 
-A further correlational study can be done solely to the labels of the EmoLex. This is here called an Emotion-to-Emotion correlation, and it's obtained through the self-correlation matrix of the one-hot-encoding of the EmoLex emotion labels. The clustermap of said matrix can be seen on Figure~\ref{fig:cor_emolex_GloVe_e_e}. An organic distribution of these would show the expected hierarchical clustering between positive and negative emotions. This plot, although labeled as related to the GloVe, is independent from the language model, since it only looks at the labels, but the name has been kept for consistency.
+A further correlation study can be done solely to the labels of the EmoLex. This is here called an Emotion-to-Emotion correlation, and it's obtained through the self-correlation matrix of the one-hot-encoding of the EmoLex emotion labels. The clustermap of said matrix can be seen on Figure~\ref{fig:cor_emolex_GloVe_e_e}. An organic distribution of these would show the expected hierarchical clustering between positive and negative emotions. This plot, although labeled as related to the GloVe, is independent from the language model, since it only looks at the labels, but the name has been kept for consistency.
 
 \begin{figure}[H]
   \includegraphics[width=1\textwidth]{plots/emolex/cor_emolex_GloVe_e_e}
   \centering
-  \caption{EmoLex Correlation Plot}
-\end{figure}\label{fig:cor_emolex_GloVe_e_e}
+  \caption{EmoLex Correlation Plot}\label{fig:cor_emolex_GloVe_e_e}
+\end{figure}
 
 The EmoLex is not an organic corpus, and thus the labels do not represent the hierarchical clustering shown in the 2016 study~\cite{barradas2016thesis}. Instead the emotions are uniformly distributed. This is expected for a lexicon.
 
@@ -46,8 +48,8 @@ By visualizing a scatter plot of the first components or PCA dimensions, if ther
 \begin{figure}[H]
   \includegraphics[width=1\textwidth]{plots/emolex/pca_scat_emolex_glove}
   \centering
-  \caption{EmoLex Scatter plot of PCA}
-\end{figure}\label{fig:pca_scat_emolex_glove}
+  \caption{EmoLex Scatter plot of PCA}\label{fig:pca_scat_emolex_glove}
+\end{figure}
 
 In Figure~\ref{fig:pca_scat_emolex_glove} we can see the scatter plot of the words of the EmoLex, projected on to the first two components of the PCA transformation. Here we can observe, that the words labeled with the emotion disgust are mostly centered to the top-left of the plot. Although this might seem like the indication of a structure, we cannot certainly point at it. This plot is useful for visualizing linear separation, but that linear separation does not show in this case. To be able to visualize what the PCA transformation does to the vector space, the correlation matrix is shown next.
 
@@ -56,8 +58,8 @@ The correlation matrix shown next is the same type of visualization as the one i
 \begin{figure}[H]
   \includegraphics[width=1\textwidth]{plots/emolex/pca_cor_emolex_glove}
   \centering
-  \caption{EmoLex Correlation of all PCA components}
-\end{figure}\label{fig:pca_cor_emolex_glove}
+  \caption{EmoLex Correlation of all PCA components}\label{fig:pca_cor_emolex_glove}
+\end{figure}
 
 By plotting the correlation matrix of the PCA transformation of the EmoLex, we can observe that most of the variability is concentrated on the first components. Still in this case, the maximum correlation is 0.2567, barely higher than on the linear correlation. The hierarchical clustering shows no presence of a valence-correspondent clustering.
 
@@ -66,8 +68,8 @@ Considering that the PCA is a linear transformation we do not expect to see bett
 \begin{figure}[H]
   \includegraphics[width=1\textwidth]{plots/emolex/pca_cor_emolex_glove_min}
   \centering
-  \caption{EmoLex Correlation of first PCA components}
-\end{figure}\label{fig:pca_cor_emolex_glove_min}
+  \caption{EmoLex Correlation of first PCA components}\label{fig:pca_cor_emolex_glove_min}
+\end{figure}
 
 Figure~\ref{fig:pca_cor_emolex_glove_min} shows the first 8 dimensions of the PCA transformation for this model and dataset. A different color scheme has been selected to easily identify between the linear correlation visualization, and the PCA-transformed correlations. This is the exact same data as the one used to create Figure~\ref{fig:pca_cor_emolex_glove}, but since only the most information-dense dimensions are being shown, the hierarchical clustering is much different. Here we can observe that what had no apparent structure now seems to cluster disgust with surprise, and trust with anger. By observing only the first component, we can see that if it activates, we can expect that the emotion Joy is not expressed in the embedding, with a 24\% probability, and that fear is not expressed with 25\% probability. This results are not very concise, but this is expected due to the artificial nature of the dataset, and the subjectivity of the concepts. In the experiments section of this chapter we aim at describing how much of that variability is due to the subjectivity of the concept.
 
@@ -77,8 +79,8 @@ Through this, non-linear visualization algorithm we can plot a scatter that will
 \begin{figure}[H]
   \includegraphics[width=1\textwidth]{plots/emolex/tsne_scat_emolex_glove}
   \centering
-  \caption{EmoLex Scatter plot of TSNE}
-\end{figure}\label{fig:tsne_scat_emolex_glove}
+  \caption{EmoLex Scatter plot of TSNE}\label{fig:tsne_scat_emolex_glove}
+\end{figure}
 
 In this plot we can observe that two major distribution centers are created: one on the top of the plot and one on the bottom. The two groups are represented by two emotions: trust and disgust. These two are indeed polar opposites on the Plutchik model.
 
@@ -109,8 +111,8 @@ With the FastText model, the maximum correlation was shown in the supervised app
 \begin{figure}[H]
   \includegraphics[width=1\textwidth]{plots/cor/cor_CrowdFlower_FastText}
   \centering
-  \caption{Correlation plot for FastText}
-\end{figure}\label{fig:cor_CrowdFlower_FastText}
+  \caption{Correlation plot for FastText}\label{fig:cor_CrowdFlower_FastText}
+\end{figure}
 
 A hierarchical structure of the concepts can also be observed, with two main groups: fun and enthusiasm in one, with a high activation of all dimensions (be it positive or negative), and the rest on a second group. The latter can be subdivided into two. The first group contains emotions of surprise, happiness, and worry, while the second one contains the rest of the emotions with very little activation.
 
@@ -122,8 +124,8 @@ Word2Vec is the first pre-trained model to be reviewed. This model has been obse
 \begin{figure}[H]
   \includegraphics[width=1\textwidth]{plots/cor/cor_CrowdFlower_Word2Vec}
   \centering
-  \caption{Correlation plot for Word2Vec}
-\end{figure}\label{fig:cor_CrowdFlower_Word2Vec}
+  \caption{Correlation plot for Word2Vec}\label{fig:cor_CrowdFlower_Word2Vec}
+\end{figure}
 
 Figure~\ref{fig:cor_CrowdFlower_Word2Vec} shows the mentioned correlations. At first sight, it might seem that the clustering is similar to the one shown with FastText, with two main groups, one of which is again separated into two, but the emotions clustered are not the same. Clustered together are love and boredom, relief and sadness, and fun and anger. These are neither opposites, nor subsets of a valence side.
 
@@ -132,8 +134,8 @@ The GloVe model presents a higher complexity than the Word2Vec. Thus, better res
 \begin{figure}[H]
   \includegraphics[width=1\textwidth]{plots/cor/cor_CrowdFlower_GloVe}
   \centering
-  \caption{Correlation plot for GloVe}
-\end{figure}\label{fig:cor_CrowdFlower_GloVe}
+  \caption{Correlation plot for GloVe}\label{fig:cor_CrowdFlower_GloVe}
+\end{figure}
 The clustering in Figure~\ref{fig:cor_CrowdFlower_GloVe} presents a similar structure, with different concepts as the last two models. Hate and happiness form a group, while the rest separate into two subgroups: one with love and worry, and the rest of the concepts, with almost no correlation, in a single big cluster.
 
 \subsubsection{BERT}
@@ -141,8 +143,9 @@ BERT is the most powerful language model used within this project. Still, it pre
 \begin{figure}[H]
   \includegraphics[width=1\textwidth]{plots/cor/cor_CrowdFlower_BERT}
   \centering
-  \caption{Correlation plot for BERT}
-\end{figure}\label{fig:cor_CrowdFlower_BERT}
+  \caption{Correlation plot for BERT}\label{fig:cor_CrowdFlower_BERT}
+\end{figure}
+% TODO: (wartena) Did you always take the word embeddings from Bert computed for the whole sentence?
 On Figure~\ref{fig:cor_CrowdFlower_BERT}, we can observe that the concepts that most activate the latent dimensions in this model are love, relief, surprise, and worry. Love and Relief cluster into one group, Surprise and Worry in another. Not much structure can be observed, but sadness and fun did cluster into the less activated cluster.
 
 \subsubsection{Analysis Discussion}
@@ -158,8 +161,8 @@ The baseline FastText analysis shows that the mostly correlated model was the su
 \begin{figure}[H]
   \includegraphics[width=1\textwidth]{plots/pca/pca_cor_CrowdFlower_FastText}
   \centering
-  \caption{PCA Correlation plot for FastText}
-\end{figure}\label{fig:pca_cor_CrowdFlower_FastText}
+  \caption{PCA Correlation plot for FastText}\label{fig:pca_cor_CrowdFlower_FastText}
+\end{figure}
 Figure~\ref{fig:pca_cor_CrowdFlower_FastText} shows that the first component of the transformation has a high positive correlation with the concepts of Surprise and Worry, while keeping a high negative correlation with Sadness and Hate. One grouping between Surprise and Worry is present, with the rest of the concepts in a second cluster.
 
 \subsubsection{Word2Vec}
@@ -167,8 +170,8 @@ The transformation of the Wort2Vec representation presents the worst representat
 \begin{figure}[H]
   \includegraphics[width=1\textwidth]{plots/pca/pca_cor_CrowdFlower_Word2Vec}
   \centering
-  \caption{PCA Correlation plot for Word2Vec}
-\end{figure}\label{fig:pca_cor_CrowdFlower_Word2Vec}
+  \caption{PCA Correlation plot for Word2Vec}\label{fig:pca_cor_CrowdFlower_Word2Vec}
+\end{figure}
 Figure~\ref{fig:pca_cor_CrowdFlower_Word2Vec} shows the results of this analysis. Here, with a very low correlation, sadness and happiness have been clustered together, while relief and fun create the second most distinct group. The dichotomy of sadness and happiness is as expected from the baseline papers, but the correlation is much lower than if only valence is taken into account.
 Another relevant grouping to mention is that of Anger and Worry. Although the direct correlations between the given concepts and the components of the transformed vector space are not statistically relevant, the clustering that can be done by analyzing these corresponds with that of parts of the Plutchik model, and accounts for dichotomy of emotions in a valence model of affect.
 
@@ -177,8 +180,8 @@ The GloVe model shows a very low correlation, even worst that the Word2Vec model
 \begin{figure}[H]
   \includegraphics[width=1\textwidth]{plots/pca/pca_cor_CrowdFlower_GloVe}
   \centering
-  \caption{PCA Correlation plot for GloVe}
-\end{figure}\label{fig:pca_cor_CrowdFlower_GloVe}
+  \caption{PCA Correlation plot for GloVe}\label{fig:pca_cor_CrowdFlower_GloVe}
+\end{figure}
 Figure~\ref{fig:pca_cor_CrowdFlower_GloVe} shows how the low correlation of concepts and components of the PCA-transformed vector space yields no results that relate to emotion models. Even so, a three-group clustering is seen. This might indicate that this clustering is more related to the dataset, than to the language model.
 
 \subsubsection{BERT}
@@ -186,8 +189,8 @@ The BERT model shows a maximum correlation of 10.28\% with between the component
 \begin{figure}[H]
   \includegraphics[width=1\textwidth]{plots/pca/pca_cor_CrowdFlower_BERT}
   \centering
-  \caption{PCA Correlation plot for BERT}
-\end{figure}\label{fig:pca_cor_CrowdFlower_BERT}
+  \caption{PCA Correlation plot for BERT}\label{fig:pca_cor_CrowdFlower_BERT}
+\end{figure}
 Figure~\ref{fig:pca_cor_CrowdFlower_BERT} shows how the results don't seem to be as densely populated by high correlations. This could be due to the high dimensionality of the model. With this PCA transformation 1024 dimensions are being reduced down to 10, which in comparison with the other models, is a much bigger reduction. No clustering seems relevant, when compared with emotion models.
 
 \subsubsection{Analysis Discussion}
@@ -201,24 +204,24 @@ As with the last two studies, the FastText approach is a supervised language mod
 \begin{figure}[H]
   \includegraphics[width=1\textwidth]{plots/tsne/scat_CrowdFlower_FastText}
   \centering
-  \caption{Scatter plot for TSNE of FastText}
-\end{figure}\label{fig:scat_CrowdFlower_FastText}
+  \caption{Scatter plot for TSNE of FastText}\label{fig:scat_CrowdFlower_FastText}
+\end{figure}
 It can be observed that Figure~\ref{fig:scat_CrowdFlower_FastText} shows clear gradients between groups. These are not linearly separable, but do comply with the emotion's valence value. Positive valenced emotions like Love, Fun and Happiness are present in the top part of the visualization (the positive side of component 1), while the negative emotions like Anger, Hate, and Sadness are presented in the lower part of the visualization. There is no clear separation of groups around the origin.
 \subsubsection{Word2Vec}
 As expected, the Word2Vec scattering does not present such clear groups as the ones shown by the FastText model. There is a main group of data points that fall around the origin, and a very slight gradient with positive valence at the bottom of component1, and negative valence at the top.
 \begin{figure}[H]
   \includegraphics[width=1\textwidth]{plots/tsne/scat_CrowdFlower_Word2Vec}
   \centering
-  \caption{Scatter plot for TSNE of Word2Vec}
-\end{figure}\label{fig:scat_CrowdFlower_Word2Vec}
+  \caption{Scatter plot for TSNE of Word2Vec}\label{fig:scat_CrowdFlower_Word2Vec}
+\end{figure}
 Figure~\ref{fig:scat_CrowdFlower_Word2Vec} shows a phenomenon present in pre-trained models. Some data points are separated from the main cluster, but are maintained relatively close to each other. These are sentences that are similar in meaning, sometimes even identical sentences, but contain a distinct emotional meaning.
 \subsubsection{GloVe}
 For the GloVe model, the gradient of positive and negative valenced emotions is not as clear as with the Word2Vec model.
 \begin{figure}[H]
   \includegraphics[width=1\textwidth]{plots/tsne/scat_CrowdFlower_GloVe}
   \centering
-  \caption{Scatter plot for TSNE of GloVe}
-\end{figure}\label{fig:scat_CrowdFlower_GloVe}
+  \caption{Scatter plot for TSNE of GloVe}\label{fig:scat_CrowdFlower_GloVe}
+\end{figure}
 On Figure~\ref{fig:scat_CrowdFlower_GloVe} the dataset is represented mostly as a Gaussian distribution of scattered data points. If there are relevant features of this representation, they are on the top of the visualization, where most of the positively valenced emotions are. There, the semantic clusters, seem to be more common than anywhere else in the plot.
 
 \subsubsection{BERT}
@@ -226,8 +229,8 @@ With this analysis, BERT comes out as the model that creates representations tha
 \begin{figure}[H]
   \includegraphics[width=1\textwidth]{plots/tsne/scat_CrowdFlower_BERT}
   \centering
-  \caption{Scatter plot for TSNE of BERT}
-\end{figure}\label{fig:scat_CrowdFlower_BERT}
+  \caption{Scatter plot for TSNE of BERT}\label{fig:scat_CrowdFlower_BERT}
+\end{figure}
 In Figure~\ref{fig:scat_CrowdFlower_BERT} several clusters can be observed, with a very characteristic one composed of mostly Love, Fun, and Happiness labels around (-17, -12). This cluster can be considered as a positive valence cluster. Although there are several groupings of sentences, there seems to be no clear gradient of valence in the model, but valence might be a variable to be measured inside clusters of data points.
 
 \subsubsection{Analysis Discussion}
@@ -236,32 +239,6 @@ All models presented in this project are created through non-linear methods. The
 %===============================================================================
 \subsection{Result Analysis}\label{sub:Result Analysis}
 The models presented here seem to have very little representation of emotions, but a strong relationship with valence. Although this could indicate that the models for human language do not conceptualize emotions, some cases have been found, that might indicate that it is in fact, the dataset that makes it difficult to cluster the conceptualization of certain emotions.
-
-\subsubsection{Class unbalance}
-The class distribution of the CrowdFlower dataset is severely unbalanced. Table~\ref{tab:CrowdFlower_distribution} shows the classes, including neutral, which has been removed from this analysis.
-
-\begin{table}
-    \centering
-    \begin{tabular}{|l|l|}
-    \hline
-      neutral     &  16894 \\
-      worry       &  16840 \\
-      happiness   &  10336 \\
-      sadness     &  10284 \\
-      love        &   7610 \\
-      surprise    &   4360 \\
-      fun         &   3532 \\
-      relief      &   3042 \\
-      hate        &   2640 \\
-      empty       &   1606 \\
-      enthusiasm  &   1510 \\
-      boredom     &    358 \\
-      anger       &    212 \\
-    \end{tabular}
-    \caption{Class distribution for CrowdFlower dataset.}\label{tab:CrowdFlower_distribution}
-\end{table}
-
-For this reason, the majority of the datapoints visualized in this project are Worry, Happiness, and Sadness.
 
 \subsubsection{Semantic Clusters}
 In the TSNE visualizations it's hard to pin down which data points represent what. For this reason, interactive visualizations have been made to explore freely the 2D space generated by this transformation. This visualizations can be found in the project repository. By examining these visualizations several observations can be made.
@@ -273,14 +250,14 @@ Another interesting feature of this model is the 'ALL-CAPS' peninsula on Figure~
 \begin{figure}[H]
   \includegraphics[width=1\textwidth]{plots/CapsPeninsula}
   \centering
-  \caption{A zoom into the All-Caps peninsula for the TSNE transformation of the CrowdFlower DS under the Word2Vec LM}
-\end{figure}\label{fig:CapsPeninsula}
+  \caption{A zoom into the All-Caps peninsula for the TSNE transformation of the CrowdFlower DS under the Word2Vec LM}\label{fig:CapsPeninsula}
+\end{figure}
 
 Other interesting cluster is around (24, -10) in the Word2Vec projection, where most of the tags contain the word Happy, but are tagged with the emotion love.
 
 In the GloVe projection, most tweets wishing for a happy mother's day seem to be disperse on the top region of the plot, but do not generally cluster.
 
-A consequent observation of these clusters is that very similar tweets have different emotional labels. This does not necessarily mean that the labels are wrong. But it does speak about the meaning that that tweet had for the person that assigned the label. Emotions are according to theory, context dependant. Tweets for Mother's day are labeled with the emotions Love, Happiness, Fun, and even Worry.
+A consequent observation of these clusters is that very similar tweets have different emotional labels. This does not necessarily mean that the labels are wrong. But it does speak about the meaning that that tweet had for the person that assigned the label. Emotions are according to theory, context dependent. Tweets for Mother's day are labeled with the emotions Love, Happiness, Fun, and even Worry.
 
 A third observation comes from examining the dataset's text, where some of them are not in English. Some others are just links. In general there is an overload of people wishing a happy mother's day and a happy Star Wars day. Both of these dates happen in May.
 
