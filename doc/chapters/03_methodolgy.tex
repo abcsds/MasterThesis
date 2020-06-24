@@ -77,8 +77,7 @@ for token in nlp("This is a sentence in English"):
 
 Every token is embedded in this way, but some models might not contain some tokens. In this case, the token is simply skipped. Some tokens with relevant information can be lost with using pre-trained models that don't contain the complete vocabulary of the dataset, but it is expected, that the information distribution converge to the real distribution when large number of samples are integrated.
 
-Once every token has been embedded into the model's latent space. A simple average is done across the tokens, keeping the dimensionality of the vector representation, and effectively creating a sentence embedding, represented in the model's latent space. This technique was selected since it's the most common method for sentence representation. With this method, the sequential nature of the tokens in the sentence is lost, in favor of providing a constant sized sentence embedding to compare between methods and datasets.
-% TODO: (wartena) That is true, but maybe you should discusss this in more detail in the related work. There has bee a lot of debate about this, and in fact there is no theoretic justification for taking the average. Since "snetnece embedding"is even in the title, it would be good to discuss the step from words to sentences a little bit.
+Once every token has been embedded into the model's latent space. A simple average is done across the tokens, keeping the dimensionality of the vector representation, and effectively creating a sentence embedding, represented in the model's latent space. This technique was selected since it's the most common method for sentence representation. With this method, the sequential nature of the tokens in the sentence is lost, in favor of providing a constant sized sentence embedding to compare between methods and datasets. Many other methods for sentence embedding that do convey the sequential nature of the word embeddings in a sentence require some extra training. The reason for this project to use average embeddings is that the pre-trained embeddings can be used exactly as they come out of the language model, and requires no extra learning.
 
 Lastly, the sentence embeddings are stored along with the label information. For this, the CSV format was selected, due to it's interoperabiliy, and accessibility. The statistics library Pandas has an excellent csv reader, but the data can also be imported into spreadsheet software, other statistical software, or very quickly loaded on to python with the CSV library. Every CSV file contains a header on the first row. The header is composed by $N+1$ columns where $N$ is the number of latent dimensions in the model. The last column is the "Emotion" column, where the label is stored. The name of every column starts with the letter 'd', and is followed by consecutive numbers.
 
@@ -203,7 +202,14 @@ Every analysis script separates the embedded sentence from the label, into two s
 \end{itemize}
 
 \subsection{Correlation Analysis}\label{sub:Correlation Analysis Method}
-The correlation analysis runs the numpy \lstinline{corcoef}~\cite{oliphant2006numpy} algorithm between every dimension of the model, and the labels vector. A snippet of the algorithm can be seen in listing~\ref{lst:cor}
+The correlation analysis runs the numpy \lstinline{corcoef}~\cite{oliphant2006numpy} algorithm between every dimension of the model, and the labels vector. The \lstinline{corcoef} algorithm runs spearman's correlotion. The equation for spearman's correlation is
+
+\begin{equation}
+  R_{X,Y} = \dfrac{\EX[(X- \mu_x) (Y - \mu_y)]}
+                 {\sigma_X \sigma_Y}
+\end{equation}
+
+A snippet of the algorithm can be seen in listing~\ref{lst:cor}
 
 \begin{lstlisting}[caption={Correlation Algorithm},label=lst:cor,frame=single,numbers=left]
 cors = []
