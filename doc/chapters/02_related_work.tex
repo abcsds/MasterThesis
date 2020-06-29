@@ -3,7 +3,7 @@
 
 There have been many attempts at understanding automatically learned language models, but none has been focused on understanding emotions as we do here. For this reason, similar methods from close fields of research have been used to establish a methodology. In this chapter we talk about those methods and their contribution to this project.
 
-The embedding of emotional words is ML Language Models can be compared directly to Emotion Lexicons. In this project we make use of that one created by Mohamad and Turney through crowdsourcing~\cite{mohammad2013crowdsourcing}. % TODO: text on border
+The embedding of emotional words is ML Language Models can be compared directly to Emotion Lexicons. In this project we make use of that one created by Mohamad and Turney through crowdsourcing~\cite{mohammad2013crowdsourcing}.
 
 
 Since creating an Emotion Lexicon through crowdsourcing is a costly tasks, the rest of the models used are automatic approaches to do so. Vo and Zhang proved that an automatic approach to learning sentiment lexicons for short texts can be done through the use of emojis~\cite{vo2016count}. This method uses the intrinsic usage of emojis to express positive or negative valence in a sentence, and exploded this to expand that valence to words used in the same context.
@@ -38,10 +38,10 @@ Under this criteria, four models have been spotted as candidates for the experim
 
 Word2Vec is the result of converting large corpus into itself, by using an auto-encoder method, with help of a one-hot encoding of the corpus vocabulary~\cite{mikolov2013word2vec}. At the time of its publication it captured much attention, mostly due to the possibility of semantic arithmetic. This was typified by the 'King - Man + Woman = Queen' example. Due to the one-hot encoding step in the algorithm, it does not solve the problem of words with multiple meanings.
 
-Glove is recognizable between other language models, for its linear substructures of meaning. Since it was trained on aggregated co-occurrence statistics, it captures semantic structure better than Word2Vec~\cite{penningto2014glove}. % TODO: text on border
+Glove is recognizable between other language models, for its linear substructures of meaning. Since it was trained on aggregated co-occurrence statistics, it captures semantic structure better than Word2Vec~\cite{penningto2014glove}.
 It still assigns a one-to-one representation of words and embedded vectors, so it does not solve ambiguities.
 
-ELMo solved this last mentioned problem by analyzing context~\cite{peters2018elmo}. % TODO: text on border
+ELMo solved this last mentioned problem by analyzing context~\cite{peters2018elmo}.
 This was achieved by training on prediction of words in forwards and backwards passes. Even though this model solved the problem of context-dependent meaning, it was created with the premise that context in text is sequential, and it's architecture dependent on LSTMs showed this.
 
 BERT was the first algorithm to solve this problem, by implementing a context-dependent learning, that is not based on the sequential structures. This was done with the use of Transformers. A deep learning architecture based on the attention model, that does not depend on sequential structures.
@@ -116,14 +116,14 @@ From this list, several datasets use an affective model of valence, arousal or d
 
 \begin{itemize}
   \item CrowdFlower % USED
-  \item DailyDialogs~\cite{li2017dailydialog} %TODO: might need to be included
-  \item Emotion-Cause~\cite{ghazi2015detecting} %TODO: might need to be included
+  \item DailyDialogs~\cite{li2017dailydialog}
+  \item Emotion-Cause~\cite{ghazi2015detecting}
   \item EmotionPush~\cite{huang2018emotionpush} % USED
   \item Friends~\cite{chen2018emotionlines} % USED
-  \item EmoInt~\cite{MohammadB17starsem} %TODO: might need to be included
-  \item TEC The Twitter Emotion Corpus published~\cite{mohammad2012emotional} %TODO: might need to be included
-  \item Electoral-Tweets~\cite{mohammad2014semantic} %TODO: might need to be included
-  \item SSEC The Stance Sentiment \\ Emotion Corpus published~\cite{schuff2017annotation} %TODO: might need to be included
+  \item EmoInt~\cite{MohammadB17starsem}
+  \item TEC The Twitter Emotion Corpus published~\cite{mohammad2012emotional}
+  \item Electoral-Tweets~\cite{mohammad2014semantic}
+  \item SSEC The Stance Sentiment \\ Emotion Corpus published~\cite{schuff2017annotation}
 \end{itemize}
 
 \subsection{Selected Datasets}\label{sub:Selected Datasets}
@@ -154,6 +154,7 @@ The class distribution of the CrowdFlower dataset is severely unbalanced. Table~
       enthusiasm  &   1510 \\
       boredom     &    358 \\
       anger       &    212 \\
+    \hline
     \end{tabular}
     \caption{Class distribution for CrowdFlower dataset.}\label{tab:CrowdFlower_distribution}
 \end{table}
